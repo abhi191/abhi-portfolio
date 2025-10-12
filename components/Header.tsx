@@ -54,18 +54,22 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
           <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="text-xl font-medium tracking-tighter">
             <span className="font-sans font-bold">ABHINAV GUPTA</span>
           </a>
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-brand-dark/80">
-            <a href="#" className="px-3 py-2 rounded-md hover:bg-brand-card hover:text-brand-dark transition-colors">Research</a>
-            <a href="#" className="px-3 py-2 rounded-md hover:bg-brand-card hover:text-brand-dark transition-colors">Case Studies</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} className="flex items-center px-3 py-2 rounded-md hover:bg-brand-card hover:text-brand-dark transition-colors">About me</a>
-          </nav>
+          
           <div className="flex items-center space-x-4">
-            <button className="hidden sm:block bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
-              Resume
-            </button>
+            {/* Desktop Navigation & Button */}
+            <nav className="hidden md:flex items-center space-x-4">
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} className="text-sm font-medium text-brand-dark/80 px-3 py-2 rounded-md hover:bg-brand-card hover:text-brand-dark transition-colors">
+                About me
+              </a>
+              <button className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
+                Resume
+              </button>
+            </nav>
+
+            {/* Mobile Menu Button */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="md:hidden p-2 rounded-md hover:bg-brand-card transition-colors"
+              className="md:hidden p-3 rounded-md hover:bg-brand-card transition-colors"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
@@ -83,14 +87,12 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
       >
         <button
           onClick={() => setIsMenuOpen(false)}
-          className="absolute top-6 right-6 p-2"
+          className="absolute top-6 right-6 p-3"
           aria-label="Close menu"
         >
           <CloseIcon className="h-7 w-7" />
         </button>
         <nav className="flex flex-col items-center space-y-8 text-center">
-          <a href="#" onClick={() => setIsMenuOpen(false)} className="text-2xl font-medium text-brand-dark hover:text-brand-accent transition-colors">Research</a>
-          <a href="#" onClick={() => setIsMenuOpen(false)} className="text-2xl font-medium text-brand-dark hover:text-brand-accent transition-colors">Case Studies</a>
           <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} className="text-2xl font-medium text-brand-dark hover:text-brand-accent transition-colors">About me</a>
           <button className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
             Resume
