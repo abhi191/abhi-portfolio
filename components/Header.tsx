@@ -1,11 +1,13 @@
+
 import React from 'react';
 import { MenuIcon, CloseIcon } from './icons';
 
 interface HeaderProps {
-  setCurrentPage: (page: 'home' | 'about') => void;
+  setCurrentPage: (page: 'projects' | 'about') => void;
+  currentPage: 'projects' | 'about';
 }
 
-const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
+const Header: React.FC<HeaderProps> = ({ setCurrentPage, currentPage }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const headerRef = React.useRef<HTMLElement>(null);
@@ -32,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
   }, [isMenuOpen]);
 
-  const handleNavClick = (page: 'home' | 'about') => {
+  const handleNavClick = (page: 'projects' | 'about') => {
     setCurrentPage(page);
     setIsMenuOpen(false);
     window.scrollTo(0, 0); // Scroll to top on page change
@@ -50,15 +52,26 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
             : 'absolute top-0 bg-brand-background'
         }`}
       >
-        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-5">
-          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="text-xl font-medium tracking-tighter">
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
+          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} className="text-xl font-medium tracking-tighter">
             <span className="font-sans font-bold">ABHINAV GUPTA</span>
           </a>
           
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation & Button */}
             <nav className="hidden md:flex items-center space-x-4">
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} className="text-sm font-medium text-brand-dark/80 px-3 py-2 rounded-md hover:bg-brand-card hover:text-brand-dark transition-colors">
+              <a 
+                href="#" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentPage === 'projects' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+              >
+                Projects
+              </a>
+              <a 
+                href="#" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentPage === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+              >
                 About me
               </a>
               <button className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
@@ -93,7 +106,20 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage }) => {
           <CloseIcon className="h-7 w-7" />
         </button>
         <nav className="flex flex-col items-center space-y-8 text-center">
-          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} className="text-2xl font-medium text-brand-dark hover:text-brand-accent transition-colors">About me</a>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
+            className={`text-2xl font-medium transition-colors ${currentPage === 'projects' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+          >
+            Projects
+          </a>
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
+            className={`text-2xl font-medium transition-colors ${currentPage === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+          >
+            About me
+          </a>
           <button className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
             Resume
           </button>

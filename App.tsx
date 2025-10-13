@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -6,13 +7,14 @@ import Footer from './components/Footer';
 import AboutPage from './components/AboutPage';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = React.useState('home');
+  // FIX: Explicitly type the state to match the expected props of the Header component.
+  const [currentPage, setCurrentPage] = React.useState<'projects' | 'about'>('projects');
 
   const renderPage = () => {
     switch (currentPage) {
       case 'about':
         return <AboutPage />;
-      case 'home':
+      case 'projects':
       default:
         return (
           <>
@@ -25,7 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header setCurrentPage={setCurrentPage} />
+      <Header setCurrentPage={setCurrentPage} currentPage={currentPage} />
       <main className="flex-grow container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         {renderPage()}
       </main>

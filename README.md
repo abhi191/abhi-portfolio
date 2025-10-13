@@ -111,6 +111,39 @@ When you're editing a file like `Hero.tsx`, you'll see these classes inside `cla
     3.  Look for `href="#"`. Replace the `#` with the full URL you want to link to.
     4.  Example: `href="https://www.linkedin.com/in/your-profile-name"`
 
+### F. Adding Images to Project Cards
+
+You can now add a large feature image to any project card, creating a beautiful two-column layout.
+
+1.  Open the file: `components/FeaturedSection.tsx`.
+2.  Find the `projects` array near the bottom of the file.
+3.  To add an image to a project, add two new properties: `imageUrl` and `imagePosition`.
+
+    -   `imageUrl`: A string containing the full URL to your image.
+    -   `imagePosition`: Can be either `'left'` or `'right'`. This decides which side of the card the image will appear on for larger screens.
+
+**Example:**
+
+Here's how to add an image to the *left* side of a project card:
+
+```javascript
+{
+  title: 'My Awesome Project',
+  description: 'A description of the project goes here.',
+  metrics: [
+    { value: '+20%', label: 'Some Metric' },
+  ],
+  link: '#',
+  imageUrl: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1', // <-- Add your image URL
+  imagePosition: 'left', // <-- Can be 'left' or 'right'
+},
+```
+
+**Important Notes:**
+
+-   These two properties are **optional**. If you don't include `imageUrl`, the card will automatically display as a full-width text card, just like before.
+-   For best results, use high-quality, landscape-oriented images (wider than they are tall). A good aspect ratio is around 4:3 or 16:9.
+
 ---
 
 We hope this guide helps you feel confident in personalizing your website. Don't be afraid to experiment!

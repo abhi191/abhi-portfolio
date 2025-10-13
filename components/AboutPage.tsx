@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const ProfileImagePlaceholder: React.FC = () => (
@@ -11,15 +12,15 @@ const ProfileImagePlaceholder: React.FC = () => (
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="py-20 md:py-24 animate-fade-in">
-      <div className="max-w-4xl mx-auto space-y-16 md:space-y-24">
+    <div className="py-24 md:py-32 animate-fade-in">
+      <div className="max-w-4xl mx-auto space-y-20 md:space-y-28">
         {/* Intro Section */}
         <section className="text-center flex flex-col items-center">
           <ProfileImagePlaceholder />
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tighter mt-8">
             Hi, I’m Abhinav Gupta.
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
             I’m an Interaction Designer at Google, where I focus on creating meaningful, clear, and effective products. With over 9 years of experience, I've had the privilege of designing and developing for both enterprise and consumer-grade applications. I thrive on solving complex problems and crafting experiences that are not only functional but also delightful to use.
           </p>
         </section>
@@ -27,7 +28,7 @@ const AboutPage: React.FC = () => {
         {/* Design Philosophy Section */}
         <section>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">My Design Philosophy</h2>
-          <div className="mt-12 grid md:grid-cols-3 gap-8 md:gap-12 text-center">
+          <div className="mt-16 grid md:grid-cols-3 gap-10 md:gap-16 text-center">
             <div className="space-y-3 p-4">
               <h3 className="text-xl font-semibold">Empathy First</h3>
               <p className="text-brand-dark/80 leading-relaxed">I believe the best solutions come from a deep understanding of user needs and pain points. I start every project by listening and learning.</p>
@@ -46,7 +47,7 @@ const AboutPage: React.FC = () => {
         {/* Journey Section */}
         <section>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">My Journey</h2>
-            <div className="mt-12 max-w-2xl mx-auto border-t border-brand-dark/10">
+            <div className="mt-16 max-w-2xl mx-auto border-t border-brand-dark/10">
                 <div className="py-6 border-b border-brand-dark/10 flex flex-wrap justify-between items-center gap-2">
                     <span className="font-semibold text-lg">Interaction Designer, Google</span>
                     <span className="text-brand-dark/60 font-mono text-sm">2021 — Present</span>
@@ -69,18 +70,18 @@ const AboutPage: React.FC = () => {
         {/* Beyond the Pixels Section */}
         <section className="text-center">
              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Beyond the Pixels</h2>
-             <p className="mt-6 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
+             <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
                 When I'm not designing, you can find me exploring the outdoors, trying to capture the perfect landscape shot with my camera, or getting lost in a good book. I'm also a passionate cook who loves experimenting with new recipes. These hobbies fuel my creativity and provide fresh perspectives that I bring back to my work.
              </p>
         </section>
 
         {/* Connect Section */}
-        <section className="text-center py-10 bg-brand-card rounded-2xl">
+        <section className="text-center py-12 md:py-16 bg-brand-card rounded-2xl">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Let's Connect</h2>
-            <p className="mt-4 text-lg text-brand-dark/80 max-w-xl mx-auto px-4">
+            <p className="mt-6 text-lg text-brand-dark/80 max-w-xl mx-auto px-4">
                 I'm always open to discussing new projects, sharing ideas, or just talking about design. Feel free to reach out!
             </p>
-            <div className="mt-8">
+            <div className="mt-10">
                  <button className="bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity">
                     Get in Touch
                 </button>
