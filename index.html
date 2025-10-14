@@ -14,7 +14,7 @@
       
       @font-face {
         font-family: 'League Gothic';
-        src: url('/LeagueGothic-Regular.woff') format('woff');
+        src: url('/fonts/LeagueGothic-Regular.woff') format('woff');
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -26,6 +26,12 @@
         font-weight: normal;
         font-style: normal;
         font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'League Spartan Variable';
+        src: url('/fonts/LeagueSpartanVariable.woff2') format('woff2-variations');
+        font-weight: 200 900;
       }
         
       body {
@@ -83,7 +89,7 @@
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               mono: ['IBM Plex Mono', 'monospace'],
-              display: ['League Gothic','Paragon', '"Archivo Black"', 'sans-serif'],
+              display: ['League Spartan Variable','League Gothic','Paragon', '"Archivo Black"', 'sans-serif'],
             }
           }
         }
