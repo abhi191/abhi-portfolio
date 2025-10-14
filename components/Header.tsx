@@ -1,13 +1,13 @@
-
 import React from 'react';
 import { MenuIcon, CloseIcon } from './icons';
+import { PageState } from '../App';
 
 interface HeaderProps {
-  setCurrentPage: (page: 'projects' | 'about') => void;
-  currentPage: 'projects' | 'about';
+  setActivePage: (page: PageState) => void;
+  activePage: PageState;
 }
 
-const Header: React.FC<HeaderProps> = ({ setCurrentPage, currentPage }) => {
+const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const headerRef = React.useRef<HTMLElement>(null);
@@ -30,14 +30,12 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage, currentPage }) => {
   }, []);
 
   React.useEffect(() => {
-    // Disable body scroll when the mobile menu is open
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
   }, [isMenuOpen]);
 
   const handleNavClick = (page: 'projects' | 'about') => {
-    setCurrentPage(page);
+    setActivePage({ page });
     setIsMenuOpen(false);
-    window.scrollTo(0, 0); // Scroll to top on page change
   };
 
 
@@ -63,14 +61,14 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage, currentPage }) => {
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentPage === 'projects' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
               >
                 Projects
               </a>
               <a 
                 href="#" 
                 onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentPage === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${activePage.page === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
               >
                 About me
               </a>
@@ -109,14 +107,14 @@ const Header: React.FC<HeaderProps> = ({ setCurrentPage, currentPage }) => {
           <a 
             href="#" 
             onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
-            className={`text-2xl font-medium transition-colors ${currentPage === 'projects' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+            className={`text-2xl font-medium transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
           >
             Projects
           </a>
           <a 
             href="#" 
             onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
-            className={`text-2xl font-medium transition-colors ${currentPage === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+            className={`text-2xl font-medium transition-colors ${activePage.page === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
           >
             About me
           </a>
