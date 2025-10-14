@@ -131,10 +131,39 @@ All your website's main colors are defined in **one single place**.
 
 ### E. Changing Fonts (Typography)
 
-Fonts are also set up in `index.html`.
+Fonts are set up in `index.html` and can come from two sources: Google Fonts or local custom font files.
 
-1.  Find the `<link href="https://fonts.googleapis.com/css2?..."` line. You can visit [Google Fonts](https://fonts.google.com/) to find new fonts and replace this link.
-2.  Update the font names inside the `tailwind.config` script in the `fontFamily` section.
+**1. Using Google Fonts (for most text):**
+- Find the `<link href="https://fonts.googleapis.com/css2?..."` line. You can visit [Google Fonts](https://fonts.google.com/) to find new fonts and replace this link.
+- Update the font names inside the `tailwind.config` script in the `fontFamily` section (e.g., `sans:` for body text, `mono:` for monospaced text).
+
+**2. Using a Custom Font File (for the main heading):**
+The main heading on the homepage uses special, locally-hosted fonts (like 'LeagueGothic').
+-   **Font Files:** Place your font files (e.g., `My-Awesome-Font.woff2`) inside the `fonts/` folder.
+-   **Loading the Font:** In `index.html`, inside the `<style>` tag, add or edit a `@font-face` rule to load your font file.
+-   **Applying the Font:** In the `tailwind.config` script, add your new font's name to the `display` font list. The first font in the list is always tried first.
+
+**🚨 IMPORTANT DEBUGGING TIP:** If your custom font isn't loading, the #1 cause is a mismatch between the filename and the path in the code. The `url()` path must **exactly match** your font's filename, including capitalization, spaces, and hyphens.
+
+For example, if your file is named `League gothic regular.woff2`:
+
+-   **INCORRECT:** `url('/fonts/LeagueGothic-Regular.woff2')` ❌
+-   **CORRECT:** `url('/fonts/League gothic regular.woff2')` ✅
+
+Here is the correct structure in `index.html`:
+```css
+/* in the <style> tag */
+@font-face {
+  font-family: 'LeagueGothic'; /* You can name this whatever you want */
+  src: url('/fonts/League gothic regular.woff2'); /* This path MUST be exact */
+}
+```
+```javascript
+/* in the <script> tag for tailwind.config */
+fontFamily: {
+  display: ['LeagueGothic', 'Paragon', 'sans-serif'], // Use the name from font-family
+}
+```
 
 ### F. Understanding the Styling (A Guide to CSS & Tailwind)
 

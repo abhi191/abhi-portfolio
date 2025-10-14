@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
           <h1 
             className="text-5xl sm:text-6xl font-display leading-tight tracking-normal"
           >
-            Hi, myself Abhinav
+            Hi, myself Abhinav 👋
           </h1>
           <div className="space-y-6">
             <p 
@@ -20,9 +20,9 @@ const Hero: React.FC = () => {
             </p>
             <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose">
               <span className="font-semibold text-brand-dark">
-                Currently designing digital experiences at {' '}
+                Currently designing experiences at
                  <GoogleLogo 
-                  className="inline-block h-[2.1em] w-auto align-baseline relative top-[0.65em]"
+                  className="inline-block h-[1.5em] w-auto align-baseline relative top-[0.5em] ml-3"
                 />
               </span>
             </p>
