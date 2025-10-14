@@ -25,21 +25,18 @@ const Hero: React.FC = () => {
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div className="space-y-10 text-center md:text-left">
           <h1 
-            className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tighter animate-fade-in-up"
-            style={{ animationDelay: '100ms' }}
+            className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tighter"
           >
             Hi, myself Abhinav
           </h1>
           <p 
-            className="text-xl md:text-2xl text-brand-dark/80 max-w-lg mx-auto md:mx-0 leading-loose animate-fade-in-up"
-            style={{ animationDelay: '250ms' }}
+            className="text-xl md:text-2xl text-brand-dark/80 max-w-lg mx-auto md:mx-0 leading-loose"
           >
             A multi-disciplinary designer with 9+ years of experience in designing and developing for enterprise and consumer grade applications. I focus on creating meaningful, clear, and effective products. <span className="font-semibold text-brand-dark">Currently an Interaction Designer at Google.</span>
           </p>
         </div>
         <div 
-          className="flex justify-center items-center mt-12 md:mt-0 animate-fade-in-up"
-          style={{ animationDelay: '400ms' }}
+          className="flex justify-center items-center mt-12 md:mt-0"
         >
           <HeroIllustration />
         </div>
