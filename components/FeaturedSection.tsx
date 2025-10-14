@@ -24,8 +24,10 @@ const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }>
     >
       {/* Image Part - Renders only if imageUrl exists */}
       {imageUrl && (
-        <div className={`relative min-h-[300px] lg:min-h-0 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}>
-          <img src={imageUrl} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+        <div className={`min-h-[300px] lg:min-h-0 p-8 lg:p-12 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}>
+          <div className="relative h-full w-full rounded-2xl overflow-hidden">
+            <img src={imageUrl} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+          </div>
         </div>
       )}
 

@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
                 onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
                 className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
               >
-                Projects
+                Work
               </a>
               <a 
                 href="#" 
@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
             onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
             className={`text-2xl font-medium transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
           >
-            Projects
+            Work
           </a>
           <a 
             href="#" 
