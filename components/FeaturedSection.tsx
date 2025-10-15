@@ -69,7 +69,7 @@ const FeaturedSection: React.FC = () => {
   return (
     <section className="py-20 md:py-32">
       <AnimateOnScroll>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-center">Selected Work</h2>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected Work</h2>
       </AnimateOnScroll>
       <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
         {projects.map((project, index) => (

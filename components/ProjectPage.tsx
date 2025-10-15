@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Project, ContentBlock, Metric } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, UpArrowIcon } from './icons';
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, UpArrowIcon, LeftArrowIcon } from './icons';
 
 const getEmbedUrl = (url: string): string => {
   // YouTube
-  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|live\/)|youtu.be\/)([a-zA-Z0-9_-]{11})/;
   const youtubeMatch = url.match(youtubeRegex);
   if (youtubeMatch && youtubeMatch[1]) {
     return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
@@ -344,7 +344,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
       {/* Project Hero */}
       <AnimateOnScroll>
         <header className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
             {project.title}
           </h1>
           <p className="mt-8 text-lg md:text-xl text-brand-dark/80">
@@ -391,6 +391,20 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
         ))}
       </div>
       
+      {/* Back to Projects link at the bottom */}
+      <AnimateOnScroll>
+        <section className="py-12 md:py-16 text-center border-t border-brand-dark/10 mt-12 md:mt-20">
+            <button
+              onClick={() => (window.location.hash = '#/')}
+              className="inline-flex items-center gap-3 bg-brand-card hover:bg-brand-dark/10 text-brand-dark font-semibold py-3 px-6 rounded-lg transition-colors duration-200 group"
+              role="link"
+            >
+              <LeftArrowIcon className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1" />
+              <span>All projects</span>
+            </button>
+        </section>
+      </AnimateOnScroll>
+
       {/* Lightbox */}
       {lightbox && (
         <div 

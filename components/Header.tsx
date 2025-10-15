@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
         <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
           <div
             onClick={() => (window.location.hash = '#/')}
-            className="flex items-center gap-3 text-xl font-medium tracking-tighter cursor-pointer"
+            className="flex items-center gap-3 text-xl font-medium tracking-tight cursor-pointer"
             role="link"
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.hash = '#/'; }}
