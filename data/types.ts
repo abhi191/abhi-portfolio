@@ -5,11 +5,13 @@ export interface Metric {
 
 export type ContentBlock =
   | { type: 'paragraph'; content: string }
-  | { type: 'image'; src: string; caption?: string }
+  | { type: 'image'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'list'; style: 'ordered' | 'unordered'; items: string[] }
   | { type: 'twoColumn'; columns: [{ blocks: ContentBlock[] }, { blocks: ContentBlock[] }] }
   | { type: 'metricCards'; metrics: Metric[] }
-  | { type: 'table'; headers: string[]; rows: (string | number)[][] };
+  | { type: 'table'; headers: string[]; rows: (string | number)[][] }
+  | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
+  | { type: 'carousel'; slides: { src: string; caption?: string }[] };
 
 export interface ProjectSection {
   title: string;

@@ -143,18 +143,55 @@ Perfect for project goals, key learnings, or any list of items.
 ```
 
 **3. Image with Optional Caption**
-To display images within your case study.
+To display a standard, centered image. You can optionally make it "expandable," meaning a user can click it to see it in a full-screen view.
 
 *Code Example:*
 ```javascript
 { 
   type: 'image', 
   src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0', // URL for the image
-  caption: 'This is an optional caption for the image.' 
+  caption: 'This is an optional caption for the image.',
+  isExpandable: true // Add this line to make the image clickable!
 }
 ```
 
-**4. Two-Column Layout**
+**4. Full-Width Image**
+Perfect for high-impact mockups. This block breaks out of the text container to span a much wider area. It can also be made expandable.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'fullWidthImage', 
+  src: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37',
+  caption: 'This is an optional caption for the full-width image.',
+  isExpandable: true // Make it clickable!
+}
+```
+
+**5. Image Carousel**
+An interactive slideshow. **Images in a carousel are always expandable** into a full-screen lightbox view by default.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'carousel', 
+  slides: [
+    { 
+      src: 'https://...image-url-1.com', 
+      caption: 'Slide 1: This is the first caption.' 
+    },
+    { 
+      src: 'https://...image-url-2.com', 
+      caption: 'Slide 2: A different caption.' 
+    },
+    { 
+      src: 'https://...image-url-3.com' // Caption is optional
+    }
+  ]
+}
+```
+
+**6. Two-Column Layout**
 A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
 
 *Code Example:*
@@ -177,7 +214,7 @@ A powerful way to place content side-by-side. Each column can contain any other 
 }
 ```
 
-**5. Metric Cards**
+**7. Metric Cards**
 Great for showcasing the final results and impact of your project in a visually appealing way.
 
 *Code Example:*
@@ -192,7 +229,7 @@ Great for showcasing the final results and impact of your project in a visually 
 }
 ```
 
-**6. Table**
+**8. Table**
 Use this for structured data, like a competitive analysis.
 
 *Code Example:*
