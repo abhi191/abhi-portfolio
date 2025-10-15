@@ -76,8 +76,8 @@ export const googleEcommerceProject: Project = {
         blocks: [
             { type: 'carousel', slides: [
                 { src: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=2574&auto=format&fit=crop', caption: 'Slide 1: A responsive grid showcasing multiple products.' },
-                { src: 'https://images.unsplash.com/photo-1580870069867-74c57ee130b0?q=80&w=2574&auto=format&fit=crop', caption: 'Slide 2: The streamlined, single-page checkout form.' },
-                { src: 'https://images.unsplash.com/photo-1585255318493-eb89720a4425?q=80&w=2574&auto=format&fit=crop', caption: 'Slide 3: User profile and order history page.' },
+                { src: 'https://images.unsplash.com/photo-1760479099297-90f851fb0474?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3540', caption: 'Slide 2: The streamlined, single-page checkout form.' },
+                { src: 'https://images.unsplash.com/photo-1757258632083-e9b8a5345047?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2342', caption: 'Slide 3: User profile and order history page.' },
             ]}
         ]
     },

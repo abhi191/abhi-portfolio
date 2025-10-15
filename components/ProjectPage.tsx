@@ -6,7 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from './icons';
 // Helper component to render a single content block
 const RenderBlock: React.FC<{ 
   block: ContentBlock;
-  onImageClick: (image: { src: string; caption?: string }) => void;
+  onImageClick: (images: { src: string; caption?: string }[], startIndex: number) => void;
 }> = ({ block, onImageClick }) => {
   switch (block.type) {
     case 'paragraph':
@@ -20,7 +20,7 @@ const RenderBlock: React.FC<{
               src={block.src} 
               alt={block.caption || 'Project image'} 
               className={`w-full h-auto object-cover ${block.isExpandable ? 'transition-transform duration-300 hover:scale-105' : ''}`}
-              onClick={block.isExpandable ? () => onImageClick({ src: block.src, caption: block.caption }) : undefined}
+              onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
             />
           </div>
           {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{block.caption}</figcaption>}
@@ -35,7 +35,7 @@ const RenderBlock: React.FC<{
                 src={block.src} 
                 alt={block.caption || 'Project full-width image'} 
                 className={`w-full h-auto object-cover ${block.isExpandable ? 'transition-transform duration-300 hover:scale-105' : ''}`}
-                onClick={block.isExpandable ? () => onImageClick({ src: block.src, caption: block.caption }) : undefined}
+                onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
               />
           </div>
           {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4 max-w-3xl mx-auto px-6">{block.caption}</figcaption>}
@@ -68,7 +68,7 @@ const RenderBlock: React.FC<{
               src={currentSlide.src} 
               alt={currentSlide.caption || `Carousel image ${currentIndex + 1}`} 
               className="w-full h-full object-cover cursor-pointer transition-transform duration-500 ease-in-out"
-              onClick={() => onImageClick(currentSlide)}
+              onClick={() => onImageClick(block.slides, currentIndex)}
             />
           </div>
 
@@ -169,15 +169,51 @@ const RenderBlock: React.FC<{
 
 
 const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
-  const [lightbox, setLightbox] = React.useState<{src: string, caption?: string} | null>(null);
+  const [lightbox, setLightbox] = React.useState<{
+    images: { src: string; caption?: string }[];
+    currentIndex: number;
+  } | null>(null);
 
-  const handleImageClick = (image: {src: string, caption?: string}) => {
-    setLightbox(image);
+  const handleImageClick = (images: { src: string; caption?: string }[], startIndex: number) => {
+    setLightbox({ images, currentIndex: startIndex });
   };
   
   const handleCloseLightbox = () => {
     setLightbox(null);
   };
+  
+  const handleLightboxNext = () => {
+    if (!lightbox) return;
+    const newIndex = (lightbox.currentIndex + 1) % lightbox.images.length;
+    setLightbox({ ...lightbox, currentIndex: newIndex });
+  };
+
+  const handleLightboxPrev = () => {
+    if (!lightbox) return;
+    const newIndex = (lightbox.currentIndex - 1 + lightbox.images.length) % lightbox.images.length;
+    setLightbox({ ...lightbox, currentIndex: newIndex });
+  };
+  
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!lightbox) return;
+
+      if (event.key === 'ArrowRight') {
+        handleLightboxNext();
+      } else if (event.key === 'ArrowLeft') {
+        handleLightboxPrev();
+      } else if (event.key === 'Escape') {
+        handleCloseLightbox();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightbox]);
 
   return (
     <article className="py-20 md:py-24">
@@ -237,19 +273,50 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
           onClick={handleCloseLightbox}
         >
+          {/* Previous Button */}
+          {lightbox.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleLightboxPrev();
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-[51] p-2 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-all"
+              aria-label="Previous image"
+            >
+              <ChevronLeftIcon className="h-8 w-8" />
+            </button>
+          )}
+
+          {/* Image Container */}
           <div className="relative max-w-4xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
             <img 
-              src={lightbox.src} 
-              alt={lightbox.caption || 'Expanded view'}
+              src={lightbox.images[lightbox.currentIndex].src} 
+              alt={lightbox.images[lightbox.currentIndex].caption || 'Expanded view'}
               className="w-full h-full object-contain"
             />
-            {lightbox.caption && (
-              <p className="text-center text-white/80 mt-2 text-sm">{lightbox.caption}</p>
+            {lightbox.images[lightbox.currentIndex].caption && (
+              <p className="text-center text-white/80 mt-2 text-sm">{lightbox.images[lightbox.currentIndex].caption}</p>
             )}
           </div>
+          
+          {/* Next Button */}
+          {lightbox.images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleLightboxNext();
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-[51] p-2 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-all"
+              aria-label="Next image"
+            >
+              <ChevronRightIcon className="h-8 w-8" />
+            </button>
+          )}
+
+          {/* Close Button */}
           <button
             onClick={handleCloseLightbox}
-            className="absolute top-4 right-4 p-2 text-white/80 hover:text-white transition-colors"
+            className="absolute top-4 right-4 z-[51] p-2 text-white/80 hover:text-white transition-colors"
             aria-label="Close image view"
           >
             <CloseIcon className="h-8 w-8" />
