@@ -19,7 +19,7 @@ const AboutPage: React.FC = () => {
         <AnimateOnScroll>
           <section className="text-center flex flex-col items-center">
             <ProfileImagePlaceholder />
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tighter mt-8">
+            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mt-8">
               Hi, I’m Abhinav Gupta.
             </h1>
             <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
