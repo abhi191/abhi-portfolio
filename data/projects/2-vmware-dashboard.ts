@@ -2,6 +2,7 @@ import type { Project } from '../types';
 
 export const vmwareDashboardProject: Project = {
   id: 2,
+  slug: 'vmware-saas-dashboard',
   password: 'saasdata',
   company: 'VMWare',
   companyLogoUrl: "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='currentColor'%3E%3Ctitle%3EVMware%3C/title%3E%3Cpath d='M18.002 0h-5.08L6.04 16.558h5.077l1.804-4.89h5.08zm-5.077 24h5.078l6.88-16.558h-5.08L12.925 24z'/%3E%3C/svg%3E",

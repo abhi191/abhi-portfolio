@@ -1,13 +1,12 @@
 import React from 'react';
 import { MenuIcon, CloseIcon, NameLogoIcon } from './icons';
-import { PageState } from '../App';
+import { Route } from '../App';
 
 interface HeaderProps {
-  setActivePage: (page: PageState) => void;
-  activePage: PageState;
+  currentRoute: Route;
 }
 
-const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
+const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const headerRef = React.useRef<HTMLElement>(null);
@@ -33,11 +32,7 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
   }, [isMenuOpen]);
 
-  const handleNavClick = (page: 'projects' | 'about') => {
-    setActivePage({ page });
-    setIsMenuOpen(false);
-  };
-
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
@@ -51,28 +46,32 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
         }`}
       >
         <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
-          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} className="flex items-center gap-3 text-xl font-medium tracking-tighter">
+          <div
+            onClick={() => (window.location.hash = '#/')}
+            className="flex items-center gap-3 text-xl font-medium tracking-tighter cursor-pointer"
+            role="link"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.hash = '#/'; }}
+          >
             <NameLogoIcon className="h-6 w-auto" />
             <span className="font-sans font-bold">ABHINAV GUPTA</span>
-          </a>
+          </div>
           
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation & Button */}
             <nav className="hidden md:flex items-center space-x-4">
-              <a 
-                href="#" 
-                onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+              <button
+                onClick={() => (window.location.hash = '#/')}
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
               >
                 Work
-              </a>
-              <a 
-                href="#" 
-                onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${activePage.page === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+              </button>
+              <button
+                onClick={() => (window.location.hash = '#/about')}
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
               >
                 About me
-              </a>
+              </button>
               <button className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
                 Resume
               </button>
@@ -98,27 +97,25 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
         }`}
       >
         <button
-          onClick={() => setIsMenuOpen(false)}
+          onClick={closeMenu}
           className="absolute top-6 right-6 p-3"
           aria-label="Close menu"
         >
           <CloseIcon className="h-7 w-7" />
         </button>
         <nav className="flex flex-col items-center space-y-8 text-center">
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} 
-            className={`text-2xl font-medium transition-colors ${activePage.page === 'projects' || activePage.page === 'projectDetail' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+          <button
+            onClick={() => { window.location.hash = '#/'; closeMenu(); }}
+            className={`text-2xl font-medium transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
           >
             Work
-          </a>
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); handleNavClick('about'); }} 
-            className={`text-2xl font-medium transition-colors ${activePage.page === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+          </button>
+          <button
+            onClick={() => { window.location.hash = '#/about'; closeMenu(); }}
+            className={`text-2xl font-medium transition-colors ${currentRoute.page === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
           >
             About me
-          </a>
+          </button>
           <button className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
             Resume
           </button>

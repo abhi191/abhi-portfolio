@@ -22,6 +22,7 @@ export interface ProjectSection {
 
 export interface Project {
   id: number;
+  slug: string; // URL-friendly identifier for the project
   password?: string; // Optional password for the project
   company: string; // The company where the project was done
   companyLogoUrl: string; // URL or data URI for the company logo

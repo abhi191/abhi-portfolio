@@ -4,12 +4,7 @@ import { projects } from '../data/projects';
 import type { Project } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
-interface FeaturedSectionProps {
-  onSelectProject: (id: number) => void;
-}
-
-const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }> = ({
-  id,
+const ProjectCard: React.FC<Project> = ({
   company,
   companyLogoUrl,
   title,
@@ -17,11 +12,9 @@ const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }>
   metrics,
   imageUrl,
   imagePosition = 'left',
-  onSelectProject,
 }) => {
   return (
     <div
-      onClick={() => onSelectProject(id)}
       className={`block group rounded-3xl overflow-hidden bg-brand-card hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
     >
       {/* Image Part - Renders only if imageUrl exists */}
@@ -72,7 +65,7 @@ const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }>
   );
 };
 
-const FeaturedSection: React.FC<FeaturedSectionProps> = ({ onSelectProject }) => {
+const FeaturedSection: React.FC = () => {
   return (
     <section className="py-20 md:py-32">
       <AnimateOnScroll>
@@ -81,7 +74,20 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({ onSelectProject }) =>
       <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
         {projects.map((project, index) => (
           <AnimateOnScroll key={project.id} delay={index * 100}>
-            <ProjectCard {...project} onSelectProject={onSelectProject} />
+            <div
+              onClick={() => (window.location.hash = `#/projects/${project.slug}`)}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.hash = `#/projects/${project.slug}`;
+                }
+              }}
+              aria-label={`View case study for ${project.title}`}
+            >
+              <ProjectCard {...project} />
+            </div>
           </AnimateOnScroll>
         ))}
       </div>

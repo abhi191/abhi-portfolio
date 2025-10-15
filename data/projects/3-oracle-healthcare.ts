@@ -2,6 +2,7 @@ import type { Project } from '../types';
 
 export const oracleHealthcareProject: Project = {
   id: 3,
+  slug: 'oracle-healthcare-mobile-app',
   password: 'healthapp',
   company: 'Oracle',
   companyLogoUrl: "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='currentColor'%3E%3Ctitle%3EOracle%3C/title%3E%3Cpath d='M12.43 12.004c0 3.93-3.07 7.15-6.91 7.15v-3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54-3.58-3.44-3.58v-3.57c3.84 0 6.91 3.22 6.91 7.15zm-1.04 7.15c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15V.004C5.02.004.5 4.874.5 12.004s4.52 11.99 10.89 11.99v-3.84zm11.23-7.15c0-3.93-3.07-7.15-6.91-7.15v3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54 3.58-3.44 3.58v3.57c3.84 0 6.91-3.22 6.91-7.15zm1.04-7.15V.004C18.26.004 13.74 4.874 13.74 12.004s4.52 11.99 10.89 11.99v-3.84c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15z'/%3E%3C/svg%3E",

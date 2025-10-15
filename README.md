@@ -6,11 +6,11 @@ Hello! This is a guide to help you understand and easily update your personal po
 
 ## 1. What is this project?
 
-This is the code for your beautiful, minimalist portfolio website. It's built to be simple and clean. It has three main views:
+This is the code for your beautiful, minimalist portfolio website. It's built to be simple and clean. It has three main page types with unique, shareable URLs:
 
-1.  **Homepage:** Where you introduce yourself and showcase your featured work.
-2.  **About Me Page:** A dedicated space to share your story, experience, and personality.
-3.  **Project Detail Page:** A full case study page for each of your projects, which can be individually password-protected.
+1.  **Homepage (`/#/`):** Where you introduce yourself and showcase your featured work.
+2.  **About Me Page (`/#/about`):** A dedicated space to share your story, experience, and personality.
+3.  **Project Detail Page (`/#/projects/your-project-name`):** A full case study page for each of your projects, which can be individually password-protected.
 
 ---
 
@@ -25,11 +25,11 @@ All the website's files are organized to be as clear as possible. Here’s a qui
     -   Think of this as the main "frame" or "skeleton" of your website. We use it to set up important things like **colors, fonts, and custom animations**.
 
 -   `App.tsx`
-    -   This file is the "traffic cop." It decides which page to show the visitor and handles the logic for displaying the password prompt.
+    -   This file is the "traffic cop." It reads the URL in the browser's address bar to decide which page to show the visitor and handles the logic for displaying the password prompt.
     
 -   `data/` (folder)
     -   This folder holds all your content.
-    -   `types.ts`: This important file defines the "blueprint" or structure for a project (what fields it has, like `title`, `description`, etc.).
+    -   `types.ts`: This important file defines the "blueprint" or structure for a project (what fields it has, like `title`, `slug`, `description`, etc.).
     -   `projects/` (folder): **This is where all your project files live!** Each project has its own file here.
         -   `1-google-ecommerce.ts`: An example project file.
         -   `index.ts`: This file gathers all your individual projects and puts them in a list for the website to display.
@@ -60,9 +60,21 @@ Your portfolio is now set up so that each project is its own separate file. This
 3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `4-my-new-project.ts`).
 
 #### Step 2: Edit Your Project's Content
-1.  Open your new project file. You'll see a structure with fields like `id`, `title`, `description`, etc. **Carefully edit the content for each field.**
+1.  Open your new project file. You'll see a structure with fields like `id`, `slug`, `title`, etc. **Carefully edit the content for each field.**
 2.  Make sure the `id` is a **unique number** that no other project uses.
-3.  Fill out the top-level details like `title`, `description`, `role`, `timeline`, and the `metrics` for the homepage card.
+3.  **Add a Unique URL Slug:** Each project needs a unique, URL-friendly identifier called a `slug`. This is what will appear in the browser's address bar (e.g., `/#/projects/my-new-project-slug`).
+    -   It must be all lowercase.
+    -   Use hyphens (`-`) instead of spaces.
+    -   Make it descriptive but not too long.
+    -   **Every project must have a unique slug!**
+    ```javascript
+    export const myNewProject: Project = {
+      id: 4,
+      slug: 'my-new-project-slug', // <-- Add this required field!
+      // ... rest of project data
+    };
+    ```
+4.  Fill out the top-level details like `title`, `description`, `role`, `timeline`, and the `metrics` for the homepage card.
 
 #### Step 3: Add Your New Project to the Main List
 1.  Now, open the file `data/projects/index.ts`. This file controls which projects appear on your site and in what order.
@@ -82,7 +94,7 @@ Your portfolio is now set up so that each project is its own separate file. This
     ```
 That's it! Your new project will now appear on your website.
 
-### B. Editing a Project's Case Study Page
+### B. Building Your Case Study (Content Blocks)
 
 This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
 
@@ -276,15 +288,18 @@ Use this for structured data, like a competitive analysis.
 You can set a unique password for each project.
 
 1.  Open the specific project's file (e.g., `data/projects/1-google-ecommerce.ts`).
-2.  Add a `password` property to it, right after the `id`.
+2.  Add a `password` property to it, right after the `slug`.
     ```javascript
     export const myProject: Project = {
       id: 4,
+      slug: 'my-new-project-slug',
       password: 'my-secret-password-123',
       // ... rest of the project data
     };
     ```
 3.  To make a project public, simply make sure it **does not** have a `password` property.
+
+**Important Security Note:** Passwords are **not** stored or cached in the browser. This is a security feature. Users will be required to enter the password **every single time** they visit a protected page, whether they clicked a link or used a direct URL.
 
 ### D. Updating Project Company & Logos
 
