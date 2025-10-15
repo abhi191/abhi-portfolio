@@ -12,7 +12,8 @@ export type ContentBlock =
   | { type: 'table'; headers: string[]; rows: (string | number)[][] }
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'carousel'; slides: { src: string; caption?: string }[] }
-  | { type: 'quote'; text: string; author?: string };
+  | { type: 'quote'; text: string; author?: string }
+  | { type: 'video'; url: string; caption?: string };
 
 export interface ProjectSection {
   title: string;

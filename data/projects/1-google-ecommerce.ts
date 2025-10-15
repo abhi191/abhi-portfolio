@@ -118,6 +118,16 @@ export const googleEcommerceProject: Project = {
       ]
     },
     {
+      title: 'Promotional Video',
+      blocks: [
+        { 
+          type: 'video', 
+          url: 'https://www.youtube.com/watch?v=SSo_EIwHSd4', 
+          caption: 'A short video summarizing the project impact and new features.' 
+        }
+      ]
+    },
+    {
       title: 'Key Learnings',
       blocks: [
         { type: 'list', style: 'unordered', items: [

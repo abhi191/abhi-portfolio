@@ -203,7 +203,19 @@ Perfect for highlighting user testimonials, stakeholder feedback, or key pull qu
 }
 ```
 
-**7. Two-Column Layout**
+**7. Video Embed**
+Embed a video from platforms like YouTube or Vimeo. The block automatically converts standard video links into the correct embeddable format.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'video', 
+  url: 'https://www.youtube.com/watch?v=your_video_id',
+  caption: 'This is an optional caption for the video.'
+}
+```
+
+**8. Two-Column Layout**
 A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
 
 *Code Example:*
@@ -226,7 +238,7 @@ A powerful way to place content side-by-side. Each column can contain any other 
 }
 ```
 
-**8. Metric Cards**
+**9. Metric Cards**
 Great for showcasing the final results and impact of your project in a visually appealing way.
 
 *Code Example:*
@@ -241,7 +253,7 @@ Great for showcasing the final results and impact of your project in a visually 
 }
 ```
 
-**9. Table**
+**10. Table**
 Use this for structured data, like a competitive analysis.
 
 *Code Example:*

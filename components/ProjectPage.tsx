@@ -3,6 +3,26 @@ import type { Project, ContentBlock, Metric } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from './icons';
 
+const getEmbedUrl = (url: string): string => {
+  // YouTube
+  const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const youtubeMatch = url.match(youtubeRegex);
+  if (youtubeMatch && youtubeMatch[1]) {
+    return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+  }
+
+  // Vimeo
+  const vimeoRegex = /(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(?:video\/)?(\d+)/;
+  const vimeoMatch = url.match(vimeoRegex);
+  if (vimeoMatch && vimeoMatch[1]) {
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+  }
+
+  // Return original url as fallback, assuming it's already an embed link
+  return url;
+};
+
+
 // Helper component to render a single content block
 const RenderBlock: React.FC<{ 
   block: ContentBlock;
@@ -175,6 +195,25 @@ const RenderBlock: React.FC<{
               </figcaption>
             )}
           </blockquote>
+        </figure>
+      );
+
+    case 'video':
+      const embedUrl = getEmbedUrl(block.url);
+      return (
+        <figure className="my-10">
+          <div className="aspect-video bg-brand-dark/10 rounded-2xl overflow-hidden">
+            <iframe
+              src={embedUrl}
+              title={block.caption || 'Embedded video'}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          </div>
+          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{block.caption}</figcaption>}
         </figure>
       );
 
