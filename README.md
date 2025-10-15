@@ -191,7 +191,19 @@ An interactive slideshow. **Images in a carousel are always expandable** into a 
 }
 ```
 
-**6. Two-Column Layout**
+**6. Quote**
+Perfect for highlighting user testimonials, stakeholder feedback, or key pull quotes.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'quote', 
+  text: 'This new design has transformed our workflow and saved us hours every week.',
+  author: 'John Smith, Project Stakeholder' // Author is optional
+}
+```
+
+**7. Two-Column Layout**
 A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
 
 *Code Example:*
@@ -214,7 +226,7 @@ A powerful way to place content side-by-side. Each column can contain any other 
 }
 ```
 
-**7. Metric Cards**
+**8. Metric Cards**
 Great for showcasing the final results and impact of your project in a visually appealing way.
 
 *Code Example:*
@@ -229,7 +241,7 @@ Great for showcasing the final results and impact of your project in a visually 
 }
 ```
 
-**8. Table**
+**9. Table**
 Use this for structured data, like a competitive analysis.
 
 *Code Example:*

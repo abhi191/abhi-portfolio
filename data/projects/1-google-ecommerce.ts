@@ -102,6 +102,11 @@ export const googleEcommerceProject: Project = {
     {
       title: 'Results & Impact',
       blocks: [
+        { 
+          type: 'quote', 
+          text: 'This was a game-changer for our mobile conversion. The new design is not only beautiful but incredibly intuitive for our customers.', 
+          author: 'Jane Doe, Head of Product' 
+        },
         { type: 'metricCards', metrics: [
             { value: '+40%', label: 'Increase in Conversion Rate' },
             { value: '-25%', label: 'Reduction in Cart Abandonment' },

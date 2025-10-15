@@ -161,6 +161,22 @@ const RenderBlock: React.FC<{
             </table>
         </div>
       );
+      
+    case 'quote':
+      return (
+        <figure className="my-10">
+          <blockquote className="relative text-center p-4">
+            <p className="text-xl md:text-2xl italic text-brand-dark font-medium leading-relaxed">
+              "{block.text}"
+            </p>
+            {block.author && (
+              <figcaption className="mt-4 text-center">
+                <cite className="text-base not-italic text-brand-dark/80">— {block.author}</cite>
+              </figcaption>
+            )}
+          </blockquote>
+        </figure>
+      );
 
     default:
       return null;

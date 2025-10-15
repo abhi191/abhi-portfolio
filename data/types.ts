@@ -11,7 +11,8 @@ export type ContentBlock =
   | { type: 'metricCards'; metrics: Metric[] }
   | { type: 'table'; headers: string[]; rows: (string | number)[][] }
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
-  | { type: 'carousel'; slides: { src: string; caption?: string }[] };
+  | { type: 'carousel'; slides: { src: string; caption?: string }[] }
+  | { type: 'quote'; text: string; author?: string };
 
 export interface ProjectSection {
   title: string;
