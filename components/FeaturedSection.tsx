@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { ArrowRightIcon } from './icons';
-import { projects, Project } from '../data/projects';
+import { projects } from '../data/projects';
+import type { Project } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
 interface FeaturedSectionProps {
@@ -10,6 +10,8 @@ interface FeaturedSectionProps {
 
 const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }> = ({
   id,
+  company,
+  companyLogoUrl,
   title,
   description,
   metrics,
@@ -33,6 +35,14 @@ const ProjectCard: React.FC<Project & { onSelectProject: (id: number) => void }>
 
       {/* Content Part */}
       <div className="p-10 sm:p-12 md:p-16 flex flex-col">
+        {company && companyLogoUrl && (
+          <div className="mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70">
+              <img src={companyLogoUrl} alt={`${company} logo`} className="h-4 w-auto text-brand-dark/80" />
+              <span className="text-xs font-semibold text-brand-dark/80 tracking-wide uppercase">{company}</span>
+            </div>
+          </div>
+        )}
         <div>
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-dark">{title}</h3>
           <p className="mt-6 text-lg text-brand-dark/80 leading-relaxed">

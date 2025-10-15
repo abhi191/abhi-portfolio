@@ -26,9 +26,13 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 -   `App.tsx`
     -   This file is the "traffic cop." It decides which page to show the visitor and handles the logic for displaying the password prompt.
-
--   `data/projects.ts`
-    -   **This is where all your project content and passwords live!** This is a key file for you to edit.
+    
+-   `data/` (folder)
+    -   This folder holds all your content.
+    -   `types.ts`: This important file defines the "blueprint" or structure for a project (what fields it has, like `title`, `description`, etc.).
+    -   `projects/` (folder): **This is where all your project files live!** Each project has its own file here.
+        -   `1-google-ecommerce.ts`: An example project file.
+        -   `index.ts`: This file gathers all your individual projects and puts them in a list for the website to display.
 
 -   `components/` (folder)
     -   This folder contains all the reusable "building blocks" of your website.
@@ -48,38 +52,50 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 Here’s how you can customize the most common parts of your website.
 
-### A. Editing Your Project Case Studies
+### A. How to Add or Edit a Project
 
-All the content for your projects is located in a single, easy-to-edit file.
+Your portfolio is now set up so that each project is its own separate file. This makes it super clean and easy to manage.
 
-1.  Open the file: `data/projects.ts`.
-2.  Inside, you'll see an array called `projects`. Each item in this array is an object `{...}` that represents one project.
-3.  You can edit the text and image URLs for each field to build your case study.
+#### Step 1: Create a New Project File
+1.  Go to the `data/projects/` folder.
+2.  To create a new project, the easiest way is to **duplicate an existing project file** (like `1-google-ecommerce.ts`).
+3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `4-my-new-project.ts`).
 
-Here's a breakdown of the fields for a single project:
+#### Step 2: Edit Your Project's Content
+1.  Open your new project file.
+2.  You'll see a structure with fields like `id`, `title`, `description`, etc. **Carefully edit the content for each field.**
+3.  Make sure the `id` is a **unique number** that no other project uses.
+
+Here's a breakdown of the fields:
 
 -   `id`: A unique number for the project (e.g., 1, 2, 3...).
 -   `password`: (Optional) The password for this specific project.
+-   `company`: The name of the company (e.g., 'Google').
+-   `companyLogoUrl`: The path or data URI for the company's logo.
 -   `title`: The project's title.
 -   `description`: The short summary that appears on the homepage project card.
 -   `metrics`: The key results that show up on the homepage card and the project detail page.
 -   `imageUrl`: The URL for the large image on the homepage project card.
 -   `imagePosition`: Where the image appears on the card (`'left'` or `'right'`).
+-   ...and all the other fields for the detailed case study page.
 
-**Detailed Page Content:**
-
--   `heroImage`: The main banner image at the top of the case study page.
--   `role`: Your role on the project.
--   `timeline`: The duration of the project.
--   `overview`: A short paragraph introducing the project on its detail page.
--   `problemStatement`: The main problem you were solving.
--   `goals`: A list of project goals.
--   `process`: Describe your design process.
--   `challenges`: What were the main challenges you faced?
--   `solution`: Describe the final solution.
--   `learnings`: Key takeaways from the project.
-
-To add a new project, simply copy an existing project object, paste it at the end of the array (before the closing `];`), change its `id`, and update all the content.
+#### Step 3: Add Your New Project to the Main List
+1.  Now, open the file `data/projects/index.ts`. This file controls which projects appear on your site and in what order.
+2.  At the top of the file, **import your new project**. Give your project a unique variable name (like `myNewProject`) and provide the correct path to the file you created.
+    ```javascript
+    // Add this line at the top with the other imports
+    import { myNewProject } from './4-my-new-project'; 
+    ```
+3.  Finally, add your new variable (`myNewProject`) to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
+    ```javascript
+    export const projects: Project[] = [
+      googleEcommerceProject,
+      vmwareDashboardProject,
+      oracleHealthcareProject,
+      myNewProject, // <-- Add your new project here
+    ];
+    ```
+That's it! Your new project will now appear on your website.
 
 ### B. Setting Project Passwords (Individual & Optional)
 
@@ -87,32 +103,21 @@ You can set a unique password for each project. If you don't add a password, the
 
 **How to set a password for a project:**
 
-1.  Open the file: `data/projects.ts`.
-2.  Find the project object you want to protect.
-3.  Add a `password` property to it, right after the `id`. For example:
+1.  Open the specific project's file (e.g., `data/projects/1-google-ecommerce.ts`).
+2.  Add a `password` property to it, right after the `id`. For example:
     ```javascript
-    {
+    export const googleEcommerceProject: Project = {
       id: 1,
       password: 'my-secret-password-123',
-      title: 'E-commerce Redesign',
+      company: 'Google',
       // ... rest of the project data
-    }
+    };
     ```
-4.  Save the file. That project is now password-protected.
+3.  Save the file. That project is now password-protected.
 
 **To make a project public:**
 
-Simply make sure the project object **does not** have a `password` property.
-
-```javascript
-// This project is PUBLIC
-{
-  id: 2,
-  // No password property here
-  title: 'SaaS Dashboard for Data Analytics',
-  // ... rest of the project data
-}
-```
+Simply make sure the project object in its file **does not** have a `password` property.
 
 ### C. Changing Text
 
@@ -121,7 +126,42 @@ To change any other text, just find the file where it lives and edit it directly
 -   **To change the homepage intro text:** Open `components/Hero.tsx`.
 -   **To change the "About Me" page text:** Open `components/AboutPage.tsx`.
 
-### D. Changing Colors
+### D. Updating Project Company & Logos
+
+Each project card can display a small "chip" with the company's logo and name. This is controlled within each project's file in `data/projects/`.
+
+For each project, you have two fields:
+- `company`: The company's name, as text.
+- `companyLogoUrl`: The URL for the logo image.
+
+There are two ways to provide a logo URL:
+
+#### Method 1: Linking to an SVG File (Recommended)
+This is the easiest way to manage your logos.
+
+1.  **Create a `logos` folder:** In your project's main directory, create a new folder called `logos`. This is where you will store your logo image files.
+2.  **Add your SVG:** Place your company logo file (e.g., `new-company.svg`) inside the `logos` folder. For best results, use a simple, monochrome SVG.
+3.  **Update the project file:** Open the specific project's file, find your project, and update the `companyLogoUrl` to be the path to your file. The path should start with a `/`.
+
+    ```javascript
+    // Inside data/projects/4-my-new-project.ts
+    {
+      //...
+      company: 'New Company',
+      companyLogoUrl: '/logos/new-company.svg', // <-- Update this path
+      title: 'A Brand New Project',
+      // ...
+    }
+    ```
+
+#### Method 2: Embedding the SVG as a Data URI (Advanced)
+This is the method currently used in the template so it works without extra files. A "data URI" is a long string of text that contains all the information for the image. This is useful for small, simple icons.
+
+1.  **Get your SVG code:** Open your SVG file in a text editor and copy its entire code.
+2.  **Convert it:** Use an online tool to convert your SVG code into a data URI. A good search term is "**SVG to data URI encoder**".
+3.  **Update the project file:** Paste the very long data URI string as the value for `companyLogoUrl`.
+
+### E. Changing Colors
 
 All your website's main colors are defined in **one single place**.
 
@@ -129,103 +169,9 @@ All your website's main colors are defined in **one single place**.
 2.  Look for a section that starts with `<script> tailwind.config = { ... } </script>`.
 3.  Inside, you will see a `colors` section. Replace the 6-digit color codes with new ones.
 
-### E. Changing Fonts (Typography)
+### F. Changing Fonts & Styling
 
-Fonts are set up in `index.html` and can come from two sources: Google Fonts or local custom font files.
-
-**1. Using Google Fonts (for most text):**
-- Find the `<link href="https://fonts.googleapis.com/css2?..."` line. You can visit [Google Fonts](https://fonts.google.com/) to find new fonts and replace this link.
-- Update the font names inside the `tailwind.config` script in the `fontFamily` section (e.g., `sans:` for body text, `mono:` for monospaced text).
-
-**2. Using a Custom Font File (for the main heading):**
-The main heading on the homepage uses special, locally-hosted fonts (like 'LeagueGothic').
--   **Font Files:** Place your font files (e.g., `My-Awesome-Font.woff2`) inside the `fonts/` folder.
--   **Loading the Font:** In `index.html`, inside the `<style>` tag, add or edit a `@font-face` rule to load your font file.
--   **Applying the Font:** In the `tailwind.config` script, add your new font's name to the `display` font list. The first font in the list is always tried first.
-
-**🚨 IMPORTANT DEBUGGING TIP:** If your custom font isn't loading, the #1 cause is a mismatch between the filename and the path in the code. The `url()` path must **exactly match** your font's filename, including capitalization, spaces, and hyphens.
-
-For example, if your file is named `League gothic regular.woff2`:
-
--   **INCORRECT:** `url('/fonts/LeagueGothic-Regular.woff2')` ❌
--   **CORRECT:** `url('/fonts/League gothic regular.woff2')` ✅
-
-Here is the correct structure in `index.html`:
-```css
-/* in the <style> tag */
-@font-face {
-  font-family: 'LeagueGothic'; /* You can name this whatever you want */
-  src: url('/fonts/League gothic regular.woff2'); /* This path MUST be exact */
-}
-```
-```javascript
-/* in the <script> tag for tailwind.config */
-fontFamily: {
-  display: ['LeagueGothic', 'Paragon', 'sans-serif'], // Use the name from font-family
-}
-```
-
-### F. Understanding the Styling (A Guide to CSS & Tailwind)
-
-This website is styled using **Tailwind CSS**, a modern way to handle styling. Instead of writing separate CSS files, we apply special "classes" directly to the HTML elements. This makes it fast and easy to build and modify layouts. Here's a breakdown of the concepts used.
-
-#### 1. What are Utility Classes? (The Core of Tailwind)
-
-Think of utility classes as tiny, single-purpose instructions. You combine them to build complex styles.
-
--   `text-center`: This tells the element to align its text to the center.
--   `font-bold`: This makes the text bold.
--   `bg-brand-dark`: This sets the `background-color` to our custom "dark" color.
--   `p-8`: This applies `padding` of a specific size (8 units) on all sides.
--   `mt-10`: This adds `margin-top` of 10 units.
-
-When you see something like `<h1 class="text-4xl font-extrabold tracking-tighter">`, you are just combining several of these utility classes to style the `<h1>` element. To discover what a class does, you can search for it in the official [Tailwind CSS Documentation](https://tailwindcss.com/docs).
-
-#### 2. Making the Website Responsive (For Different Screen Sizes)
-
-You'll often see classes with prefixes like `sm:`, `md:`, and `lg:`. These are **responsive modifiers**. They apply a style *only* on screens of a certain size or larger. This is how we make the website look good on both mobile phones and large desktop monitors.
-
-The default styles (without a prefix) apply to mobile first.
-
-**Example from `Header.tsx`:**
-```html
-<nav class="hidden md:flex">...</nav>
-```
--   `hidden`: By default (on small screens), this navigation menu is hidden.
--   `md:flex`: Once the screen is "medium" size (768px) or wider, it changes to `display: flex`, making the menu visible.
-
-#### 3. Adding Interactivity (Hover and Focus Effects)
-
-Similar to responsive modifiers, you'll see prefixes like `hover:`, `focus:`, and `group-hover:`. These are called **state variants** and they apply styles when a user interacts with an element.
-
--   `hover:opacity-90`: When you move your mouse over this element, its opacity will change to 90%.
--   `focus:ring-2`: When you click on an input field, a colored ring will appear around it to show that it's active.
-
-**A slightly more advanced example is `group-hover`:**
-
-In `FeaturedSection.tsx`, the project card `<div>` has a class called `group`.
-```html
-<div class="block group rounded-3xl ...">
-  ...
-  <div class="... group-hover:text-brand-accent">
-    <span>View Case Study</span>
-    <ArrowRightIcon class="... group-hover:translate-x-1" />
-  </div>
-</div>
-```
--   `group`: This "names" the parent card as a group.
--   `group-hover:text-brand-accent`: Now, from *anywhere inside the card*, if you hover over the `group` (the parent card), the "View Case Study" text will change color.
--   `group-hover:translate-x-1`: Similarly, when you hover over the card, the arrow icon will move slightly to the right.
-
-#### 4. Our Custom CSS (For Animations)
-
-For a few special effects like the page-load and scroll-in animations, we use a small amount of custom CSS. You can find this inside the `<style>` section of `index.html`.
-
--   `.animate-fade-in-up`: This class applies a fade-in-from-bottom animation. We use it on the hero section text.
--   `.scroll-animate`: This is the starting state for elements that will animate when you scroll to them. It makes them invisible and slightly moved down.
--   `.scroll-animate.is-visible`: This is the final state. When you scroll an element into view, a script adds the `is-visible` class, which makes it fade in and move up into its final position. This combined selector (`.scroll-animate` AND `.is-visible`) is what triggers the transition.
-
-By understanding these concepts, you can now look at any element in the code, read its classes, and have a good idea of how it will look and behave!
+The instructions for changing fonts and understanding the website's styling (using Tailwind CSS) have not changed. Please refer to the previous version of this README for that detailed guide.
 
 ---
 

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Project } from '../data/projects';
+import type { Project } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
 interface ProjectPageProps {

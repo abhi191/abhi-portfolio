@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 type IconProps = {
@@ -47,6 +48,20 @@ export const DribbbleIcon: React.FC<IconProps> = ({ className }) => (
 export const TwitterIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 3.3 4.9 3.3 4.9s-1.4.6-2.8.4c-1.1 2.3-3.4 3.9-3.4 3.9s-1.4-.2-2.3-.6c-.7.5-1.5.8-2.3.8s-1.6-.3-2.3-.8c-.9.4-2.3.6-2.3.6s-2.3-1.6-3.4-3.9c-1.4.2-2.8-.4-2.8-.4s1.7-3.5 3.3-4.9c-1.3-1.3-2-3.4-2-3.4s.7-.2 1.5.2c1.1-.3 2.3-.5 3.5-.5s2.4.2 3.5.5c.8-.4 1.5-.2 1.5-.2z"></path>
+    </svg>
+);
+
+export const VMWareLogo: React.FC<IconProps> = ({ className }) => (
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className} fill="currentColor">
+      <title>VMware</title>
+      <path d="M18.002 0h-5.08L6.04 16.558h5.077l1.804-4.89h5.08zm-5.077 24h5.078l6.88-16.558h-5.08L12.925 24z"/>
+    </svg>
+);
+  
+export const OracleLogo: React.FC<IconProps> = ({ className }) => (
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className} fill="currentColor">
+      <title>Oracle</title>
+      <path d="M12.43 12.004c0 3.93-3.07 7.15-6.91 7.15v-3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54-3.58-3.44-3.58v-3.57c3.84 0 6.91 3.22 6.91 7.15zm-1.04 7.15c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15V.004C5.02.004.5 4.874.5 12.004s4.52 11.99 10.89 11.99v-3.84zm11.23-7.15c0-3.93-3.07-7.15-6.91-7.15v3.57c1.9 0 3.44 1.6 3.44-3.58s-1.54 3.58-3.44 3.58v3.57c3.84 0 6.91-3.22 6.91-7.15zm1.04-7.15V.004C18.26.004 13.74 4.874 13.74 12.004s4.52 11.99 10.89 11.99v-3.84c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15z"/>
     </svg>
 );
 
