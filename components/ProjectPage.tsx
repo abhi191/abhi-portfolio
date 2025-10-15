@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Project, ContentBlock, Metric } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from './icons';
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, UpArrowIcon } from './icons';
 
 const getEmbedUrl = (url: string): string => {
   // YouTube
@@ -223,6 +223,75 @@ const RenderBlock: React.FC<{
 };
 
 
+// Scroll to Top Button Component
+const ScrollToTopButton: React.FC = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+
+  const radius = 22;
+  const circumference = 2 * Math.PI * radius;
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      
+      const totalScrollable = docHeight - windowHeight;
+
+      // Show button after scrolling 300px
+      setIsVisible(scrolled > 300);
+
+      if (totalScrollable > 0) {
+        setScrollProgress(scrolled / totalScrollable);
+      } else {
+        setScrollProgress(0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const strokeDashoffset = circumference * (1 - scrollProgress);
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-brand-background/80 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      }`}
+      aria-label="Go to top"
+    >
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 52 52">
+          {/* Track Circle */}
+          <circle cx="26" cy="26" r={radius} strokeWidth="4" className="stroke-brand-dark/10" fill="none" />
+          {/* Progress Circle */}
+          <circle
+            cx="26"
+            cy="26"
+            r={radius}
+            strokeWidth="4"
+            className="stroke-brand-accent"
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            style={{ transition: 'stroke-dashoffset 0.1s linear' }}
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+           <UpArrowIcon className="h-6 w-6 text-brand-dark" />
+        </div>
+    </button>
+  );
+};
+
+
 const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
   const [lightbox, setLightbox] = React.useState<{
     images: { src: string; caption?: string }[];
@@ -378,6 +447,9 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
           </button>
         </div>
       )}
+
+      {/* Scroll to top button */}
+      <ScrollToTopButton />
     </article>
   );
 };

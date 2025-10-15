@@ -16,6 +16,11 @@ export const CloseIcon: React.FC<IconProps> = ({ className }) => (
   </svg>
 );
 
+export const UpArrowIcon: React.FC<IconProps> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+  </svg>
+);
 
 export const ChevronDownIcon: React.FC<IconProps> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={className}>
@@ -73,7 +78,7 @@ export const VMWareLogo: React.FC<IconProps> = ({ className }) => (
 export const OracleLogo: React.FC<IconProps> = ({ className }) => (
     <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className} fill="currentColor">
       <title>Oracle</title>
-      <path d="M12.43 12.004c0 3.93-3.07 7.15-6.91 7.15v-3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54-3.58-3.44-3.58v-3.57c3.84 0 6.91 3.22 6.91 7.15zm-1.04 7.15c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15V.004C5.02.004.5 4.874.5 12.004s4.52 11.99 10.89 11.99v-3.84zm11.23-7.15c0-3.93-3.07-7.15-6.91-7.15v3.57c1.9 0 3.44 1.6 3.44-3.58s-1.54 3.58-3.44 3.58v3.57c3.84 0 6.91-3.22 6.91-7.15zm1.04-7.15V.004C18.26.004 13.74 4.874 13.74 12.004s4.52 11.99 10.89 11.99v-3.84c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15z"/>
+      <path d="M12.43 12.004c0 3.93-3.07 7.15-6.91 7.15v-3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54-3.58-3.44-3.58v-3.57c3.84 0 6.91 3.22 6.91 7.15zm-1.04 7.15c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15V.004C5.02.004.5 4.874.5 12.004s4.52 11.99 10.89 11.99v-3.84zm11.23-7.15c0-3.93-3.07-7.15-6.91-7.15v3.57c1.9 0 3.44-1.6 3.44-3.58s-1.54 3.58-3.44 3.58v3.57c3.84 0 6.91-3.22 6.91-7.15zm1.04-7.15V.004C18.26.004 13.74 4.874 13.74 12.004s4.52 11.99 10.89 11.99v-3.84c-3.84 0-6.91-3.22-6.91-7.15s3.07-7.15 6.91-7.15z"/>
     </svg>
 );
 
