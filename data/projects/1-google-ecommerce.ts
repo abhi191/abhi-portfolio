@@ -20,45 +20,91 @@ export const googleEcommerceProject: Project = {
   role: 'Lead UX Designer, Researcher',
   timeline: '6 Months (Jan 2024 - Jun 2024)',
   overview: 'This project was a complete redesign of a legacy fashion e-commerce platform struggling with low conversion rates and high cart abandonment. The goal was to modernize the user experience, adopt a mobile-first approach, and create a seamless journey from product discovery to checkout.',
-  problemStatement: {
+  
+  sections: [
+    {
       title: 'The Problem',
-      content: [
-          "The existing platform was built on an outdated architecture, leading to slow load times and a clunky user interface. User feedback consistently highlighted a confusing navigation structure, a frustratingly long checkout process, and a poor mobile experience.",
-          "Analytics confirmed these issues: mobile bounce rates were over 70%, and the multi-page checkout process saw a 45% drop-off rate."
+      blocks: [
+        { type: 'paragraph', content: "The existing platform was built on an outdated architecture, leading to slow load times and a clunky user interface. User feedback consistently highlighted a confusing navigation structure, a frustratingly long checkout process, and a poor mobile experience." },
+        { type: 'paragraph', content: "Analytics confirmed these issues: mobile bounce rates were over 70%, and the multi-page checkout process saw a 45% drop-off rate." }
       ]
-  },
-  goals: {
+    },
+    {
       title: 'Project Goals',
-      items: [
+      blocks: [
+        { type: 'list', style: 'ordered', items: [
           "Increase overall conversion rate by at least 30%.",
           "Reduce cart abandonment by 20%.",
           "Improve the mobile user satisfaction score (CSAT) by 2 points.",
           "Create a scalable design system for future feature rollouts."
+        ]}
       ]
-  },
-  process: {
+    },
+    {
       title: 'My Design Process',
-      description: 'We followed a user-centered design methodology, starting with in-depth research to understand our users\' frustrations. This included user interviews, competitive analysis, and creating detailed personas. We then moved to low-fidelity wireframes and interactive prototypes, conducting multiple rounds of usability testing to refine the navigation and checkout flow before committing to high-fidelity designs.',
-      imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop'
-  },
-  challenges: {
-      title: 'Challenges Faced',
-      content: 'One of the biggest challenges was balancing the needs of long-time, loyal customers who were accustomed to the old layout with the goal of attracting a new, younger demographic. We had to make bold design decisions while ensuring the new interface remained intuitive for all user segments. Another challenge was migrating a massive product catalog without disrupting the user experience.'
-  },
-  solution: {
+      blocks: [
+        { type: 'paragraph', content: 'We followed a user-centered design methodology, starting with in-depth research to understand our users\' frustrations. This included user interviews, competitive analysis, and creating detailed personas. We then moved to low-fidelity wireframes and interactive prototypes, conducting multiple rounds of usability testing to refine the navigation and checkout flow before committing to high-fidelity designs.'},
+        { type: 'image', src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop', caption: 'Our collaborative design process in action.' }
+      ]
+    },
+    {
+      title: 'Challenges & A Two-Column Layout Example',
+      blocks: [
+        { type: 'twoColumn', columns: [
+          { // Left Column
+            blocks: [
+              { type: 'paragraph', content: 'One of the biggest challenges was balancing the needs of long-time, loyal customers who were accustomed to the old layout with the goal of attracting a new, younger demographic.' },
+              { type: 'paragraph', content: 'We had to make bold design decisions while ensuring the new interface remained intuitive for all user segments. Another challenge was migrating a massive product catalog without disrupting the user experience.'}
+            ]
+          },
+          { // Right Column
+            blocks: [
+              { type: 'image', src: 'https://images.unsplash.com/photo-1556740738-b6a63e2775d2?q=80&w=2070&auto=format&fit=crop', caption: 'Mapping user journeys helped bridge the gap between old and new.' }
+            ]
+          }
+        ]}
+      ]
+    },
+    {
+      title: 'Competitive Analysis (Table Example)',
+      blocks: [
+        { type: 'table', headers: ['Feature', 'Competitor A', 'Competitor B', 'Our Solution'], rows: [
+          ['Guest Checkout', 'Yes', 'No', 'Yes (Streamlined)'],
+          ['Mobile Performance', 'Good', 'Average', 'Excellent'],
+          ['Personalization', 'Basic', 'Advanced', 'AI-driven'],
+          ['Return Process', 'Complex', 'Easy', 'One-click returns']
+        ]}
+      ]
+    },
+    {
       title: 'The Solution',
-      content: 'The final design introduced a streamlined, single-page checkout, a visually-driven mega menu for intuitive navigation, and personalized product recommendations. We implemented a clean, minimalist UI with high-quality product imagery at its core. The entire experience was rebuilt from the ground up to be fully responsive and optimized for mobile performance.',
-      imageUrl: 'https://images.unsplash.com/photo-1586923838499-199b06b88b0a?q=80&w=2070&auto=format&fit=crop'
-  },
-  results: {
+      blocks: [
+        { type: 'paragraph', content: 'The final design introduced a streamlined, single-page checkout, a visually-driven mega menu for intuitive navigation, and personalized product recommendations. We implemented a clean, minimalist UI with high-quality product imagery at its core. The entire experience was rebuilt from the ground up to be fully responsive and optimized for mobile performance.' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1586923838499-199b06b88b0a?q=80&w=2070&auto=format&fit=crop', caption: 'The final, clean user interface.' }
+      ]
+    },
+    {
       title: 'Results & Impact',
-  },
-  learnings: {
+      blocks: [
+        { type: 'metricCards', metrics: [
+            { value: '+40%', label: 'Increase in Conversion Rate' },
+            { value: '-25%', label: 'Reduction in Cart Abandonment' },
+            { value: '+85%', label: 'Growth in Mobile Revenue' },
+            { value: '75%', label: 'Faster Checkout Time' },
+            { value: '+2.5', label: 'Increase in CSAT Score' },
+            { value: '-40%', label: 'Reduction in Support Calls' },
+        ]}
+      ]
+    },
+    {
       title: 'Key Learnings',
-      items: [
+      blocks: [
+        { type: 'list', style: 'unordered', items: [
           "The power of iterative testing: Early and frequent usability tests with low-fidelity prototypes saved us countless hours of development time by catching design flaws early.",
           "Mobile-first is non-negotiable: Designing for the smallest screen first forced us to prioritize features and create a more focused, efficient user experience that scaled beautifully to larger devices.",
           "A design system is a life-saver: Investing time upfront to build a comprehensive design system created consistency and dramatically sped up the development and design process for new features post-launch."
+        ]}
       ]
-  }
+    }
+  ]
 };

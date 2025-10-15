@@ -3,6 +3,19 @@ export interface Metric {
   label: string;
 }
 
+export type ContentBlock =
+  | { type: 'paragraph'; content: string }
+  | { type: 'image'; src: string; caption?: string }
+  | { type: 'list'; style: 'ordered' | 'unordered'; items: string[] }
+  | { type: 'twoColumn'; columns: [{ blocks: ContentBlock[] }, { blocks: ContentBlock[] }] }
+  | { type: 'metricCards'; metrics: Metric[] }
+  | { type: 'table'; headers: string[]; rows: (string | number)[][] };
+
+export interface ProjectSection {
+  title: string;
+  blocks: ContentBlock[];
+}
+
 export interface Project {
   id: number;
   password?: string; // Optional password for the project
@@ -10,7 +23,7 @@ export interface Project {
   companyLogoUrl: string; // URL or data URI for the company logo
   title: string;
   description: string; // Short description for the card
-  metrics: Metric[];
+  metrics: Metric[]; // Key metrics for the homepage card
   imageUrl?: string;
   imagePosition?: 'left' | 'right';
 
@@ -19,34 +32,7 @@ export interface Project {
   role: string;
   timeline: string;
   overview: string;
-  problemStatement: {
-    title: string;
-    content: string[]; // Array of paragraphs
-  };
-  goals: {
-    title: string;
-    items: string[]; // List of goals
-  };
-  process: {
-    title: string;
-    description: string;
-    imageUrl: string;
-  };
-  challenges: {
-    title: string;
-    content: string;
-  };
-  solution: {
-    title: string;
-    content: string;
-    imageUrl: string;
-  };
-  results: {
-    title: string;
-    // Metrics are already defined at the top level
-  };
-  learnings: {
-    title: string;
-    items: string[];
-  };
+  
+  // New flexible content structure for case studies
+  sections: ProjectSection[];
 }

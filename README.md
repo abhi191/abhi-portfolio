@@ -50,8 +50,6 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 ## 3. How to Make Changes (The Fun Part!)
 
-Here’s how you can customize the most common parts of your website.
-
 ### A. How to Add or Edit a Project
 
 Your portfolio is now set up so that each project is its own separate file. This makes it super clean and easy to manage.
@@ -62,31 +60,18 @@ Your portfolio is now set up so that each project is its own separate file. This
 3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `4-my-new-project.ts`).
 
 #### Step 2: Edit Your Project's Content
-1.  Open your new project file.
-2.  You'll see a structure with fields like `id`, `title`, `description`, etc. **Carefully edit the content for each field.**
-3.  Make sure the `id` is a **unique number** that no other project uses.
-
-Here's a breakdown of the fields:
-
--   `id`: A unique number for the project (e.g., 1, 2, 3...).
--   `password`: (Optional) The password for this specific project.
--   `company`: The name of the company (e.g., 'Google').
--   `companyLogoUrl`: The path or data URI for the company's logo.
--   `title`: The project's title.
--   `description`: The short summary that appears on the homepage project card.
--   `metrics`: The key results that show up on the homepage card and the project detail page.
--   `imageUrl`: The URL for the large image on the homepage project card.
--   `imagePosition`: Where the image appears on the card (`'left'` or `'right'`).
--   ...and all the other fields for the detailed case study page.
+1.  Open your new project file. You'll see a structure with fields like `id`, `title`, `description`, etc. **Carefully edit the content for each field.**
+2.  Make sure the `id` is a **unique number** that no other project uses.
+3.  Fill out the top-level details like `title`, `description`, `role`, `timeline`, and the `metrics` for the homepage card.
 
 #### Step 3: Add Your New Project to the Main List
 1.  Now, open the file `data/projects/index.ts`. This file controls which projects appear on your site and in what order.
-2.  At the top of the file, **import your new project**. Give your project a unique variable name (like `myNewProject`) and provide the correct path to the file you created.
+2.  At the top of the file, **import your new project**.
     ```javascript
     // Add this line at the top with the other imports
     import { myNewProject } from './4-my-new-project'; 
     ```
-3.  Finally, add your new variable (`myNewProject`) to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
+3.  Finally, add your new project to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
     ```javascript
     export const projects: Project[] = [
       googleEcommerceProject,
@@ -97,82 +82,164 @@ Here's a breakdown of the fields:
     ```
 That's it! Your new project will now appear on your website.
 
-### B. Setting Project Passwords (Individual & Optional)
+### B. Editing a Project's Case Study Page
 
-You can set a unique password for each project. If you don't add a password, the project will be public and accessible to anyone.
+This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
 
-**How to set a password for a project:**
+In your project file (e.g., `4-my-new-project.ts`), all the content for the case study lives inside the `sections` array. A `section` is just a headline followed by a series of content blocks.
 
-1.  Open the specific project's file (e.g., `data/projects/1-google-ecommerce.ts`).
-2.  Add a `password` property to it, right after the `id`. For example:
-    ```javascript
-    export const googleEcommerceProject: Project = {
-      id: 1,
-      password: 'my-secret-password-123',
-      company: 'Google',
-      // ... rest of the project data
-    };
-    ```
-3.  Save the file. That project is now password-protected.
+**The basic structure looks like this:**
 
-**To make a project public:**
+```javascript
+sections: [
+  {
+    title: 'The First Section Headline',
+    blocks: [
+      // ... content blocks go here ...
+    ]
+  },
+  {
+    title: 'The Second Section Headline',
+    blocks: [
+      // ... more content blocks go here ...
+    ]
+  }
+]
+```
 
-Simply make sure the project object in its file **does not** have a `password` property.
+To build your case study, you simply add different types of blocks to the `blocks` array for each section.
 
-### C. Changing Text
-
-To change any other text, just find the file where it lives and edit it directly.
-
--   **To change the homepage intro text:** Open `components/Hero.tsx`.
--   **To change the "About Me" page text:** Open `components/AboutPage.tsx`.
-
-### D. Updating Project Company & Logos
-
-Each project card can display a small "chip" with the company's logo and name. This is controlled within each project's file in `data/projects/`.
-
-For each project, you have two fields:
-- `company`: The company's name, as text.
-- `companyLogoUrl`: The URL for the logo image.
-
-There are two ways to provide a logo URL:
-
-#### Method 1: Linking to an SVG File (Recommended)
-This is the easiest way to manage your logos.
-
-1.  **Create a `logos` folder:** In your project's main directory, create a new folder called `logos`. This is where you will store your logo image files.
-2.  **Add your SVG:** Place your company logo file (e.g., `new-company.svg`) inside the `logos` folder. For best results, use a simple, monochrome SVG.
-3.  **Update the project file:** Open the specific project's file, find your project, and update the `companyLogoUrl` to be the path to your file. The path should start with a `/`.
-
-    ```javascript
-    // Inside data/projects/4-my-new-project.ts
-    {
-      //...
-      company: 'New Company',
-      companyLogoUrl: '/logos/new-company.svg', // <-- Update this path
-      title: 'A Brand New Project',
-      // ...
-    }
-    ```
-
-#### Method 2: Embedding the SVG as a Data URI (Advanced)
-This is the method currently used in the template so it works without extra files. A "data URI" is a long string of text that contains all the information for the image. This is useful for small, simple icons.
-
-1.  **Get your SVG code:** Open your SVG file in a text editor and copy its entire code.
-2.  **Convert it:** Use an online tool to convert your SVG code into a data URI. A good search term is "**SVG to data URI encoder**".
-3.  **Update the project file:** Paste the very long data URI string as the value for `companyLogoUrl`.
-
-### E. Changing Colors
-
-All your website's main colors are defined in **one single place**.
-
-1.  Open `index.html`.
-2.  Look for a section that starts with `<script> tailwind.config = { ... } </script>`.
-3.  Inside, you will see a `colors` section. Replace the 6-digit color codes with new ones.
-
-### F. Changing Fonts & Styling
-
-The instructions for changing fonts and understanding the website's styling (using Tailwind CSS) have not changed. Please refer to the previous version of this README for that detailed guide.
+**Pro Tip:** Open the file `data/projects/1-google-ecommerce.ts`. It contains an example of every single content block described below. You can copy and paste the code for any block you want to use!
 
 ---
 
-We hope this guide helps you feel confident in personalizing your website. Don't be afraid to experiment!
+#### Content Block Types You Can Use:
+
+**1. Paragraph**
+For any standard text. Add a new block for each new paragraph.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'paragraph', 
+  content: 'This is the text for my paragraph. It can be as long as I want it to be.' 
+}
+```
+
+**2. Lists (Bulleted or Numbered)**
+Perfect for project goals, key learnings, or any list of items.
+
+*Code Example (Bulleted):*
+```javascript
+{ 
+  type: 'list', 
+  style: 'unordered', // or 'ordered' for a numbered list
+  items: [
+    "First list item.",
+    "Second list item.",
+    "Third list item."
+  ]
+}
+```
+
+**3. Image with Optional Caption**
+To display images within your case study.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'image', 
+  src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0', // URL for the image
+  caption: 'This is an optional caption for the image.' 
+}
+```
+
+**4. Two-Column Layout**
+A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
+
+*Code Example:*
+```javascript
+{ 
+  type: 'twoColumn', 
+  columns: [
+    { // Left Column
+      blocks: [
+        { type: 'paragraph', content: 'This text will appear in the left column.' },
+        { type: 'paragraph', content: 'You can add multiple blocks here.' }
+      ]
+    },
+    { // Right Column
+      blocks: [
+        { type: 'image', src: 'https://...your-image-url.com' }
+      ]
+    }
+  ]
+}
+```
+
+**5. Metric Cards**
+Great for showcasing the final results and impact of your project in a visually appealing way.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'metricCards', 
+  metrics: [
+    { value: '+40%', label: 'Increase in Conversion Rate' },
+    { value: '-25%', label: 'Reduction in Cart Abandonment' },
+    { value: '+85%', label: 'Growth in Mobile Revenue' },
+  ]
+}
+```
+
+**6. Table**
+Use this for structured data, like a competitive analysis.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'table', 
+  headers: ['Feature', 'Competitor A', 'Competitor B', 'Our Solution'], 
+  rows: [
+    ['Guest Checkout', 'Yes', 'No', 'Yes (Streamlined)'],
+    ['Mobile Performance', 'Good', 'Average', 'Excellent'],
+    ['Return Process', 'Complex', 'Easy', 'One-click returns']
+  ]
+}
+```
+
+---
+
+### C. Setting Project Passwords
+
+You can set a unique password for each project.
+
+1.  Open the specific project's file (e.g., `data/projects/1-google-ecommerce.ts`).
+2.  Add a `password` property to it, right after the `id`.
+    ```javascript
+    export const myProject: Project = {
+      id: 4,
+      password: 'my-secret-password-123',
+      // ... rest of the project data
+    };
+    ```
+3.  To make a project public, simply make sure it **does not** have a `password` property.
+
+### D. Updating Project Company & Logos
+
+Each project card can display a "chip" with the company's logo and name.
+
+#### Method 1: Linking to an SVG File (Recommended)
+1.  Create a `logos` folder in your project's main directory.
+2.  Add your SVG file (e.g., `new-company.svg`) to this folder.
+3.  In your project file, update the `companyLogoUrl` to the path of your file.
+    ```javascript
+    companyLogoUrl: '/logos/new-company.svg', // <-- Update this path
+    ```
+
+#### Method 2: Embedding the SVG as a Data URI (Advanced)
+This is useful for small icons. You can use an online "SVG to data URI encoder" to convert your SVG code into a long string and paste it as the `companyLogoUrl`.
+
+### E. Changing Colors & Fonts
+
+To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.

@@ -1,22 +1,95 @@
 import React from 'react';
-import type { Project } from '../data/types';
+import type { Project, ContentBlock, Metric } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
-interface ProjectPageProps {
-  project: Project;
-}
+// Helper component to render a single content block
+const RenderBlock: React.FC<{ block: ContentBlock, blockIndex: number }> = ({ block, blockIndex }) => {
+  switch (block.type) {
+    case 'paragraph':
+      return <p className="mt-4">{block.content}</p>;
+    
+    case 'image':
+      return (
+        <figure className="mt-10">
+          <div className="rounded-2xl overflow-hidden bg-brand-card">
+            <img src={block.src} alt={block.caption || 'Project image'} className="w-full h-auto object-cover" />
+          </div>
+          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{block.caption}</figcaption>}
+        </figure>
+      );
 
-const Section: React.FC<{title: string, children: React.ReactNode}> = ({ title, children }) => (
-  <section className="py-10 md:py-16">
-    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{title}</h2>
-    <div className="mt-12 max-w-3xl mx-auto text-lg text-brand-dark/80 leading-relaxed">
-      {children}
-    </div>
-  </section>
-);
+    case 'list':
+      const ListTag = block.style === 'ordered' ? 'ol' : 'ul';
+      const listStyle = block.style === 'ordered' ? 'list-decimal' : 'list-disc';
+      return (
+        <ListTag className={`list-inside space-y-3 mt-6 ${listStyle}`}>
+          {block.items.map((item, index) => <li key={index}>{item}</li>)}
+        </ListTag>
+      );
+      
+    case 'twoColumn':
+      return (
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 mt-8">
+          <div>
+            {block.columns[0].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} blockIndex={index} />)}
+          </div>
+          <div>
+            {block.columns[1].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} blockIndex={index} />)}
+          </div>
+        </div>
+      );
+
+    case 'metricCards':
+      return (
+        <div className="mt-12 not-prose">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+            {block.metrics.map((metric: Metric, index: number) => (
+              <AnimateOnScroll key={index} delay={index * 100}>
+                <div className="bg-brand-card p-6 rounded-2xl">
+                  <p className="text-3xl md:text-4xl font-bold text-brand-dark">{metric.value}</p>
+                  <p className="text-base text-brand-dark/70 mt-2">{metric.label}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      );
+    
+    case 'table':
+      return (
+        <div className="mt-8 overflow-x-auto">
+            <table className="min-w-full border border-brand-dark/10 divide-y divide-brand-dark/10">
+                <thead className="bg-brand-card">
+                    <tr>
+                        {block.headers.map((header, i) => (
+                            <th key={i} scope="col" className="px-6 py-3 text-left text-xs font-bold text-brand-dark uppercase tracking-wider">
+                                {header}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-brand-dark/10">
+                    {block.rows.map((row, i) => (
+                        <tr key={i}>
+                            {row.map((cell, j) => (
+                                <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-brand-dark/90">
+                                    {cell}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+      );
+
+    default:
+      return null;
+  }
+};
 
 
-const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => {
+const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <article className="py-20 md:py-24">
       {/* Project Hero */}
@@ -47,78 +120,18 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => {
       </AnimateOnScroll>
 
       <div className="divide-y divide-brand-dark/10">
-        {/* Problem Statement */}
-        <AnimateOnScroll>
-          <Section title={project.problemStatement.title}>
-              {project.problemStatement.content.map((p, i) => <p key={i} className={i > 0 ? 'mt-4' : ''}>{p}</p>)}
-          </Section>
-        </AnimateOnScroll>
-
-        {/* Goals */}
-        <AnimateOnScroll>
-          <Section title={project.goals.title}>
-              <ul className="list-disc list-inside space-y-3">
-                  {project.goals.items.map((item, index) => (
-                      <li key={index}>{item}</li>
-                  ))}
-              </ul>
-          </Section>
-        </AnimateOnScroll>
-        
-        {/* Design Process */}
-        <AnimateOnScroll>
-          <Section title={project.process.title}>
-              <p>{project.process.description}</p>
-              <div className="mt-10 rounded-2xl overflow-hidden">
-                  <img src={project.process.imageUrl} alt="Design process" className="w-full h-auto object-cover" />
+        {project.sections.map((section, sectionIndex) => (
+          <AnimateOnScroll key={sectionIndex}>
+            <section className="py-12 md:py-20">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{section.title}</h2>
+              <div className="mt-8 max-w-3xl mx-auto text-lg text-brand-dark/80 leading-relaxed prose prose-lg">
+                {section.blocks.map((block, blockIndex) => (
+                  <RenderBlock key={blockIndex} block={block} blockIndex={blockIndex}/>
+                ))}
               </div>
-          </Section>
-        </AnimateOnScroll>
-
-        {/* Challenges */}
-        <AnimateOnScroll>
-          <Section title={project.challenges.title}>
-              <p>{project.challenges.content}</p>
-          </Section>
-        </AnimateOnScroll>
-
-        {/* The Solution */}
-        <AnimateOnScroll>
-          <Section title={project.solution.title}>
-              <p>{project.solution.content}</p>
-              <div className="mt-10 rounded-2xl overflow-hidden">
-                  <img src={project.solution.imageUrl} alt="Final design solution" className="w-full h-auto object-cover" />
-              </div>
-          </Section>
-        </AnimateOnScroll>
-
-        {/* Results & Impact */}
-        <AnimateOnScroll>
-          <section className="py-16 md:py-20">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{project.results.title}</h2>
-              <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
-                  {project.metrics.map((metric, index) => (
-                      <AnimateOnScroll key={index} delay={index * 150}>
-                        <div className="bg-brand-card p-8 rounded-2xl">
-                            <p className="text-4xl md:text-5xl font-bold text-brand-dark">{metric.value}</p>
-                            <p className="text-base text-brand-dark/70 mt-3">{metric.label}</p>
-                        </div>
-                      </AnimateOnScroll>
-                  ))}
-              </div>
-          </section>
-        </AnimateOnScroll>
-
-        {/* Key Learnings */}
-        <AnimateOnScroll>
-          <Section title={project.learnings.title}>
-              <ul className="list-decimal list-inside space-y-4">
-                  {project.learnings.items.map((item, index) => (
-                      <li key={index}><span className="font-semibold"></span> {item}</li>
-                  ))}
-              </ul>
-          </Section>
-        </AnimateOnScroll>
+            </section>
+          </AnimateOnScroll>
+        ))}
       </div>
     </article>
   );

@@ -16,33 +16,62 @@ export const oracleHealthcareProject: Project = {
   role: 'Product Designer', 
   timeline: '8 Months', 
   overview: 'This project aimed to empower patients by giving them easy, secure access to their health information and a direct line of communication with their care providers.', 
-  problemStatement: { 
-    title: 'The Problem', 
-    content: ['Patients struggled to keep track of their appointments, medication schedules, and test results, often relying on paper records or multiple disconnected patient portals.'] 
-  }, 
-  goals: { 
-    title: 'Project Goals', 
-    items: ['Consolidate medical records into a single view.', 'Simplify the appointment scheduling process.', 'Increase medication adherence through reminders.'] 
-  }, 
-  process: { 
-    title: 'My Design Process', 
-    description: 'Given the sensitive nature of health data, the process started with a heavy focus on security and privacy best practices (HIPAA compliance). We co-designed features with a patient advisory group to ensure the app met real-world needs. The UI was designed with accessibility (WCAG 2.1 AA) as a top priority.', 
-    imageUrl: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop' 
-  }, 
-  challenges: { 
-    title: 'Challenges Faced', 
-    content: 'Integrating with various electronic health record (EHR) systems, each with its own API and data format, was a major technical and design hurdle. Ensuring the app was simple enough for users who may be elderly or not tech-savvy was also a critical challenge.' 
-  }, 
-  solution: { 
-    title: 'The Solution', 
-    content: 'The app provides a clear timeline of a patient\'s health history, a simple "one-tap" appointment booking system, and intelligent prescription refill reminders. A secure messaging feature allows direct communication with doctors\' offices. All data is encrypted both in transit and at rest.', 
-    imageUrl: 'https://images.unsplash.com/photo-1620366299830-18a7d329d7de?q=80&w=1964&auto=format&fit=crop' 
-  }, 
-  results: { 
-    title: 'Results & Impact' 
-  }, 
-  learnings: { 
-    title: 'Key Learnings', 
-    items: ['When designing for healthcare, trust and security are the most important features.', 'Involving end-users from the very beginning is crucial for creating a product that truly helps them.'] 
-  },
+  
+  sections: [
+    {
+      title: 'The Problem',
+      blocks: [
+        { type: 'paragraph', content: 'Patients struggled to keep track of their appointments, medication schedules, and test results, often relying on paper records or multiple disconnected patient portals.' }
+      ]
+    },
+    {
+      title: 'Project Goals',
+      blocks: [
+        { type: 'list', style: 'ordered', items: [
+          'Consolidate medical records into a single view.',
+          'Simplify the appointment scheduling process.',
+          'Increase medication adherence through reminders.'
+        ]}
+      ]
+    },
+    {
+      title: 'My Design Process',
+      blocks: [
+        { type: 'paragraph', content: 'Given the sensitive nature of health data, the process started with a heavy focus on security and privacy best practices (HIPAA compliance). We co-designed features with a patient advisory group to ensure the app met real-world needs. The UI was designed with accessibility (WCAG 2.1 AA) as a top priority.' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop' }
+      ]
+    },
+    {
+      title: 'Challenges Faced',
+      blocks: [
+        { type: 'paragraph', content: 'Integrating with various electronic health record (EHR) systems, each with its own API and data format, was a major technical and design hurdle. Ensuring the app was simple enough for users who may be elderly or not tech-savvy was also a critical challenge.' }
+      ]
+    },
+    {
+      title: 'The Solution',
+      blocks: [
+        { type: 'paragraph', content: 'The app provides a clear timeline of a patient\'s health history, a simple "one-tap" appointment booking system, and intelligent prescription refill reminders. A secure messaging feature allows direct communication with doctors\' offices. All data is encrypted both in transit and at rest.' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1620366299830-18a7d329d7de?q=80&w=1964&auto=format&fit=crop' }
+      ]
+    },
+    {
+      title: 'Results & Impact',
+      blocks: [
+        { type: 'metricCards', metrics: [
+          { value: '50k+', label: 'Active Monthly Users' },
+          { value: '4.8 ★', label: 'App Store Rating' },
+          { value: '+25%', label: 'Patient Engagement' },
+        ]}
+      ]
+    },
+    {
+      title: 'Key Learnings',
+      blocks: [
+        { type: 'list', style: 'unordered', items: [
+          'When designing for healthcare, trust and security are the most important features.', 
+          'Involving end-users from the very beginning is crucial for creating a product that truly helps them.'
+        ]}
+      ]
+    }
+  ]
 };
