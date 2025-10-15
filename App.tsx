@@ -31,18 +31,25 @@ const parseRoute = (): Route => {
 
 const App: React.FC = () => {
   const [route, setRoute] = React.useState(parseRoute());
-  const [unlockedProjects, setUnlockedProjects] = React.useState<Record<string, boolean>>({});
+  // No longer track a list of unlocked projects.
+  // Instead, track if the *currently viewed* project has been unlocked.
+  const [isCurrentProjectUnlocked, setIsCurrentProjectUnlocked] = React.useState(false);
   const [projectToUnlock, setProjectToUnlock] = React.useState<Project | null>(null);
 
   // Listen for changes in the URL hash to navigate between pages
   React.useEffect(() => {
     const handleHashChange = () => {
       const newRoute = parseRoute();
+      
+      // On every navigation, reset the lock status.
+      // This ensures the password prompt appears every time.
+      setIsCurrentProjectUnlocked(false);
+
       // If navigating away from a project detail page, ensure the prompt state is cleared.
-      // This prevents the prompt from lingering over other pages and fixes the bug.
       if (newRoute.page !== 'projectDetail') {
         setProjectToUnlock(null);
       }
+      
       setRoute(newRoute);
       window.scrollTo(0, 0);
     };
@@ -57,27 +64,32 @@ const App: React.FC = () => {
   React.useEffect(() => {
     if (route.page === 'projectDetail') {
       const project = projects.find(p => p.slug === route.slug);
-      if (project && project.password && !unlockedProjects[project.slug]) {
+      
+      // If the project requires a password and hasn't been unlocked yet for this view,
+      // show the password prompt.
+      if (project && project.password && !isCurrentProjectUnlocked) {
         setProjectToUnlock(project);
+      } else {
+        // Otherwise, ensure the prompt is hidden.
+        setProjectToUnlock(null);
       }
     }
-  }, [route, unlockedProjects]);
+  }, [route, isCurrentProjectUnlocked]);
 
 
   const handlePasswordSubmit = (password: string): boolean => {
     if (!projectToUnlock) return false;
 
     if (password === projectToUnlock.password) {
-      const newUnlocked = { ...unlockedProjects, [projectToUnlock.slug]: true };
-      setUnlockedProjects(newUnlocked);
-      setProjectToUnlock(null); // Close prompt on success
+      // If correct, mark the current project as unlocked and close the prompt.
+      setIsCurrentProjectUnlocked(true);
+      setProjectToUnlock(null);
       return true;
     }
     return false;
   };
   
-  // Simplified handleClosePrompt to just navigate.
-  // The state cleanup is handled by the hash change listener.
+  // Navigates to the homepage, which will trigger the hash change listener to clean up state.
   const handleClosePrompt = () => {
     window.location.hash = '#/';
   };
@@ -100,11 +112,9 @@ const App: React.FC = () => {
           );
         }
 
-        // Check if the project is password-protected and if it has been unlocked
-        const isUnlocked = unlockedProjects[project.slug];
-        // If password required and not unlocked, render nothing.
-        // The useEffect handles setting `projectToUnlock`, which displays the prompt overlay.
-        if (project.password && !isUnlocked) {
+        // If a project requires a password and is not yet unlocked for this session,
+        // render nothing. The `useEffect` above will handle showing the prompt overlay.
+        if (project.password && !isCurrentProjectUnlocked) {
           return null;
         }
 

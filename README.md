@@ -20,6 +20,8 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 -   `README.md`
     -   You're reading it right now! It's the main guide.
+-   `project-input.md`
+    -   **The easiest way to add a new project!** This is a simple text template you can fill out.
 
 -   `index.html`
     -   Think of this as the main "frame" or "skeleton" of your website. We use it to set up important things like **colors, fonts, and custom animations**.
@@ -50,9 +52,21 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 ## 3. How to Make Changes (The Fun Part!)
 
-### A. How to Add or Edit a Project
+### A. The Easy Way to Add a New Project (Recommended for Beginners)
 
-Your portfolio is now set up so that each project is its own separate file. This makes it super clean and easy to manage.
+We've created a super simple way to add new projects without touching any code!
+
+1.  **Open the `project-input.md` file.** This is a plain text template with instructions.
+2.  **Fill it out.** Follow the examples in the file to add your project's title, description, overview, and all the content for your case study. You can add images, lists, videos, and more using simple tags like `[IMAGE: ...]` and `[VIDEO: ...]`.
+3.  **Give it to the AI.** Once you're done, simply provide the contents of your filled-out `project-input.md` file to the AI assistant and ask it to "create a new project from this text." It will handle all the code creation for you!
+
+This is the fastest and safest way to add new work to your portfolio.
+
+---
+
+### B. The Advanced Way: Editing the Code Directly
+
+If you're comfortable with code, you can still add and edit projects manually. Your portfolio is set up so that each project is its own separate file.
 
 #### Step 1: Create a New Project File
 1.  Go to the `data/projects/` folder.
@@ -94,7 +108,7 @@ Your portfolio is now set up so that each project is its own separate file. This
     ```
 That's it! Your new project will now appear on your website.
 
-### B. Building Your Case Study (Content Blocks)
+### C. Building Your Case Study (Content Blocks)
 
 This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
 
@@ -283,7 +297,7 @@ Use this for structured data, like a competitive analysis.
 
 ---
 
-### C. Setting Project Passwords
+### D. Setting Project Passwords
 
 You can set a unique password for each project.
 
@@ -301,7 +315,7 @@ You can set a unique password for each project.
 
 **Important Security Note:** Passwords are **not** stored or cached in the browser. This is a security feature. Users will be required to enter the password **every single time** they visit a protected page, whether they clicked a link or used a direct URL.
 
-### D. Updating Project Company & Logos
+### E. Updating Project Company & Logos
 
 Each project card can display a "chip" with the company's logo and name.
 
@@ -316,6 +330,6 @@ Each project card can display a "chip" with the company's logo and name.
 #### Method 2: Embedding the SVG as a Data URI (Advanced)
 This is useful for small icons. You can use an online "SVG to data URI encoder" to convert your SVG code into a long string and paste it as the `companyLogoUrl`.
 
-### E. Changing Colors & Fonts
+### F. Changing Colors & Fonts
 
 To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.
