@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuIcon, CloseIcon } from './icons';
+import { MenuIcon, CloseIcon, NameLogoIcon } from './icons';
 import { PageState } from '../App';
 
 interface HeaderProps {
@@ -51,7 +51,8 @@ const Header: React.FC<HeaderProps> = ({ setActivePage, activePage }) => {
         }`}
       >
         <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
-          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} className="text-xl font-medium tracking-tighter">
+          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }} className="flex items-center gap-3 text-xl font-medium tracking-tighter">
+            <NameLogoIcon className="h-6 w-auto" />
             <span className="font-sans font-bold">ABHINAV GUPTA</span>
           </a>
           
