@@ -1,3 +1,4 @@
+
 # Project Input Template
 
 ## Instructions:
@@ -14,7 +15,7 @@ ID: 4
 Slug: my-new-project-template
 
 # OPTIONAL: The title for the project card and page.
-Title: My New Project from Template
+Title: My new project from template
 
 # OPTIONAL: A short description for the project card on the homepage.
 Description: A brief summary of this amazing new project, designed to catch the visitor's eye on the main portfolio page.
@@ -35,9 +36,9 @@ CardImageURL: https://images.unsplash.com/photo-1517694712202-1428bc3835b3?q=80&
 CardImagePosition: right
 
 # OPTIONAL: Up to 3 key metrics for the project card. Format: "Value | Label"
-Metric1: +20% | User Engagement
-Metric2: 1500+ | New Signups
-Metric3: 4.9 ★ | User Rating
+Metric1: +20% | User engagement
+Metric2: 1500+ | New signups
+Metric3: 4.9 ★ | User rating
 
 # REQUIRED: URL for the main header image on the project detail page.
 HeroImageURL: https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop
@@ -47,12 +48,12 @@ Overview: This project was an exciting opportunity to solve a complex user probl
 
 # REQUIRED: Key details for the project header. Add as many as you need.
 # Format is "Label | Value"
-ProjectDetail1: Role | Lead Designer & Researcher
+ProjectDetail1: Role | Lead designer & researcher
 ProjectDetail2: Months | 4 Months
 ProjectDetail3: Platform | Web & Mobile App
 ---
 
-# Section 1: Introduction & The Problem
+# Section 1: Introduction & the problem
 
 This is a standard paragraph block. You can write as much as you need here. The system will automatically create paragraphs based on empty lines, just like in standard Markdown.
 
@@ -62,7 +63,7 @@ This is another paragraph, separated by a blank line above. It explains the core
 > This is a quote block. Use it for user feedback or important statements.
 > -- Optional Author
 
-# Section 2: Goals & Visuals
+# Section 2: Goals & visuals
 
 Here are the project goals, shown as a numbered list.
 1.  Increase user satisfaction.
@@ -79,7 +80,7 @@ And here's a bulleted list for key takeaways.
 [FULL_WIDTH_IMAGE: https://images.unsplash.com/photo-1512499617640-c74ae3a79d37 | This is a full-width image. It breaks out of the main text column for a high-impact look. | expandable]
 
 
-# Section 3: More Components
+# Section 3: More components
 
 Here's an example of an image carousel for showing off mockups or a process.
 
@@ -95,7 +96,7 @@ A video can be embedded easily. Just paste the YouTube or Vimeo URL.
 [VIDEO: https://www.youtube.com/watch?v=SSo_EIwHSd4 | A short video explaining the new features.]
 
 
-# Section 4: Complex Layouts
+# Section 4: Complex layouts
 
 Use a two-column layout to place text and images side-by-side.
 
@@ -122,13 +123,13 @@ Support | Email Only | Phone | 24/7 Chat & Email
 [/TABLE]
 
 
-# Section 5: The Results
+# Section 5: The results
 
 Showcase the project's impact with metric cards.
 # To add a color, add it as a third parameter: Value | Label | color
 # Available colors: green, blue, yellow, red. Leave blank for default gray.
 [METRIC_CARDS]
-+50% | Increase in Success Rate | green
--10min | Reduction in Average Task Time | red
-+95% | User Satisfaction Score | blue
++50% | Increase in success rate | green
+-10min | Reduction in average task time | red
++95% | User satisfaction score | blue
 [/METRIC_CARDS]

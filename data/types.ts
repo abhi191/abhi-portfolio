@@ -1,3 +1,5 @@
+import type React from 'react';
+
 export interface Metric {
   value: string;
   label: string;
@@ -16,7 +18,11 @@ export interface DesignPhilosophyItem {
 }
 
 export interface JourneyItem {
-  title: string;
+  company: string;
+  companyLogo: React.FC<{ className?: string }>;
+  position: string;
+  description?: string;
+  location: string;
   period: string;
 }
 

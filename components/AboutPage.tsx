@@ -19,7 +19,7 @@ const AboutPage: React.FC = () => {
         {/* Intro Section */}
         <AnimateOnScroll>
           <section className="text-center flex flex-col items-center">
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
+            <div className="w-96 h-96 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
               <img 
                 src={profileImageUrl} 
                 alt="Abhinav Gupta" 
@@ -56,12 +56,32 @@ const AboutPage: React.FC = () => {
         <AnimateOnScroll>
           <section>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{journey.title}</h2>
-              <div className="mt-16 max-w-2xl mx-auto border-t border-brand-dark/10">
+              <div className="mt-16 max-w-3xl mx-auto space-y-12">
                   {journey.history.map((item, index) => (
-                    <div key={index} className="py-6 border-b border-brand-dark/10 flex flex-wrap justify-between items-center gap-2">
-                        <span className="font-semibold text-lg">{item.title}</span>
-                        <span className="text-brand-dark/60 font-mono text-sm">{item.period}</span>
-                    </div>
+                    <div key={index} className="flex flex-col sm:flex-row justify-between gap-4">
+                      {/* Left Side */}
+                      <div className="flex-1">
+                          <div className="flex items-start gap-4">
+                              <div className="bg-brand-card p-3 rounded-lg flex-shrink-0">
+                                  <item.companyLogo className="h-6 w-6 text-brand-dark/80" />
+                              </div>
+                              <div>
+                                  <h3 className="font-semibold text-lg text-brand-dark">{item.position}</h3>
+                                  <p className="text-brand-dark/80">{item.company}</p>
+                              </div>
+                          </div>
+                          {item.description && (
+                            <p className="mt-4 pl-16 text-brand-dark/70 leading-relaxed text-base">
+                              {item.description}
+                            </p>
+                          )}
+                      </div>
+                      {/* Right Side */}
+                      <div className="flex-shrink-0 text-left sm:text-right mt-2 sm:mt-0 pt-1 pl-16 sm:pl-0">
+                          <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
+                          <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
+                      </div>
+                  </div>
                   ))}
               </div>
           </section>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CloseIcon } from './icons';
 
@@ -58,7 +59,7 @@ const PasswordPrompt: React.FC<PasswordPromptProps> = ({ onSubmit, onClose }) =>
           <CloseIcon className="h-6 w-6" />
         </button>
 
-        <h2 className="text-2xl font-bold text-brand-dark text-center">Protected Content</h2>
+        <h2 className="text-2xl font-bold text-brand-dark text-center">Protected content</h2>
         <p className="text-center text-brand-dark/70 mt-3">
           Please enter the password to view this case study.
         </p>
@@ -86,7 +87,7 @@ const PasswordPrompt: React.FC<PasswordPromptProps> = ({ onSubmit, onClose }) =>
             type="submit"
             className="w-full bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark"
           >
-            Unlock Project
+            Unlock project
           </button>
         </form>
       </div>

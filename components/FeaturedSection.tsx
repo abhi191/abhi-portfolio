@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRightIcon } from './icons';
 import { projects } from '../data/projects';
@@ -45,7 +46,7 @@ const ProjectCard: React.FC<Project> = ({
 
         <div className="mt-10 flex-grow flex flex-col justify-end">
           <div className="">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-dark/60 mb-6">Key Metrics</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-dark/60 mb-6">Key metrics</h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
               {metrics.slice(0, 3).map((metric, index) => (
                 <div key={index}>
@@ -56,7 +57,7 @@ const ProjectCard: React.FC<Project> = ({
             </div>
           </div>
           <div className="mt-12 flex items-center text-brand-dark font-semibold group-hover:text-brand-accent transition-colors duration-300">
-            <span>View Case Study</span>
+            <span>View case study</span>
             <ArrowRightIcon className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
           </div>
         </div>
@@ -69,7 +70,7 @@ const FeaturedSection: React.FC = () => {
   return (
     <section className="py-20 md:py-32">
       <AnimateOnScroll>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected Work</h2>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected work</h2>
       </AnimateOnScroll>
       <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
         {projects.map((project, index) => (
