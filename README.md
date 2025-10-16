@@ -327,6 +327,21 @@ Use this for structured data, like a competitive analysis.
 }
 ```
 
+**11. Call to Action**
+A prominent, full-width block with a colored background, text, and a button. Perfect for concluding a case study, linking to a prototype, or prompting visitors to get in touch.
+
+*Code Example:*
+```javascript
+{
+  type: 'callToAction',
+  title: 'View the live prototype',
+  text: 'Explore the interactive prototype to get a hands-on feel for the redesigned user flow and key interactions.',
+  buttonText: 'Open Figma Prototype',
+  buttonUrl: 'https://www.figma.com/...', // The URL for the button
+  color: 'blue' // Optional: 'green', 'blue', 'yellow', 'red'. Defaults to gray.
+}
+```
+
 ---
 ### D. How to Edit the "About Me" Page
 

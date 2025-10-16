@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AnimateOnScroll from './AnimateOnScroll';
 import { aboutPageContent } from '../data/about';
+import { ChevronDownIcon } from './icons';
 
 const AboutPage: React.FC = () => {
   const { 
@@ -12,6 +13,12 @@ const AboutPage: React.FC = () => {
     beyondPixels, 
     connect 
   } = aboutPageContent;
+
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <div className="py-24 md:py-32">
@@ -55,35 +62,76 @@ const AboutPage: React.FC = () => {
         {/* Journey Section */}
         <AnimateOnScroll>
           <section>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{journey.title}</h2>
-              <div className="mt-16 max-w-3xl mx-auto space-y-12">
-                  {journey.history.map((item, index) => (
-                    <div key={index} className="flex flex-col sm:flex-row justify-between gap-4">
-                      {/* Left Side */}
-                      <div className="flex-1">
-                          <div className="flex items-start gap-4">
-                              <div className="bg-brand-card p-3 rounded-lg flex-shrink-0">
-                                  <item.companyLogo className="h-6 w-6 text-brand-dark/80" />
-                              </div>
-                              <div>
-                                  <h3 className="font-semibold text-lg text-brand-dark">{item.position}</h3>
-                                  <p className="text-brand-dark/80">{item.company}</p>
-                              </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{journey.title}</h2>
+            <div className="mt-16 max-w-3xl mx-auto">
+              {journey.history.map((item, index) => (
+                <div key={index} className="py-6 border-b border-brand-dark/10 last:border-b-0">
+                  <div
+                    className={`flex flex-row justify-between items-start sm:items-center gap-4 ${item.description ? 'cursor-pointer group' : ''}`}
+                    onClick={item.description ? () => handleToggle(index) : undefined}
+                    onKeyDown={item.description ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(index); } } : undefined}
+                    role={item.description ? 'button' : undefined}
+                    tabIndex={item.description ? 0 : -1}
+                    aria-expanded={item.description ? expandedIndex === index : undefined}
+                    aria-controls={item.description ? `description-${index}` : undefined}
+                    aria-label={item.description ? `${item.position} at ${item.company}. ${expandedIndex === index ? 'Hide details' : 'Show details'}` : undefined}
+                  >
+                    {/* Left Side: Logo, Title, Company */}
+                    <div className="flex-1">
+                      <div className="flex items-start gap-6">
+                        <div className="bg-brand-card p-5 rounded-xl flex-shrink-0">
+                          <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-xl text-brand-dark">{item.position}</h3>
+                          <p className="text-brand-dark/80 mt-1">{item.company}</p>
+                           {/* Location/period for mobile */}
+                          <div className="mt-2 text-left sm:hidden">
+                            <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
+                            <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
                           </div>
-                          {item.description && (
-                            <p className="mt-4 pl-16 text-brand-dark/70 leading-relaxed text-base">
-                              {item.description}
-                            </p>
-                          )}
+                        </div>
                       </div>
-                      {/* Right Side */}
-                      <div className="flex-shrink-0 text-left sm:text-right mt-2 sm:mt-0 pt-1 pl-16 sm:pl-0">
-                          <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
-                          <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
+                    </div>
+                    
+                    {/* Right Side: Location, Period, and Chevron */}
+                    <div className="flex-shrink-0 flex items-center justify-end gap-4">
+                       <div className="hidden sm:block text-right">
+                        <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
+                        <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
                       </div>
+                      
+                      {item.description ? (
+                         <div
+                            className="p-2 rounded-full group-hover:bg-brand-card transition-colors flex-shrink-0"
+                            aria-hidden="true"
+                          >
+                            <ChevronDownIcon 
+                              className={`h-5 w-5 text-brand-dark/70 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`} 
+                            />
+                          </div>
+                      ) : (
+                        <div className="w-9 h-9 flex-shrink-0" /> // Placeholder for alignment
+                      )}
+                    </div>
                   </div>
-                  ))}
-              </div>
+
+                  {/* Collapsible content, outside the flex row */}
+                  {item.description && (
+                    <div
+                      id={`description-${index}`}
+                      className={`grid transition-all duration-500 ease-in-out ${expandedIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="pt-4 text-brand-dark/70 leading-relaxed text-base pl-28">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </section>
         </AnimateOnScroll>
         

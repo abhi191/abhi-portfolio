@@ -133,3 +133,11 @@ Showcase the project's impact with metric cards.
 -10min | Reduction in average task time | red
 +95% | User satisfaction score | blue
 [/METRIC_CARDS]
+
+
+# Section 6: Connect or view prototype
+
+Use a Call to Action block for a final, colorful prompt.
+# Format: [CALL_TO_ACTION | Title | Text | Button Text | Button URL | Color]
+# Color is optional and can be green, blue, yellow, red. Defaults to gray.
+[CALL_TO_ACTION | View the Live Prototype | Click the button below to explore the interactive Figma prototype and see the designs in action. | Open Prototype | https://figma.com | blue]

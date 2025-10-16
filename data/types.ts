@@ -61,7 +61,8 @@ export type ContentBlock =
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'carousel'; slides: { src: string; caption?: string }[] }
   | { type: 'quote'; text: string; author?: string }
-  | { type: 'video'; url: string; caption?: string };
+  | { type: 'video'; url: string; caption?: string }
+  | { type: 'callToAction'; title: string; text: string; buttonText: string; buttonUrl: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' };
 
 export interface ProjectSection {
   title: string;

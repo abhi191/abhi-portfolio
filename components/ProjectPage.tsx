@@ -263,6 +263,35 @@ const RenderBlock: React.FC<{
         </figure>
       );
 
+    case 'callToAction':
+      const ctaColorStyles: { [key: string]: { bg: string; title: string; text: string; button: string } } = {
+          green: { bg: 'bg-green-50', title: 'text-green-900', text: 'text-green-800', button: 'bg-green-600 hover:bg-green-700 text-white' },
+          blue: { bg: 'bg-blue-50', title: 'text-blue-900', text: 'text-blue-800', button: 'bg-blue-600 hover:bg-blue-700 text-white' },
+          yellow: { bg: 'bg-yellow-50', title: 'text-yellow-900', text: 'text-yellow-800', button: 'bg-yellow-500 hover:bg-yellow-600 text-yellow-900' },
+          red: { bg: 'bg-red-50', title: 'text-red-900', text: 'text-red-800', button: 'bg-red-600 hover:bg-red-700 text-white' },
+          gray: { bg: 'bg-brand-card', title: 'text-brand-dark', text: 'text-brand-dark/80', button: 'bg-brand-dark hover:opacity-90 text-white' }
+      };
+      const styles = ctaColorStyles[block.color || 'gray'] || ctaColorStyles.gray;
+      return (
+          <div className="my-12 md:my-16">
+              <div className={`text-center py-12 md:py-16 rounded-2xl ${styles.bg} transition-colors`}>
+                  <h3 className={`text-3xl md:text-4xl font-bold tracking-tight ${styles.title}`}>{block.title}</h3>
+                  <p className={`mt-6 text-lg max-w-xl mx-auto px-4 ${styles.text}`}>{block.text}</p>
+                  <div className="mt-10">
+                      <a 
+                        href={block.buttonUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={`inline-block text-base font-semibold py-3 px-8 rounded-lg transition-all ${styles.button}`}
+                      >
+                          {block.buttonText}
+                      </a>
+                  </div>
+              </div>
+          </div>
+      );
+
+
     default:
       return null;
   }
@@ -420,7 +449,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{section.title}</h2>
               <div className="mt-8">
                 {section.blocks.map((block, blockIndex) => {
-                  const isFullWidth = block.type === 'fullWidthImage' || block.type === 'carousel';
+                  const isFullWidth = block.type === 'fullWidthImage' || block.type === 'carousel' || block.type === 'callToAction';
                   if (isFullWidth) {
                     return <RenderBlock key={blockIndex} block={block} onImageClick={handleImageClick} />;
                   }

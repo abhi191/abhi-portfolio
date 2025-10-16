@@ -1,4 +1,3 @@
-
 import type { Project } from '../types';
 
 export const googleEcommerceProject: Project = {
@@ -139,7 +138,15 @@ export const googleEcommerceProject: Project = {
           "The power of iterative testing: Early and frequent usability tests with low-fidelity prototypes saved us countless hours of development time by catching design flaws early.",
           "Mobile-first is non-negotiable: Designing for the smallest screen first forced us to prioritize features and create a more focused, efficient user experience that scaled beautifully to larger devices.",
           "A design system is a life-saver: Investing time upfront to build a comprehensive design system created consistency and dramatically sped up the development and design process for new features post-launch."
-        ]}
+        ]},
+        {
+          type: 'callToAction',
+          title: 'View the live prototype',
+          text: 'Explore the interactive prototype to get a hands-on feel for the redesigned user flow and key interactions.',
+          buttonText: 'Open Figma Prototype',
+          buttonUrl: '#',
+          color: 'blue'
+        }
       ]
     }
   ]
