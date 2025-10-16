@@ -67,7 +67,7 @@ const AboutPage: React.FC = () => {
               {journey.history.map((item, index) => (
                 <div key={index} className="py-6 border-b border-brand-dark/10 last:border-b-0">
                   <div
-                    className={`flex flex-row justify-between items-start sm:items-center gap-4 ${item.description ? 'cursor-pointer group' : ''}`}
+                    className={`flex flex-row justify-between items-start gap-4 ${item.description ? 'cursor-pointer group' : ''}`}
                     onClick={item.description ? () => handleToggle(index) : undefined}
                     onKeyDown={item.description ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(index); } } : undefined}
                     role={item.description ? 'button' : undefined}
@@ -76,17 +76,29 @@ const AboutPage: React.FC = () => {
                     aria-controls={item.description ? `description-${index}` : undefined}
                     aria-label={item.description ? `${item.position} at ${item.company}. ${expandedIndex === index ? 'Hide details' : 'Show details'}` : undefined}
                   >
-                    {/* Left Side: Logo, Title, Company */}
-                    <div className="flex-1">
-                      <div className="flex items-start gap-6">
-                        <div className="bg-brand-card p-5 rounded-xl flex-shrink-0">
-                          <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                    {/* Left Side: Logo and all text content */}
+                    <div className="flex-1 flex items-start gap-6">
+                      <div className="bg-brand-card p-5 rounded-xl flex-shrink-0">
+                        <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                      </div>
+                      <div className="flex-1 pt-1">
+                        {/* Desktop View: Split layout */}
+                        <div className="hidden sm:block">
+                          <div className="flex justify-between items-baseline">
+                            <h3 className="font-semibold text-xl text-brand-dark">{item.position}</h3>
+                            <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
+                          </div>
+                          <div className="flex justify-between items-baseline mt-1">
+                            <p className="text-brand-dark/80">{item.company}</p>
+                            <p className="text-brand-dark/60 font-mono text-sm">{item.period}</p>
+                          </div>
                         </div>
-                        <div className="flex-1">
+
+                        {/* Mobile View: Stacked layout */}
+                        <div className="sm:hidden">
                           <h3 className="font-semibold text-xl text-brand-dark">{item.position}</h3>
                           <p className="text-brand-dark/80 mt-1">{item.company}</p>
-                           {/* Location/period for mobile */}
-                          <div className="mt-2 text-left sm:hidden">
+                          <div className="mt-2 text-left">
                             <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
                             <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
                           </div>
@@ -94,13 +106,8 @@ const AboutPage: React.FC = () => {
                       </div>
                     </div>
                     
-                    {/* Right Side: Location, Period, and Chevron */}
-                    <div className="flex-shrink-0 flex items-center justify-end gap-4">
-                       <div className="hidden sm:block text-right">
-                        <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
-                        <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
-                      </div>
-                      
+                    {/* Right Side: Chevron only */}
+                    <div className="flex-shrink-0 flex items-center justify-end self-center">
                       {item.description ? (
                          <div
                             className="p-2 rounded-full group-hover:bg-brand-card transition-colors flex-shrink-0"

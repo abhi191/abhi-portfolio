@@ -1,6 +1,8 @@
 import type { AboutPageData } from './types';
-import { GoogleLogo, VMWareLogo, SAPLogo, WiproLogo } from '../components/icons';
+import { GoogleLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons';
+//import profile-image from './profile-image.jpg';
 
+//export const profile-image
 /**
  * ===================================================================================
  * EDIT THIS FILE TO UPDATE THE "ABOUT ME" PAGE
@@ -66,8 +68,8 @@ export const aboutPageContent: AboutPageData = {
         period: '2016 — 2019' 
       },
       { 
-        company: 'Wipro',
-        companyLogo: WiproLogo,
+        company: 'Cresta',
+        companyLogo: CrestaLogo,
         position: 'Software Engineer',
         location: 'Bengaluru, India',
         period: '2013 — 2015' 
