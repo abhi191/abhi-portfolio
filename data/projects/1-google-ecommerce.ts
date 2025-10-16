@@ -18,9 +18,12 @@ export const googleEcommerceProject: Project = {
   
   // --- Detailed page content ---
   heroImage: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2070&auto=format&fit=crop',
-  role: 'Lead UX Designer, Researcher',
-  timeline: '6 Months (Jan 2024 - Jun 2024)',
   overview: 'This project was a complete redesign of a legacy fashion e-commerce platform struggling with low conversion rates and high cart abandonment. The goal was to modernize the user experience, adopt a mobile-first approach, and create a seamless journey from product discovery to checkout.',
+  details: [
+    { label: 'Role', value: 'Lead UX Designer, Researcher' },
+    { label: 'Timeline', value: '6 Months (Jan 2024 - Jun 2024)' },
+    { label: 'Platform', value: 'Web & Mobile' },
+  ],
   
   sections: [
     {

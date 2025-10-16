@@ -4,6 +4,47 @@ export interface Metric {
   color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray';
 }
 
+export interface ProjectDetail {
+  label: string;
+  value: string;
+}
+
+// --- New Types for About Page ---
+export interface DesignPhilosophyItem {
+  title: string;
+  description: string;
+}
+
+export interface JourneyItem {
+  title: string;
+  period: string;
+}
+
+export interface AboutPageData {
+  profileImageUrl: string;
+  title: string;
+  intro: string;
+  designPhilosophy: {
+    title: string;
+    points: DesignPhilosophyItem[];
+  };
+  journey: {
+    title: string;
+    history: JourneyItem[];
+  };
+  beyondPixels: {
+    title: string;
+    text: string;
+  };
+  connect: {
+    title: string;
+    text: string;
+    buttonText: string;
+  };
+}
+// --- End New Types ---
+
+
 export type ContentBlock =
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; caption?: string; isExpandable?: boolean }
@@ -35,9 +76,8 @@ export interface Project {
 
   // --- Detailed page content ---
   heroImage: string;
-  role: string;
-  timeline: string;
   overview: string;
+  details: ProjectDetail[]; // Flexible key-value pairs for role, timeline, etc.
   
   // New flexible content structure for case studies
   sections: ProjectSection[];

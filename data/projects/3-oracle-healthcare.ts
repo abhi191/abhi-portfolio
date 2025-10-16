@@ -14,9 +14,11 @@ export const oracleHealthcareProject: Project = {
     { value: '+25%', label: 'Patient Engagement' },
   ],
   heroImage: 'https://images.unsplash.com/photo-1584515933487-779824d279f9?q=80&w=2070&auto=format&fit=crop', 
-  role: 'Product Designer', 
-  timeline: '8 Months', 
   overview: 'This project aimed to empower patients by giving them easy, secure access to their health information and a direct line of communication with their care providers.', 
+  details: [
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Timeline', value: '8 Months' }
+  ],
   
   sections: [
     {

@@ -42,14 +42,14 @@ Metric3: 4.9 ★ | User Rating
 # REQUIRED: URL for the main header image on the project detail page.
 HeroImageURL: https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop
 
-# REQUIRED: Your role(s) in the project.
-Role: Lead Designer & Researcher
-
-# REQUIRED: The project's duration.
-Timeline: 4 Months
-
 # REQUIRED: A paragraph that introduces the project on the detail page.
 Overview: This project was an exciting opportunity to solve a complex user problem. The goal was to rebuild a critical workflow from the ground up, focusing on usability, efficiency, and modern design principles.
+
+# REQUIRED: Key details for the project header. Add as many as you need.
+# Format is "Label | Value"
+ProjectDetail1: Role | Lead Designer & Researcher
+ProjectDetail2: Months | 4 Months
+ProjectDetail3: Platform | Web & Mobile App
 ---
 
 # Section 1: Introduction & The Problem

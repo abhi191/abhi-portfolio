@@ -32,6 +32,7 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 -   `data/` (folder)
     -   This folder holds all your content.
     -   `types.ts`: This important file defines the "blueprint" or structure for a project (what fields it has, like `title`, `slug`, `description`, etc.).
+    -   `about.ts`: **This file holds all the content for your "About Me" page.**
     -   `projects/` (folder): **This is where all your project files live!** Each project has its own file here.
         -   `1-google-ecommerce.ts`: An example project file.
         -   `index.ts`: This file gathers all your individual projects and puts them in a list for the website to display.
@@ -44,7 +45,7 @@ All the website's files are organized to be as clear as possible. Here’s a qui
     -   `Hero.tsx`: The big, welcoming intro section on the homepage.
     -   `FeaturedSection.tsx`: The list of project cards on the homepage.
     -   `ProjectPage.tsx`: The template that displays your detailed case study.
-    -   `AboutPage.tsx`: The *entire* "About Me" page is inside this one file.
+    -   `AboutPage.tsx`: The template for the "About Me" page.
     -   `PasswordPrompt.tsx`: The pop-up that asks for a password.
     -   `icons.tsx`: This file holds the code for the small icons used on the site.
 
@@ -88,9 +89,30 @@ If you're comfortable with code, you can still add and edit projects manually. Y
       // ... rest of project data
     };
     ```
-4.  Fill out the top-level details like `title`, `description`, `role`, `timeline`, and the `metrics` for the homepage card.
+4.  Fill out the top-level details like `title`, `description`, and the `metrics` for the homepage card.
 
-#### Step 3: Add Your New Project to the Main List
+#### Step 3: Customize Your Project Page Details (Role, Timeline, etc.)
+The header of your project page (with details like your role and the project timeline) is now fully customizable. Instead of fixed fields, you can create your own labels and add as many details as you need.
+
+In your project file, find the `details` section. It's an array where you can add your own custom label/value pairs.
+
+*Code Example:*
+```javascript
+// --- BEFORE (Old way) ---
+// role: 'Lead UX Designer',
+// timeline: '6 Months',
+
+// --- AFTER (New, flexible way) ---
+details: [
+  { label: 'Role', value: 'Lead UX Designer & Researcher' },
+  { label: 'Months', value: '6 Months (Jan - Jun 2024)' }, // You can change 'Timeline' to 'Months'!
+  { label: 'Platform', value: 'Web & Mobile' }, // You can add new details!
+  { label: 'Team', value: 'Product, Engineering, Marketing' }
+],
+```
+This gives you complete control to define the details that matter most for each specific project.
+
+#### Step 4: Add Your New Project to the Main List
 1.  Now, open the file `data/projects/index.ts`. This file controls which projects appear on your site and in what order.
 2.  At the top of the file, **import your new project**.
     ```javascript
@@ -148,7 +170,7 @@ For any standard text. Add a new block for each new paragraph.
 -   **Default Highlight:** Wrap your text in double equal signs, like `==this==`, for a standard yellow highlight.
 -   **Colored Highlights:** To use a specific color, add the color name followed by a colon, like `==red:this text will be red==`.
 
-The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **G. Adding Custom Highlight Colors** below for instructions.
+The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **H. Adding Custom Highlight Colors** below for instructions.
 
 *Code Example:*
 ```javascript
@@ -306,8 +328,33 @@ Use this for structured data, like a competitive analysis.
 ```
 
 ---
+### D. How to Edit the "About Me" Page
 
-### D. Setting Project Passwords
+The content for your "About Me" page is all stored in a single, easy-to-edit file.
+
+1.  **Open the file `data/about.ts`**.
+2.  Inside this file, you'll find all the text for the intro, your design philosophy, your career journey, etc. Simply edit the text within the quotes (`'...'`) to update the content.
+
+**Changing Your Profile Picture:**
+This is the most common change you'll want to make.
+
+1.  **Add your photo to the project.** The best practice is to create a folder named `public` at the top level of your project. Place your image file (e.g., `my-photo.jpg`) inside this `public` folder.
+2.  **Update the path.** In `data/about.ts`, find the line that starts with `profileImageUrl`.
+3.  **Change the value** to the path of your new image. The path should start with a `/`.
+
+*Code Example in `data/about.ts`:*
+```javascript
+// BEFORE:
+profileImageUrl: 'https://...some-long-unsplash-url.com',
+
+// AFTER:
+profileImageUrl: '/my-photo.jpg',
+```
+That's it! The website will now display your photo.
+
+---
+
+### E. Setting Project Passwords
 
 You can set a unique password for each project.
 
@@ -325,7 +372,7 @@ You can set a unique password for each project.
 
 **Important Security Note:** Passwords are **not** stored or cached in the browser. This is a security feature. Users will be required to enter the password **every single time** they visit a protected page, whether they clicked a link or used a direct URL.
 
-### E. Updating Project Company & Logos
+### F. Updating Project Company & Logos
 
 Each project card can display a "chip" with the company's logo and name.
 
@@ -340,11 +387,11 @@ Each project card can display a "chip" with the company's logo and name.
 #### Method 2: Embedding the SVG as a Data URI (Advanced)
 This is useful for small icons. You can use an online "SVG to data URI encoder" to convert your SVG code into a long string and paste it as the `companyLogoUrl`.
 
-### F. Changing Colors & Fonts
+### G. Changing Colors & Fonts
 
 To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.
 
-### G. Adding Custom Highlight Colors
+### H. Adding Custom Highlight Colors
 
 You can define your own reusable colors for the text highlighting feature.
 

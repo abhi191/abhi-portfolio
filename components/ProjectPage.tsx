@@ -397,12 +397,11 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
             {project.overview}
           </p>
           <div className="mt-10 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold uppercase tracking-wider text-brand-dark/60">
-              <div>
-                  <span className="font-mono">Role:</span> {project.role}
-              </div>
-              <div>
-                  <span className="font-mono">Timeline:</span> {project.timeline}
-              </div>
+              {project.details.map((detail, index) => (
+                <div key={index}>
+                    <span className="font-mono">{detail.label}:</span> {detail.value}
+                </div>
+              ))}
           </div>
         </header>
       </AnimateOnScroll>

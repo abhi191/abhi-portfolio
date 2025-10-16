@@ -14,9 +14,11 @@ export const vmwareDashboardProject: Project = {
     { value: '-30%', label: 'Support Tickets' },
   ],
   heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop', 
-  role: 'UX Designer', 
-  timeline: '3 Months', 
   overview: 'A B2B SaaS company needed a dashboard redesign to reduce complexity and improve data discoverability for their non-technical user base.', 
+  details: [
+    { label: 'Role', value: 'UX Designer' },
+    { label: 'Timeline', value: '3 Months' }
+  ],
   
   sections: [
     {
