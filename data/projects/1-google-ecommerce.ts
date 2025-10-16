@@ -26,8 +26,8 @@ export const googleEcommerceProject: Project = {
     {
       title: 'The Problem',
       blocks: [
-        { type: 'paragraph', content: "The existing platform was built on an outdated architecture, leading to slow load times and a clunky user interface. User feedback consistently highlighted a confusing navigation structure, a frustratingly long checkout process, and a poor mobile experience." },
-        { type: 'paragraph', content: "Analytics confirmed these issues: mobile bounce rates were over 70%, and the multi-page checkout process saw a 45% drop-off rate." }
+        { type: 'paragraph', content: "The existing platform was built on an outdated architecture, leading to ==red:slow load times== and a clunky user interface. User feedback consistently highlighted a ==yellow:confusing navigation structure==, a frustratingly long checkout process, and a ==purple:poor mobile experience==." },
+        { type: 'paragraph', content: "Analytics confirmed these issues: mobile bounce rates were over ==gray:70%==, and the multi-page checkout process saw a ==red:45% drop-off rate==." }
       ]
     },
     {
@@ -109,12 +109,12 @@ export const googleEcommerceProject: Project = {
           author: 'Jane Doe, Head of Product' 
         },
         { type: 'metricCards', metrics: [
-            { value: '+40%', label: 'Increase in Conversion Rate' },
-            { value: '-25%', label: 'Reduction in Cart Abandonment' },
-            { value: '+85%', label: 'Growth in Mobile Revenue' },
-            { value: '75%', label: 'Faster Checkout Time' },
+            { value: '+40%', label: 'Increase in Conversion Rate', color: 'green' },
+            { value: '-25%', label: 'Reduction in Cart Abandonment', color: 'green' },
+            { value: '+85%', label: 'Growth in Mobile Revenue', color: 'blue' },
+            { value: '75%', label: 'Faster Checkout Time', color: 'yellow' },
             { value: '+2.5', label: 'Increase in CSAT Score' },
-            { value: '-40%', label: 'Reduction in Support Calls' },
+            { value: '-40%', label: 'Reduction in Support Calls', color: 'red' },
         ]}
       ]
     },

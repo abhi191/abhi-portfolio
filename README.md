@@ -144,11 +144,17 @@ To build your case study, you simply add different types of blocks to the `block
 **1. Paragraph**
 For any standard text. Add a new block for each new paragraph.
 
+**Text Highlighting:** You can draw attention to specific parts of your text using highlights.
+-   **Default Highlight:** Wrap your text in double equal signs, like `==this==`, for a standard yellow highlight.
+-   **Colored Highlights:** To use a specific color, add the color name followed by a colon, like `==red:this text will be red==`.
+
+The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **G. Adding Custom Highlight Colors** below for instructions.
+
 *Code Example:*
 ```javascript
 { 
   type: 'paragraph', 
-  content: 'This is the text for my paragraph. It can be as long as I want it to be.' 
+  content: 'This paragraph demonstrates the ==highlight feature==. You can use different colors like ==green:success== or ==red:danger== to add emphasis.' 
 }
 ```
 
@@ -265,19 +271,23 @@ A powerful way to place content side-by-side. Each column can contain any other 
 ```
 
 **9. Metric Cards**
-Great for showcasing the final results and impact of your project in a visually appealing way.
+Great for showcasing the final results and impact of your project in a visually appealing way. You can optionally add a color to each card to add more visual meaning.
 
 *Code Example:*
 ```javascript
 { 
   type: 'metricCards', 
   metrics: [
-    { value: '+40%', label: 'Increase in Conversion Rate' },
-    { value: '-25%', label: 'Reduction in Cart Abandonment' },
-    { value: '+85%', label: 'Growth in Mobile Revenue' },
+    { value: '+40%', label: 'Increase in Conversion Rate', color: 'green' },
+    { value: '-25%', label: 'Reduction in Support Tickets', color: 'green' },
+    { value: '+85%', label: 'Growth in Mobile Revenue', color: 'blue' },
+    { value: '75%', label: 'Faster Checkout Time', color: 'yellow' },
+    { value: '-40%', label: 'Reduction in Support Calls', color: 'red' },
+    { value: '50k+', label: 'Active Users' }, // Default gray color
   ]
 }
 ```
+Available colors are: `green`, `blue`, `yellow`, and `red`. If you don't specify a color, it will default to the standard gray.
 
 **10. Table**
 Use this for structured data, like a competitive analysis.
@@ -333,3 +343,26 @@ This is useful for small icons. You can use an online "SVG to data URI encoder" 
 ### F. Changing Colors & Fonts
 
 To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.
+
+### G. Adding Custom Highlight Colors
+
+You can define your own reusable colors for the text highlighting feature.
+
+1.  **Open `index.html`**.
+2.  Find the `<script>` tag containing `tailwind.config`.
+3.  Inside `theme.extend.colors`, you'll see a commented section called `-- Custom Text Highlight Colors --`.
+4.  To add a new color (e.g., `purple`), add two new lines: one for the background and one for the text color. Follow the naming pattern `highlight-NAME-bg` and `highlight-NAME-text`.
+
+*Code Example: Adding a new "purple" highlight color*
+```javascript
+// Inside theme.extend.colors in index.html
+
+// ... existing colors ...
+'highlight-gray-text': '#1F2937',
+
+// Add your new color definitions here:
+'highlight-purple-bg': '#F3E8FF', // A light purple background
+'highlight-purple-text': '#6B21A8', // A dark purple text
+// ...
+```
+5.  That's it! Now you can use your new color in any project file like this: `==purple:This text will have a purple highlight==`. You can add as many custom colors as you like.

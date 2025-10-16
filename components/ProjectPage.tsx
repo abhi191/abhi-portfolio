@@ -22,6 +22,41 @@ const getEmbedUrl = (url: string): string => {
   return url;
 };
 
+const parseAndRenderHighlights = (content: string) => {
+    // Regex to capture an optional color name (alphanumeric + hyphen/underscore) and the text to highlight.
+    const regex = /==(?:([a-zA-Z0-9_-]+):)?(.*?)==/g;
+    const parts = content.split(regex);
+
+    const elements: React.ReactNode[] = [];
+    let i = 0;
+    while (i < parts.length) {
+        // Add the text part that is not highlighted
+        if (parts[i]) {
+            elements.push(<React.Fragment key={`text-${i}`}>{parts[i]}</React.Fragment>);
+        }
+
+        // Check if there is a highlighted part to process
+        if (i + 2 < parts.length) {
+            const color = parts[i + 1] || 'yellow'; // Default to yellow if no color is specified
+            const text = parts[i + 2];
+            
+            // Dynamically construct class names based on the color.
+            // These classes correspond to colors defined in tailwind.config in index.html.
+            const bgClass = `bg-highlight-${color}-bg`;
+            const textClass = `text-highlight-${color}-text`;
+            
+            elements.push(
+                <mark key={`mark-${i}`} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
+                    {text}
+                </mark>
+            );
+        }
+        i += 3;
+    }
+
+    return <p className="mt-4">{elements}</p>;
+};
+
 
 // Helper component to render a single content block
 const RenderBlock: React.FC<{ 
@@ -30,7 +65,7 @@ const RenderBlock: React.FC<{
 }> = ({ block, onImageClick }) => {
   switch (block.type) {
     case 'paragraph':
-      return <p className="mt-4">{block.content}</p>;
+      return parseAndRenderHighlights(block.content);
     
     case 'image':
       return (
@@ -139,17 +174,28 @@ const RenderBlock: React.FC<{
       );
 
     case 'metricCards':
+      const colorStyles: { [key: string]: { bg: string; value: string; label: string } } = {
+        green: { bg: 'bg-green-50', value: 'text-green-800', label: 'text-green-700' },
+        blue: { bg: 'bg-blue-50', value: 'text-blue-800', label: 'text-blue-700' },
+        yellow: { bg: 'bg-yellow-50', value: 'text-yellow-800', label: 'text-yellow-700' },
+        red: { bg: 'bg-red-50', value: 'text-red-800', label: 'text-red-700' },
+        gray: { bg: 'bg-brand-card', value: 'text-brand-dark', label: 'text-brand-dark/70' },
+      };
+
       return (
         <div className="mt-12 not-prose">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-            {block.metrics.map((metric: Metric, index: number) => (
-              <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="bg-brand-card p-6 rounded-2xl">
-                  <p className="text-3xl md:text-4xl font-bold text-brand-dark">{metric.value}</p>
-                  <p className="text-base text-brand-dark/70 mt-2">{metric.label}</p>
-                </div>
-              </AnimateOnScroll>
-            ))}
+            {block.metrics.map((metric: Metric, index: number) => {
+              const styles = colorStyles[metric.color || 'gray'] || colorStyles.gray;
+              return (
+                <AnimateOnScroll key={index} delay={index * 100}>
+                  <div className={`p-6 rounded-2xl ${styles.bg}`}>
+                    <p className={`text-3xl md:text-4xl font-bold ${styles.value}`}>{metric.value}</p>
+                    <p className={`text-base mt-2 ${styles.label}`}>{metric.label}</p>
+                  </div>
+                </AnimateOnScroll>
+              )
+            })}
           </div>
         </div>
       );

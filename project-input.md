@@ -56,7 +56,8 @@ Overview: This project was an exciting opportunity to solve a complex user probl
 
 This is a standard paragraph block. You can write as much as you need here. The system will automatically create paragraphs based on empty lines, just like in standard Markdown.
 
-This is another paragraph, separated by a blank line above. It explains the core user problem we set out to solve.
+This is another paragraph, separated by a blank line above. It explains the core user problem we set out to solve. You can highlight text for emphasis! Use `==text==` for a yellow highlight, or `==color:text==` for a specific color (e.g., `==red:important==`).
+# You can define your own custom colors! See the instructions in README.md or edit the tailwind.config in index.html.
 
 > This is a quote block. Use it for user feedback or important statements.
 > -- Optional Author
@@ -124,9 +125,10 @@ Support | Email Only | Phone | 24/7 Chat & Email
 # Section 5: The Results
 
 Showcase the project's impact with metric cards.
-
+# To add a color, add it as a third parameter: Value | Label | color
+# Available colors: green, blue, yellow, red. Leave blank for default gray.
 [METRIC_CARDS]
-+50% | Increase in Success Rate
--10min | Reduction in Average Task Time
-+95% | User Satisfaction Score
++50% | Increase in Success Rate | green
+-10min | Reduction in Average Task Time | red
++95% | User Satisfaction Score | blue
 [/METRIC_CARDS]

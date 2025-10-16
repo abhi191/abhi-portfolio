@@ -11,12 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&family=Paytone+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
-
-      @font-face {
-        font-family: 'League Spartan Variable';
-        src: url('/fonts/LeagueSpartanVariable.woff2') format('woff2-variations');
-        font-weight: 200 900;
-      }
         
       body {
         font-family: 'Inter', sans-serif;
@@ -69,11 +63,29 @@
               'brand-dark': '#1C1C1C',
               'brand-accent': '#A15DD9',
               'brand-highlight': '#F3E8FF',
+
+              // -- Custom Text Highlight Colors --
+              // Add new highlight colors here. For each new color 'NAME',
+              // add a 'highlight-NAME-bg' and 'highlight-NAME-text'.
+              'highlight-red-bg': '#FEE2E2',    // Corresponds to Tailwind's red-100
+              'highlight-red-text': '#991B1B',  // Corresponds to Tailwind's red-900
+              'highlight-yellow-bg': '#FEF3C7', // Corresponds to Tailwind's yellow-100 (default)
+              'highlight-yellow-text': '#78350F',// Corresponds to Tailwind's yellow-900
+              'highlight-green-bg': '#D1FAE5',  // Corresponds to Tailwind's green-100
+              'highlight-green-text': '#065F46', // Corresponds to Tailwind's green-900
+              'highlight-blue-bg': '#DBEAFE',   // Corresponds to Tailwind's blue-100
+              'highlight-blue-text': '#1E40AF',  // Corresponds to Tailwind's blue-900
+              'highlight-gray-bg': '#E5E7EB',   // Corresponds to Tailwind's gray-200
+              'highlight-gray-text': '#1F2937',  // Corresponds to Tailwind's gray-800
+              
+              // Example of a new custom color:
+              'highlight-purple-bg': '#F3E8FF',
+              'highlight-purple-text': '#6B21A8',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               mono: ['IBM Plex Mono', 'monospace'],
-              display: ['"Paytone One"', 'League Spartan Variable', '"Archivo Black"', 'sans-serif'],
+              display: ['"Paytone One"', '"Archivo Black"', 'sans-serif'],
             }
           }
         }
@@ -88,6 +100,13 @@
   }
 }
 </script>
+
+    <!-- Smartlook tracking code -->
+    <!-- Add your Smartlook tracking code snippet here -->
+    
+    <!-- Inspectlet tracking code -->
+    <!-- Add your Inspectlet tracking code snippet here -->
+    
 </head>
   <body class="bg-brand-background text-brand-dark">
     <div id="root"></div>

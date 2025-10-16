@@ -1,6 +1,7 @@
 export interface Metric {
   value: string;
   label: string;
+  color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray';
 }
 
 export type ContentBlock =
