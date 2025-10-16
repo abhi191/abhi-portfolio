@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GoogleLogo } from './icons';
+import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
 
 const Hero: React.FC = () => {
   return (
@@ -29,6 +29,28 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* 
+      // Companies I've worked with card
+      <div className="mt-24 max-w-4xl mx-auto">
+        <div className="bg-brand-card rounded-3xl py-10 px-8 md:py-12 md:px-12 text-center">
+          <h2 className="text-sm font-semibold tracking-widest text-brand-dark/60 uppercase">
+            Companies I have previously worked with
+          </h2>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-16 text-brand-dark/70">
+            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="Cresta">
+                <CrestaLogo className="h-7 w-auto" />
+            </a>
+            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="VMware">
+                <VMWareLogo className="h-5 w-auto" />
+            </a>
+            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="SAP">
+                <SAPLogo className="h-9 w-auto" />
+            </a>
+          </div>
+        </div>
+      </div> 
+      */}
     </section>
   );
 };
