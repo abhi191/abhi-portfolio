@@ -72,9 +72,9 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
               >
                 About me
               </button>
-              <button className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
+              <a href="/Abhinav.pdf" target="_blank" rel="noopener noreferrer" className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
                 Resume
-              </button>
+              </a>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -116,9 +116,9 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
           >
             About me
           </button>
-          <button className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
+          <a href="/Abhinav.pdf" target="_blank" rel="noopener noreferrer" className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
             Resume
-          </button>
+          </a>
         </nav>
       </div>
     </>
