@@ -22,39 +22,39 @@ const getEmbedUrl = (url: string): string => {
   return url;
 };
 
-const parseAndRenderHighlights = (content: string) => {
-    // Regex to capture an optional color name (alphanumeric + hyphen/underscore) and the text to highlight.
-    const regex = /==(?:([a-zA-Z0-9_-]+):)?(.*?)==/g;
+const parseAndRenderContent = (content: string) => {
+    // Regex for both highlights (==color:text== or ==text==) and bold (**text**)
+    const regex = /(==(?:[a-zA-Z0-9_-]+:)?.*?==|\*\*.*?\*\*)/g;
     const parts = content.split(regex);
 
-    const elements: React.ReactNode[] = [];
-    let i = 0;
-    while (i < parts.length) {
-        // Add the text part that is not highlighted
-        if (parts[i]) {
-            elements.push(<React.Fragment key={`text-${i}`}>{parts[i]}</React.Fragment>);
-        }
+    const elements = parts.map((part, index) => {
+        if (!part) return null;
 
-        // Check if there is a highlighted part to process
-        if (i + 2 < parts.length) {
-            const color = parts[i + 1] || 'yellow'; // Default to yellow if no color is specified
-            const text = parts[i + 2];
-            
-            // Dynamically construct class names based on the color.
-            // These classes correspond to colors defined in tailwind.config in index.html.
+        // Check for highlight
+        const highlightMatch = part.match(/^==(?:([a-zA-Z0-9_-]+):)?(.*?)==$/);
+        if (highlightMatch) {
+            const color = highlightMatch[1] || 'yellow';
+            const text = highlightMatch[2];
             const bgClass = `bg-highlight-${color}-bg`;
             const textClass = `text-highlight-${color}-text`;
-            
-            elements.push(
-                <mark key={`mark-${i}`} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
+            return (
+                <mark key={`part-${index}`} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
                     {text}
                 </mark>
             );
         }
-        i += 3;
-    }
 
-    return <p className="mt-4">{elements}</p>;
+        // Check for bold
+        const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
+        if (boldMatch) {
+            return <strong key={`part-${index}`}>{boldMatch[1]}</strong>;
+        }
+
+        // Regular text
+        return <React.Fragment key={`part-${index}`}>{part}</React.Fragment>;
+    });
+
+    return <>{elements}</>;
 };
 
 
@@ -65,7 +65,7 @@ const RenderBlock: React.FC<{
 }> = ({ block, onImageClick }) => {
   switch (block.type) {
     case 'paragraph':
-      return parseAndRenderHighlights(block.content);
+      return <p className="mt-4">{parseAndRenderContent(block.content)}</p>;
     
     case 'image':
       return (
@@ -157,7 +157,7 @@ const RenderBlock: React.FC<{
       const listStyle = block.style === 'ordered' ? 'list-decimal' : 'list-disc';
       return (
         <ListTag className={`list-inside space-y-3 mt-6 ${listStyle}`}>
-          {block.items.map((item, index) => <li key={index}>{item}</li>)}
+          {block.items.map((item, index) => <li key={index}>{parseAndRenderContent(item)}</li>)}
         </ListTag>
       );
       
