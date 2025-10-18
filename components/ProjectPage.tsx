@@ -190,8 +190,8 @@ const RenderBlock: React.FC<{
               return (
                 <AnimateOnScroll key={index} delay={index * 100}>
                   <div className={`p-6 rounded-2xl ${styles.bg}`}>
-                    <p className={`text-3xl md:text-4xl font-bold ${styles.value}`}>{metric.value}</p>
-                    <p className={`text-base mt-2 ${styles.label}`}>{metric.label}</p>
+                    <p className={`text-project-h2 font-bold ${styles.value}`}>{metric.value}</p>
+                    <p className={`text-lg mt-2 ${styles.label}`}>{metric.label}</p>
                   </div>
                 </AnimateOnScroll>
               )
@@ -232,7 +232,7 @@ const RenderBlock: React.FC<{
       return (
         <figure className="my-10">
           <blockquote className="relative text-center p-4">
-            <p className="text-xl md:text-2xl italic text-brand-dark font-medium leading-relaxed">
+            <p className="text-lg italic text-brand-dark font-medium leading-relaxed">
               "{block.text}"
             </p>
             {block.author && (
