@@ -275,7 +275,7 @@ const RenderBlock: React.FC<{
       return (
           <div className="my-12 md:my-16">
               <div className={`text-center py-12 md:py-16 rounded-2xl ${styles.bg} transition-colors`}>
-                  <h3 className={`text-3xl md:text-4xl font-bold tracking-tight ${styles.title}`}>{block.title}</h3>
+                  <h3 className={`text-lg md:text-project-h3 font-medium tracking-tight ${styles.title}`}>{block.title}</h3>
                   <p className={`mt-6 text-lg max-w-xl mx-auto px-4 ${styles.text}`}>{block.text}</p>
                   <div className="mt-10">
                       <a 
@@ -419,7 +419,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
       {/* Project Hero */}
       <AnimateOnScroll>
         <header className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-project-h1 font-medium leading-tight tracking-tight">
             {project.title}
           </h1>
           <p className="mt-8 text-lg md:text-xl text-brand-dark/80">
@@ -446,7 +446,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
         {project.sections.map((section, sectionIndex) => (
           <AnimateOnScroll key={sectionIndex}>
             <section className="py-12 md:py-20">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{section.title}</h2>
+              <h2 className="text-xl md:text-project-h2 font-medium tracking-tight text-center">{section.title}</h2>
               <div className="mt-8">
                 {section.blocks.map((block, blockIndex) => {
                   const isFullWidth = block.type === 'fullWidthImage' || block.type === 'carousel' || block.type === 'callToAction';
