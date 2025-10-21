@@ -19,7 +19,7 @@ export interface DesignPhilosophyItem {
 
 export interface JourneyItem {
   company: string;
-  companyLogo: React.FC<{ className?: string }>;
+  companyLogo: React.FC<{ className?: string }> | string;
   position: string;
   description?: string;
   location: string;

@@ -74,6 +74,12 @@ export const TwitterIcon: React.FC<IconProps> = ({ className }) => (
     </svg>
 );
 
+export const BriefcaseIcon: React.FC<IconProps> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.07a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18.22V14.15m16.5 0v-2.17a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 11.98v2.17m16.5 0 0-2.17a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 11.98v2.17m16.5 0-1.66-5.11a2.25 2.25 0 0 0-2.16-1.62H7.57a2.25 2.25 0 0 0-2.16 1.62L3.75 11.98m16.5 0-1.66-5.11a2.25 2.25 0 0 0-2.16-1.62H7.57a2.25 2.25 0 0 0-2.16 1.62L3.75 11.98m0 0H20.25m-16.5 0-1.5 0m1.5 0 0-1.5m13.5 1.5-1.5 0m1.5 0 0-1.5M9 7.5l.001-2.25A2.25 2.25 0 0 1 11.25 3h1.5A2.25 2.25 0 0 1 15 5.25l.001 2.25" />
+    </svg>
+);
+
 export const CrestaLogo: React.FC<IconProps> = ({ className }) => (
     <svg role="img" viewBox="0 0 106 22" xmlns="http://www.w3.org/2000/svg" className={className} fill="currentColor">
         <title>Cresta</title>

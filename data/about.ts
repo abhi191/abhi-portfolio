@@ -45,34 +45,53 @@ export const aboutPageContent: AboutPageData = {
   journey: {
     title: 'My journey',
     history: [
-      { 
+      {
         company: 'Google',
         companyLogo: GoogleLogo,
-        position: 'Interaction Designer', 
-        description: 'Led the design for key features in Google\'s core products, focusing on improving user workflows and creating scalable design patterns within the Material Design ecosystem.',
-        location: 'Mountain View, USA',
-        period: '2021 — Present' 
+        position: 'Senior Interaction Designer',
+        description: 'Leading design for Google Cloud SaaS platform.',
+        location: 'Toronto, Canada',
+        period: 'Oct 2024 – Present'
       },
-      { 
-        company: 'VMWare',
-        companyLogo: VMWareLogo,
-        position: 'Sr. UX Designer', 
-        location: 'Palo Alto, USA',
-        period: '2019 — 2021' 
-      },
-      { 
-        company: 'SAP',
-        companyLogo: SAPLogo,
-        position: 'UX Designer', 
-        location: 'Redwood City, USA',
-        period: '2016 — 2019' 
-      },
-      { 
+      {
         company: 'Cresta',
         companyLogo: CrestaLogo,
-        position: 'Software Engineer',
+        position: 'Senior Product Designer',
+        description: 'Designing a no-code command center for building AI-driven rules that support coaching, QA, and real-time agent assistance.',
+        location: 'Toronto, Canada',
+        period: 'Apr 2024 – Sep 2024'
+      },
+      {
+        company: 'Google',
+        companyLogo: GoogleLogo,
+        position: 'Interaction Designer',
+        description: 'Worked on automating release tools (CI/CD) for rolling out new features and versions of applications like YouTube, Gmail, and Workspace.',
+        location: 'London, UK',
+        period: 'May 2022 – Apr 2024'
+      },
+      {
+        company: 'VMware',
+        companyLogo: VMWareLogo,
+        position: 'Product Designer',
+        description: 'Shaped experiences for VMware vRealize Automation, a flagship infrastructure automation product.',
         location: 'Bengaluru, India',
-        period: '2013 — 2015' 
+        period: 'Nov 2019 – May 2022'
+      },
+      {
+        company: 'SAP',
+        companyLogo: SAPLogo,
+        position: 'User Experience Designer',
+        description: 'Lead designer for internal tools, collaborating globally for user research, testing, and design reviews.',
+        location: 'Bengaluru, India',
+        period: 'Jul 2017 – Oct 2019'
+      },
+      {
+        company: 'Group10',
+        companyLogo: 'Group10',
+        position: 'Sr. UI Designer',
+        description: 'Specialized in mobile app design for Android using material design guidelines, focused on process management and GPS tracking systems.',
+        location: 'Gurugram, India',
+        period: 'Oct 2012 – Jun 2015'
       }
     ]
   },

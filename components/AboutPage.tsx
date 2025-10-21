@@ -79,7 +79,13 @@ const AboutPage: React.FC = () => {
                     {/* Left Side: Logo and all text content */}
                     <div className="flex-1 flex items-start gap-6">
                       <div className="bg-brand-card p-5 rounded-xl flex-shrink-0">
-                        <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                        {typeof item.companyLogo === 'string' ? (
+                          <div className="h-12 w-12 flex items-center justify-center font-bold text-brand-dark/80 text-center text-xs leading-tight tracking-wider uppercase">
+                            {item.companyLogo}
+                          </div>
+                        ) : (
+                          <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                        )}
                       </div>
                       <div className="flex-1 pt-1">
                         {/* Desktop View: Split layout */}
