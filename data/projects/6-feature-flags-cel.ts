@@ -15,7 +15,7 @@ export const featureFlagsCelProject: Project = {
   imagePosition: 'left',
 
   // --- Detailed page content ---
-  heroImage: 'https://images.unsplash.com/photo-1517694712202-1428bc3835b3?q=80&w=2070&auto=format&fit=crop',
+  heroImage: '/project-assets/feature-flags/hero-image.jpg',
   overview: 'This case study focuses on improving design velocity and collaboration by adopting an innovative prototyping method for a technically complex UI component. The project involved implementing Feature Flags, which required introducing complex flag variants and conditions managed through a CEL builder component (Common Expression Language).',
   details: [
     { label: 'Role', value: 'UX Designer' },

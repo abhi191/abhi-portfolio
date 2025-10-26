@@ -15,7 +15,7 @@ export const saasRuntimeProject: Project = {
   imagePosition: 'left',
 
   // --- Detailed page content ---
-  heroImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+  heroImage: '/project-assets/saas-runtime/hero-image.jpg',
   overview: 'SaaS Runtime is a fully managed service designed for Designing, Deploying, and Operating SaaS at Scale. The service provides key foundations such as Deployment, Rollout, and Feature Flags. The context of this project was to drive an App-centric Vision across the broader Cloud Application Platform ecosystem. This meant aligning SaaS Runtime with the Application Design Center (ADC) for design and templating, and with App Hub/Cloud Hub for registration and management. The strategic goal was to improve application-level visibility and management for SaaS Producers.',
   details: [
     { label: 'Role', value: 'Lead design, Service Management' },

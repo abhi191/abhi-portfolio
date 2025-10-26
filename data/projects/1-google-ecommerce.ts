@@ -13,11 +13,11 @@ export const googleEcommerceProject: Project = {
     { value: '-25%', label: 'Cart abandonment' },
     { value: '+85%', label: 'Mobile revenue' },
   ],
-  imageUrl: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=1974&auto=format&fit=crop',
+  imageUrl: '/project-assets/google-ecommerce/card-image.jpg',
   imagePosition: 'left',
   
   // --- Detailed page content ---
-  heroImage: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2070&auto=format&fit=crop',
+  heroImage: '/project-assets/google-ecommerce/hero-image.jpg',
   overview: 'This project was a complete redesign of a legacy fashion e-commerce platform struggling with low conversion rates and high cart abandonment. The goal was to modernize the user experience, adopt a mobile-first approach, and create a seamless journey from product discovery to checkout.',
   details: [
     { label: 'Role', value: 'Lead UX Designer, Researcher' },
@@ -48,13 +48,13 @@ export const googleEcommerceProject: Project = {
       title: 'My design process',
       blocks: [
         { type: 'paragraph', content: 'We followed a user-centered design methodology, starting with in-depth research to understand our users\' frustrations. This included user interviews, competitive analysis, and creating detailed personas. We then moved to low-fidelity wireframes and interactive prototypes, conducting multiple rounds of usability testing to refine the navigation and checkout flow before committing to high-fidelity designs.'},
-        { type: 'image', src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop', caption: 'Our collaborative design process in action. This image is expandable.', isExpandable: true }
+        { type: 'image', src: '/project-assets/google-ecommerce/design-process.jpg', caption: 'Our collaborative design process in action. This image is expandable.', isExpandable: true }
       ]
     },
     {
       title: 'Final mockups (full-width example)',
       blocks: [
-        { type: 'fullWidthImage', src: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?q=80&w=2574&auto=format&fit=crop', caption: 'The redesigned product detail page, shown in full width for maximum impact. This image is also expandable.', isExpandable: true }
+        { type: 'fullWidthImage', src: '/project-assets/google-ecommerce/final-mockups.jpg', caption: 'The redesigned product detail page, shown in full width for maximum impact. This image is also expandable.', isExpandable: true }
       ]
     },
     {
@@ -69,7 +69,7 @@ export const googleEcommerceProject: Project = {
           },
           { // Right Column
             blocks: [
-              { type: 'image', src: 'https://images.unsplash.com/photo-1556740738-b6a63e2775d2?q=80&w=2070&auto=format&fit=crop', caption: 'Mapping user journeys helped bridge the gap between old and new. This one is not expandable.' }
+              { type: 'image', src: '/project-assets/google-ecommerce/challenges.jpg', caption: 'Mapping user journeys helped bridge the gap between old and new. This one is not expandable.' }
             ]
           }
         ]}
@@ -79,9 +79,9 @@ export const googleEcommerceProject: Project = {
         title: 'Component showcase (image carousel example)',
         blocks: [
             { type: 'carousel', slides: [
-                { src: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=2574&auto=format&fit=crop', caption: 'Slide 1: A responsive grid showcasing multiple products.' },
-                { src: 'https://images.unsplash.com/photo-1760479099297-90f851fb0474?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3540', caption: 'Slide 2: The streamlined, single-page checkout form.' },
-                { src: 'https://images.unsplash.com/photo-1757258632083-e9b8a5345047?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2342', caption: 'Slide 3: User profile and order history page.' },
+                { src: '/project-assets/google-ecommerce/carousel-1.jpg', caption: 'Slide 1: A responsive grid showcasing multiple products.' },
+                { src: '/project-assets/google-ecommerce/carousel-2.jpg', caption: 'Slide 2: The streamlined, single-page checkout form.' },
+                { src: '/project-assets/google-ecommerce/carousel-3.jpg', caption: 'Slide 3: User profile and order history page.' },
             ]}
         ]
     },
@@ -100,7 +100,7 @@ export const googleEcommerceProject: Project = {
       title: 'The solution',
       blocks: [
         { type: 'paragraph', content: 'The final design introduced a streamlined, single-page checkout, a visually-driven mega menu for intuitive navigation, and personalized product recommendations. We implemented a clean, minimalist UI with high-quality product imagery at its core. The entire experience was rebuilt from the ground up to be fully responsive and optimized for mobile performance.' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1586923838499-199b06b88b0a?q=80&w=2070&auto=format&fit=crop', caption: 'The final, clean user interface.' }
+        { type: 'image', src: '/project-assets/google-ecommerce/solution.jpg', caption: 'The final, clean user interface.' }
       ]
     },
     {

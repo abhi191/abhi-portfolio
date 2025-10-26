@@ -22,6 +22,8 @@ All the website's files are organized to be as clear as possible. Here’s a qui
     -   You're reading it right now! It's the main guide.
 -   `project-input.md`
     -   **The easiest way to add a new project!** This is a simple text template you can fill out.
+-   `public/` (folder)
+    -   **This is where all your images and assets go!** You will need to create this folder. See the "How to Manage Local Images" section below for instructions.
 
 -   `index.html`
     -   Think of this as the main "frame" or "skeleton" of your website. We use it to set up important things like **colors, fonts, and custom animations**.
@@ -53,7 +55,35 @@ All the website's files are organized to be as clear as possible. Here’s a qui
 
 ## 3. How to Make Changes (The Fun Part!)
 
-### A. The Easy Way to Add a New Project (Recommended for Beginners)
+### A. How to Manage Local Images (Your `public` Folder)
+
+To use your own images for projects, your profile picture, or logos, you'll need to use a special folder called `public`.
+
+**What is the `public` folder?**
+Think of it as your website's main "assets drawer." Any file you put in here (like a `.jpg`, `.png`, or `.svg`) can be directly accessed by the browser. It's the standard and correct way to handle static files.
+
+**Step 1: Create the `public` Folder**
+- In the main directory of your project (at the same level as `index.html` and the `components` folder), create a new folder.
+- **Name it `public`**.
+
+**Step 2: Organize Your Images (Recommended)**
+- Inside the `public` folder, it's a good idea to create sub-folders to keep things tidy. For example:
+  - `public/profile-image.jpg`
+  - `public/logos/company-a.svg`
+  - `public/project-assets/google-ecommerce/hero.png`
+  - `public/project-assets/google-ecommerce/image-1.jpg`
+
+**Step 3: How to Use an Image in Your Code**
+- When you need to use an image, you reference it with a path that starts with a **single forward slash (`/`)**. This slash tells the browser to look in the `public` folder.
+- You **do not** include `public` in the path itself.
+
+**Examples:**
+- To use `public/profile-image.jpg`, the path in your code is: `'/profile-image.jpg'`
+- To use `public/logos/company-a.svg`, the path is: `'/logos/company-a.svg'`
+- To use `public/project-assets/google-ecommerce/hero.png`, the path is: `'/project-assets/google-ecommerce/hero.png'`
+
+---
+### B. The Easy Way to Add a New Project (Recommended for Beginners)
 
 We've created a super simple way to add new projects without touching any code!
 
@@ -65,7 +95,7 @@ This is the fastest and safest way to add new work to your portfolio.
 
 ---
 
-### B. The Advanced Way: Editing the Code Directly
+### C. The Advanced Way: Editing the Code Directly
 
 If you're comfortable with code, you can still add and edit projects manually. Your portfolio is set up so that each project is its own separate file.
 
@@ -130,7 +160,7 @@ This gives you complete control to define the details that matter most for each 
     ```
 That's it! Your new project will now appear on your website.
 
-### C. Building Your Case Study (Content Blocks)
+### D. Building Your Case Study (Content Blocks)
 
 This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
 
@@ -170,7 +200,7 @@ For any standard text. Add a new block for each new paragraph.
 -   **Default Highlight:** Wrap your text in double equal signs, like `==this==`, for a standard yellow highlight.
 -   **Colored Highlights:** To use a specific color, add the color name followed by a colon, like `==red:this text will be red==`.
 
-The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **H. Adding Custom Highlight Colors** below for instructions.
+The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **I. Adding Custom Highlight Colors** below for instructions.
 
 *Code Example:*
 ```javascript
@@ -180,7 +210,19 @@ The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can al
 }
 ```
 
-**2. Lists (Bulleted or Numbered)**
+**2. Heading**
+To add sub-headings within a section for better organization. The AI assistant will convert Markdown-style headings (`##`, `###`, `####`) into these blocks.
+
+*Code Example:*
+```javascript
+{ 
+  type: 'heading', 
+  level: 3, // Can be 2, 3, or 4
+  content: 'This is a Level 3 Sub-heading'
+}
+```
+
+**3. Lists (Bulleted or Numbered)**
 Perfect for project goals, key learnings, or any list of items.
 
 *Code Example (Bulleted):*
@@ -196,33 +238,33 @@ Perfect for project goals, key learnings, or any list of items.
 }
 ```
 
-**3. Image with Optional Caption**
+**4. Image with Optional Caption**
 To display a standard, centered image. You can optionally make it "expandable," meaning a user can click it to see it in a full-screen view.
 
 *Code Example:*
 ```javascript
 { 
   type: 'image', 
-  src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0', // URL for the image
+  src: '/project-assets/my-project/image-name.jpg', // URL for the image
   caption: 'This is an optional caption for the image.',
   isExpandable: true // Add this line to make the image clickable!
 }
 ```
 
-**4. Full-Width Image**
+**5. Full-Width Image**
 Perfect for high-impact mockups. This block breaks out of the text container to span a much wider area. It can also be made expandable.
 
 *Code Example:*
 ```javascript
 { 
   type: 'fullWidthImage', 
-  src: 'https://images.unsplash.com/photo-1512499617640-c74ae3a79d37',
+  src: '/project-assets/my-project/full-width-mockup.png',
   caption: 'This is an optional caption for the full-width image.',
   isExpandable: true // Make it clickable!
 }
 ```
 
-**5. Image Carousel**
+**6. Image Carousel**
 An interactive slideshow. **Images in a carousel are always expandable** into a full-screen lightbox view by default.
 
 *Code Example:*
@@ -231,21 +273,21 @@ An interactive slideshow. **Images in a carousel are always expandable** into a 
   type: 'carousel', 
   slides: [
     { 
-      src: 'https://...image-url-1.com', 
+      src: '/project-assets/my-project/slide-1.jpg', 
       caption: 'Slide 1: This is the first caption.' 
     },
     { 
-      src: 'https://...image-url-2.com', 
+      src: '/project-assets/my-project/slide-2.jpg', 
       caption: 'Slide 2: A different caption.' 
     },
     { 
-      src: 'https://...image-url-3.com' // Caption is optional
+      src: '/project-assets/my-project/slide-3.jpg' // Caption is optional
     }
   ]
 }
 ```
 
-**6. Quote**
+**7. Quote**
 Perfect for highlighting user testimonials, stakeholder feedback, or key pull quotes.
 
 *Code Example:*
@@ -257,7 +299,7 @@ Perfect for highlighting user testimonials, stakeholder feedback, or key pull qu
 }
 ```
 
-**7. Video Embed**
+**8. Video Embed**
 Embed a video from platforms like YouTube or Vimeo. The block automatically converts standard video links into the correct embeddable format.
 
 *Code Example:*
@@ -269,7 +311,7 @@ Embed a video from platforms like YouTube or Vimeo. The block automatically conv
 }
 ```
 
-**8. Two-Column Layout**
+**9. Two-Column Layout**
 A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
 
 *Code Example:*
@@ -285,14 +327,14 @@ A powerful way to place content side-by-side. Each column can contain any other 
     },
     { // Right Column
       blocks: [
-        { type: 'image', src: 'https://...your-image-url.com' }
+        { type: 'image', src: '/project-assets/my-project/column-image.jpg' }
       ]
     }
   ]
 }
 ```
 
-**9. Metric Cards**
+**10. Metric Cards**
 Great for showcasing the final results and impact of your project in a visually appealing way. You can optionally add a color to each card to add more visual meaning.
 
 *Code Example:*
@@ -311,7 +353,7 @@ Great for showcasing the final results and impact of your project in a visually 
 ```
 Available colors are: `green`, `blue`, `yellow`, and `red`. If you don't specify a color, it will default to the standard gray.
 
-**10. Table**
+**11. Table**
 Use this for structured data, like a competitive analysis.
 
 *Code Example:*
@@ -327,7 +369,7 @@ Use this for structured data, like a competitive analysis.
 }
 ```
 
-**11. Call to Action**
+**12. Call to Action**
 A prominent, full-width block with a colored background, text, and a button. Perfect for concluding a case study, linking to a prototype, or prompting visitors to get in touch.
 
 *Code Example:*
@@ -343,7 +385,7 @@ A prominent, full-width block with a colored background, text, and a button. Per
 ```
 
 ---
-### D. How to Edit the "About Me" Page
+### E. How to Edit the "About Me" Page
 
 The content for your "About Me" page is all stored in a single, easy-to-edit file.
 
@@ -351,25 +393,19 @@ The content for your "About Me" page is all stored in a single, easy-to-edit fil
 2.  Inside this file, you'll find all the text for the intro, your design philosophy, your career journey, etc. Simply edit the text within the quotes (`'...'`) to update the content.
 
 **Changing Your Profile Picture:**
-This is the most common change you'll want to make.
-
-1.  **Add your photo to the project.** The best practice is to create a folder named `public` at the top level of your project. Place your image file (e.g., `my-photo.jpg`) inside this `public` folder.
+1.  **Add your photo to the `public` folder.** See the **"How to Manage Local Images"** section above for detailed instructions.
 2.  **Update the path.** In `data/about.ts`, find the line that starts with `profileImageUrl`.
-3.  **Change the value** to the path of your new image. The path should start with a `/`.
+3.  **Change the value** to the path of your new image.
 
 *Code Example in `data/about.ts`:*
 ```javascript
-// BEFORE:
-profileImageUrl: 'https://...some-long-unsplash-url.com',
-
-// AFTER:
-profileImageUrl: '/my-photo.jpg',
+// Change this line:
+profileImageUrl: '/profile-image.jpg',
 ```
-That's it! The website will now display your photo.
 
 ---
 
-### E. Setting Project Passwords
+### F. Setting Project Passwords
 
 You can set a unique password for each project.
 
@@ -387,14 +423,13 @@ You can set a unique password for each project.
 
 **Important Security Note:** Passwords are **not** stored or cached in the browser. This is a security feature. Users will be required to enter the password **every single time** they visit a protected page, whether they clicked a link or used a direct URL.
 
-### F. Updating Project Company & Logos
+### G. Updating Project Company & Logos
 
 Each project card can display a "chip" with the company's logo and name.
 
 #### Method 1: Linking to an SVG File (Recommended)
-1.  Create a `logos` folder in your project's main directory.
-2.  Add your SVG file (e.g., `new-company.svg`) to this folder.
-3.  In your project file, update the `companyLogoUrl` to the path of your file.
+1.  Add your SVG file (e.g., `new-company.svg`) to your `public/logos/` folder.
+2.  In your project file, update the `companyLogoUrl` to the path of your file.
     ```javascript
     companyLogoUrl: '/logos/new-company.svg', // <-- Update this path
     ```
@@ -402,11 +437,11 @@ Each project card can display a "chip" with the company's logo and name.
 #### Method 2: Embedding the SVG as a Data URI (Advanced)
 This is useful for small icons. You can use an online "SVG to data URI encoder" to convert your SVG code into a long string and paste it as the `companyLogoUrl`.
 
-### G. Changing Colors & Fonts
+### H. Changing Colors & Fonts
 
 To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.
 
-### H. Adding Custom Highlight Colors
+### I. Adding Custom Highlight Colors
 
 You can define your own reusable colors for the text highlighting feature.
 

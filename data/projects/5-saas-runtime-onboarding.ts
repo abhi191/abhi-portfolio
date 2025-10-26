@@ -1,4 +1,3 @@
-
 import type { Project } from '../types';
 
 export const saasOnboardingProject: Project = {
@@ -16,7 +15,7 @@ export const saasOnboardingProject: Project = {
   imagePosition: 'left',
 
   // --- Detailed page content ---
-  heroImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2070&auto=format&fit=crop',
+  heroImage: '/project-assets/saas-onboarding/hero-image.jpg',
   overview: 'SaaS Runtime is defined as a Fully Managed Service for Designing, Deploying, and Operating SaaS at Scale. It is part of the One Producer Stack (1PS) product suite, focused on enabling service management experiences for producers. The vision is to provide Application-level visibility and management for SaaS Producers. Service Producers (e.g., 1P, 2P, 3P ISVs like MongoDB or Kafka) use SaaS Runtime to create SaaS or APIs for service consumers. The initiative aims to align data models and product positioning across SaaS Runtime, Application Design Center (ADC), and App Hub to create a cohesive app-centric narrative.',
   details: [
     { label: 'Role', value: 'UX Designer, Service Management Lead' },

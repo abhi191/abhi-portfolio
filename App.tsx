@@ -29,6 +29,18 @@ const parseRoute = (): Route => {
   return { page: 'projects' };
 };
 
+const ProjectBackgroundEffect: React.FC = () => {
+  return (
+    <div 
+      aria-hidden="true"
+      className="absolute top-0 left-0 right-0 h-[1000px]"
+      style={{
+        background: 'linear-gradient(180deg, #F3E8FF 0%, #FBFBFB 80%)'
+      }}
+    />
+  );
+};
+
 const App: React.FC = () => {
   const [route, setRoute] = React.useState(parseRoute());
   // No longer track a list of unlocked projects.
@@ -131,13 +143,20 @@ const App: React.FC = () => {
     }
   };
 
+  const isEcommercePage = route.page === 'projectDetail' && route.slug === 'google-ecommerce-redesign';
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header currentRoute={route} />
-      <main className="flex-grow container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
-        {renderPage()}
-      </main>
-      <Footer />
+    <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-brand-background">
+      {isEcommercePage && <ProjectBackgroundEffect />}
+      
+      {/* This wrapper creates a new stacking context to ensure content appears above the background effect */}
+      <div className="relative z-10 flex flex-col flex-grow">
+        <Header currentRoute={route} />
+        <main className="flex-grow container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+          {renderPage()}
+        </main>
+        <Footer />
+      </div>
 
       {/* Render password prompt when a project needs to be unlocked */}
       {projectToUnlock && (

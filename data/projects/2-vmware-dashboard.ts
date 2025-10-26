@@ -1,4 +1,3 @@
-
 import type { Project } from '../types';
 
 export const vmwareDashboardProject: Project = {
@@ -14,7 +13,7 @@ export const vmwareDashboardProject: Project = {
     { value: '9/10', label: 'User satisfaction' },
     { value: '-30%', label: 'Support tickets' },
   ],
-  heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop', 
+  heroImage: '/project-assets/vmware-dashboard/hero-image.jpg', 
   overview: 'A B2B SaaS company needed a dashboard redesign to reduce complexity and improve data discoverability for their non-technical user base.', 
   details: [
     { label: 'Role', value: 'UX Designer' },
@@ -42,7 +41,7 @@ export const vmwareDashboardProject: Project = {
       title: 'My design process',
       blocks: [
         { type: 'paragraph', content: 'The process involved stakeholder workshops to define key metrics, followed by card sorting exercises with users to create a more intuitive information architecture. Wireframes were tested to validate the new, simplified layouts.'},
-        { type: 'image', src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop' }
+        { type: 'image', src: '/project-assets/vmware-dashboard/design-process.jpg' }
       ]
     },
     {
@@ -55,7 +54,7 @@ export const vmwareDashboardProject: Project = {
       title: 'The solution',
       blocks: [
         { type: 'paragraph', content: 'The new dashboard features a customizable widget system, allowing users to tailor the view to their needs. A prominent global search and filtering system was introduced to make data more accessible. We created a progressive disclosure system, hiding advanced options until they are explicitly requested by the user.' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop' }
+        { type: 'image', src: '/project-assets/vmware-dashboard/solution.jpg' }
       ]
     },
     {

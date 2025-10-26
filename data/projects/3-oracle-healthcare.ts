@@ -13,7 +13,7 @@ export const sapHealthcareProject: Project = {
     { value: '4.8 ★', label: 'App store rating' },
     { value: '+25%', label: 'Patient engagement' },
   ],
-  heroImage: 'https://images.unsplash.com/photo-1584515933487-779824d279f9?q=80&w=2070&auto=format&fit=crop', 
+  heroImage: '/project-assets/sap-healthcare/hero-image.jpg', 
   overview: 'This project aimed to empower patients by giving them easy, secure access to their health information and a direct line of communication with their care providers.', 
   details: [
     { label: 'Role', value: 'Product Designer' },
@@ -41,7 +41,7 @@ export const sapHealthcareProject: Project = {
       title: 'My design process',
       blocks: [
         { type: 'paragraph', content: 'Given the sensitive nature of health data, the process started with a heavy focus on security and privacy best practices (HIPAA compliance). We co-designed features with a patient advisory group to ensure the app met real-world needs. The UI was designed with accessibility (WCAG 2.1 AA) as a top priority.' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop' }
+        { type: 'image', src: '/project-assets/sap-healthcare/design-process.jpg' }
       ]
     },
     {
@@ -54,7 +54,7 @@ export const sapHealthcareProject: Project = {
       title: 'The solution',
       blocks: [
         { type: 'paragraph', content: 'The app provides a clear timeline of a patient\'s health history, a simple "one-tap" appointment booking system, and intelligent prescription refill reminders. A secure messaging feature allows direct communication with doctors\' offices. All data is encrypted both in transit and at rest.' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1620366299830-18a7d329d7de?q=80&w=1964&auto=format&fit=crop' }
+        { type: 'image', src: '/project-assets/sap-healthcare/solution.jpg' }
       ]
     },
     {

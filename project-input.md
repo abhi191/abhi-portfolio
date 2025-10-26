@@ -1,4 +1,3 @@
-
 # Project Input Template
 
 ## Instructions:
@@ -9,7 +8,7 @@
 
 ---
 # REQUIRED: A unique number for this project (e.g., 4, 5, 6...)
-ID: 4
+ID: 7
 
 # REQUIRED: A unique, URL-friendly name. Use lowercase letters and hyphens.
 Slug: my-new-project-template
@@ -26,11 +25,11 @@ Password:
 # OPTIONAL: Company name for the card.
 Company: Awesome Inc.
 
-# OPTIONAL: URL for the company logo SVG. Can be a local path or data URI.
-CompanyLogoURL: data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10' fill='orange'/%3E%3C/svg%3E
+# OPTIONAL: Path to the company logo SVG in your `public` folder.
+CompanyLogoURL: /logos/awesome-inc.svg
 
-# OPTIONAL: URL for the image on the project card.
-CardImageURL: https://images.unsplash.com/photo-1517694712202-1428bc3835b3?q=80&w=2070&auto=format&fit=crop
+# OPTIONAL: Path to the image for the project card in your `public` folder.
+CardImageURL: /project-assets/template/card-image.jpg
 
 # OPTIONAL: Position of the card image ('left' or 'right'). Defaults to 'left'.
 CardImagePosition: right
@@ -40,8 +39,8 @@ Metric1: +20% | User engagement
 Metric2: 1500+ | New signups
 Metric3: 4.9 ★ | User rating
 
-# REQUIRED: URL for the main header image on the project detail page.
-HeroImageURL: https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop
+# REQUIRED: Path to the main header image on the project detail page.
+HeroImageURL: /project-assets/template/hero-image.jpg
 
 # REQUIRED: A paragraph that introduces the project on the detail page.
 Overview: This project was an exciting opportunity to solve a complex user problem. The goal was to rebuild a critical workflow from the ground up, focusing on usability, efficiency, and modern design principles.
@@ -60,11 +59,17 @@ This is a standard paragraph block. You can write as much as you need here. The 
 This is another paragraph, separated by a blank line above. It explains the core user problem we set out to solve. You can highlight text for emphasis! Use `==text==` for a yellow highlight, or `==color:text==` for a specific color (e.g., `==red:important==`).
 # You can define your own custom colors! See the instructions in README.md or edit the tailwind.config in index.html.
 
+You can also add subheadings within any section to better structure your content. The AI will automatically detect them.
+## This is a Level 2 Heading
+### This is a Level 3 Heading
+#### This is a Level 4 Heading
+
 > This is a quote block. Use it for user feedback or important statements.
 > -- Optional Author
 
 # Section 2: Goals & visuals
 
+### Project Goals
 Here are the project goals, shown as a numbered list.
 1.  Increase user satisfaction.
 2.  Decrease task completion time.
@@ -75,9 +80,11 @@ And here's a bulleted list for key takeaways.
 *   Collaboration is key to success.
 *   Iterate, iterate, iterate.
 
-[IMAGE: https://images.unsplash.com/photo-1557804506-669a67965ba0 | This is a standard image with a caption. You can click to expand it. | expandable]
+### Visuals
+# Use local paths starting with a `/` that points to your `public` folder.
+[IMAGE: /project-assets/template/image-1.jpg | This is a standard image with a caption. You can click to expand it. | expandable]
 
-[FULL_WIDTH_IMAGE: https://images.unsplash.com/photo-1512499617640-c74ae3a79d37 | This is a full-width image. It breaks out of the main text column for a high-impact look. | expandable]
+[FULL_WIDTH_IMAGE: /project-assets/template/full-width-1.jpg | This is a full-width image. It breaks out of the main text column for a high-impact look. | expandable]
 
 
 # Section 3: More components
@@ -85,9 +92,9 @@ And here's a bulleted list for key takeaways.
 Here's an example of an image carousel for showing off mockups or a process.
 
 [CAROUSEL]
-https://images.unsplash.com/photo-1525507119028-ed4c629a60a3 | Slide 1: The first design mockup.
-https://images.unsplash.com/photo-1760479099297-90f851fb0474 | Slide 2: An iteration based on user feedback.
-https://images.unsplash.com/photo-1757258632083-e9b8a5345047 | Slide 3: The final, polished user interface.
+/project-assets/template/carousel-1.jpg | Slide 1: The first design mockup.
+/project-assets/template/carousel-2.jpg | Slide 2: An iteration based on user feedback.
+/project-assets/template/carousel-3.jpg | Slide 3: The final, polished user interface.
 [/CAROUSEL]
 
 
@@ -107,7 +114,7 @@ This is the content for the left column. You can have multiple paragraphs or oth
 It's great for explaining a concept next to a visual.
 [/LEFT]
 [RIGHT]
-[IMAGE: https://images.unsplash.com/photo-1556740738-b6a63e2775d2]
+[IMAGE: /project-assets/template/column-image.jpg]
 [/RIGHT]
 [/TWO_COLUMNS]
 

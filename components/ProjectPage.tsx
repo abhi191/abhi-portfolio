@@ -64,6 +64,14 @@ const RenderBlock: React.FC<{
   onImageClick: (images: { src: string; caption?: string }[], startIndex: number) => void;
 }> = ({ block, onImageClick }) => {
   switch (block.type) {
+    case 'heading': {
+      // Render as h2, h3, or h4 and let Tailwind's prose styles handle it
+      // FIX: Use 'as React.ElementType' to correctly type the dynamic tag for JSX.
+      // This resolves the "Cannot find namespace 'JSX'" and related errors.
+      const Tag = `h${block.level}` as React.ElementType;
+      return <Tag>{parseAndRenderContent(block.content)}</Tag>;
+    }
+    
     case 'paragraph':
       return <p className="mt-4">{parseAndRenderContent(block.content)}</p>;
     

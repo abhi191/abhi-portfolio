@@ -9,15 +9,16 @@ import { GoogleLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons
  * ===================================================================================
  *
  * All the content for your "About Me" page is stored here.
- * To change your profile picture, simply replace the `profileImageUrl` below.
  *
  * INSTRUCTIONS FOR YOUR PROFILE PICTURE:
- * 1. Create a new folder named `public` in the root of your project if it doesn't exist.
- * 2. Add your image file to this `public` folder (e.g., `profile-pic.jpg`).
- * 3. Change the `profileImageUrl` value below to `/profile-pic.jpg`.
+ * 1. Create a new folder named `public` in the main directory of your project (at the
+ *    same level as `index.html` and the `components` folder).
+ * 2. Add your image file to this `public` folder (e.g., `profile-image.jpg`).
+ * 3. Change the `profileImageUrl` value below to the path of your image. The path
+ *    must start with a forward slash `/`.
  *
  * For example:
- * profileImageUrl: '/profile-pic.jpg',
+ * profileImageUrl: '/profile-image.jpg',
  */
 export const aboutPageContent: AboutPageData = {
   profileImageUrl: '/profile-image.jpg',

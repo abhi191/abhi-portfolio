@@ -52,6 +52,7 @@ export interface AboutPageData {
 
 
 export type ContentBlock =
+  | { type: 'heading'; level: 2 | 3 | 4; content: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'list'; style: 'ordered' | 'unordered'; items: string[] }
