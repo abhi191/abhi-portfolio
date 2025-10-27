@@ -102,7 +102,7 @@ If you're comfortable with code, you can still add and edit projects manually. Y
 #### Step 1: Create a New Project File
 1.  Go to the `data/projects/` folder.
 2.  To create a new project, the easiest way is to **duplicate an existing project file** (like `1-google-ecommerce.ts`).
-3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `4-my-new-project.ts`).
+3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `10-my-new-project.ts`).
 
 #### Step 2: Edit Your Project's Content
 1.  Open your new project file. You'll see a structure with fields like `id`, `slug`, `title`, etc. **Carefully edit the content for each field.**
@@ -114,7 +114,7 @@ If you're comfortable with code, you can still add and edit projects manually. Y
     -   **Every project must have a unique slug!**
     ```javascript
     export const myNewProject: Project = {
-      id: 4,
+      id: 10,
       slug: 'my-new-project-slug', // <-- Add this required field!
       // ... rest of project data
     };
@@ -147,15 +147,21 @@ This gives you complete control to define the details that matter most for each 
 2.  At the top of the file, **import your new project**.
     ```javascript
     // Add this line at the top with the other imports
-    import { myNewProject } from './4-my-new-project'; 
+    import { myNewProject } from './10-my-new-project'; 
     ```
 3.  Finally, add your new project to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
     ```javascript
     export const projects: Project[] = [
+      myNewProject, // <-- Add your new project, often at the top
+      saasRuntimeProjectV2,
       googleEcommerceProject,
+      crestaCommandCenterProject,
+      gcpSaaSRuntimeProject,
       vmwareDashboardProject,
-      oracleHealthcareProject,
-      myNewProject, // <-- Add your new project here
+      sapHealthcareProject,
+      saasRuntimeProject,
+      saasOnboardingProject,
+      featureFlagsCelProject,
     ];
     ```
 That's it! Your new project will now appear on your website.
@@ -164,7 +170,7 @@ That's it! Your new project will now appear on your website.
 
 This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
 
-In your project file (e.g., `4-my-new-project.ts`), all the content for the case study lives inside the `sections` array. A `section` is just a headline followed by a series of content blocks.
+In your project file (e.g., `10-my-new-project.ts`), all the content for the case study lives inside the `sections` array. A `section` is just a headline followed by a series of content blocks.
 
 **The basic structure looks like this:**
 

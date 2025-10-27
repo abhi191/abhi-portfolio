@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Project, ContentBlock, Metric } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, UpArrowIcon, LeftArrowIcon } from './icons';
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, UpArrowIcon, LeftArrowIcon, InformationCircleIcon } from './icons';
 
 const getEmbedUrl = (url: string): string => {
   // YouTube
@@ -105,7 +105,7 @@ const RenderBlock: React.FC<{
         </figure>
       );
     
-    case 'carousel':
+    case 'carousel': {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [currentIndex, setCurrentIndex] = React.useState(0);
       const totalSlides = block.slides.length;
@@ -125,40 +125,60 @@ const RenderBlock: React.FC<{
       const currentSlide = block.slides[currentIndex];
 
       return (
-        <div className="my-12 md:my-16 relative">
-          <div className="aspect-w-16 aspect-h-9 bg-brand-card rounded-2xl overflow-hidden">
-            <img 
-              src={currentSlide.src} 
-              alt={currentSlide.caption || `Carousel image ${currentIndex + 1}`} 
-              className="w-full h-full object-cover cursor-pointer transition-transform duration-500 ease-in-out"
-              onClick={() => onImageClick(block.slides, currentIndex)}
-            />
-          </div>
+        // Bounding box with background, padding, and border
+        <div className="my-12 md:my-16 bg-brand-card/50 border border-brand-dark/10 rounded-3xl p-4 sm:p-6">
+            <div className="relative group">
+                {/* Image Container */}
+                <div className="aspect-w-16 aspect-h-9 bg-brand-dark/5 rounded-2xl overflow-hidden cursor-pointer">
+                    <img 
+                        src={currentSlide.src} 
+                        alt={currentSlide.caption || `Carousel image ${currentIndex + 1}`} 
+                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                        onClick={() => onImageClick(block.slides, currentIndex)}
+                    />
+                </div>
 
-          {/* Navigation Arrows */}
-          <button onClick={goToPrevious} className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-colors backdrop-blur-sm" aria-label="Previous image">
-            <ChevronLeftIcon className="h-6 w-6" />
-          </button>
-          <button onClick={goToNext} className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-colors backdrop-blur-sm" aria-label="Next image">
-            <ChevronRightIcon className="h-6 w-6" />
-          </button>
-
-          {/* Caption & Dots */}
-          <div className="mt-4 flex items-center justify-between max-w-3xl mx-auto px-2">
-            <p className="text-sm text-brand-dark/60 flex-1 pr-4">{currentSlide.caption || ''}</p>
-            <div className="flex space-x-2">
-              {block.slides.map((_, index) => (
+                {/* Navigation Arrows */}
                 <button 
-                  key={index} 
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-2 w-2 rounded-full transition-colors ${currentIndex === index ? 'bg-brand-dark' : 'bg-brand-dark/20 hover:bg-brand-dark/40'}`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+                    onClick={goToPrevious} 
+                    className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110" 
+                    aria-label="Previous image"
+                >
+                    <ChevronLeftIcon className="h-6 w-6" />
+                </button>
+                <button 
+                    onClick={goToNext} 
+                    className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110" 
+                    aria-label="Next image"
+                >
+                    <ChevronRightIcon className="h-6 w-6" />
+                </button>
             </div>
-          </div>
+
+            {/* Centered Pagination Dots and Caption */}
+            <div className="mt-4">
+                {/* Dots */}
+                <div className="flex justify-center items-center space-x-3">
+                    {block.slides.map((_, index) => (
+                        <button 
+                            key={index} 
+                            onClick={() => setCurrentIndex(index)}
+                            className={`rounded-full transition-all duration-300 ease-in-out ${
+                                currentIndex === index ? 'w-6 h-2 bg-brand-dark' : 'w-2 h-2 bg-brand-dark/20 hover:bg-brand-dark/40'
+                            }`}
+                            aria-label={`Go to slide ${index + 1}`}
+                        />
+                    ))}
+                </div>
+
+                {/* Caption - give it a fixed height to prevent layout shift */}
+                <p className="mt-3 text-center text-sm text-brand-dark/60 h-5">
+                    {currentSlide.caption || ''}
+                </p>
+            </div>
         </div>
       );
+    }
 
     case 'list':
       const ListTag = block.style === 'ordered' ? 'ol' : 'ul';
@@ -298,7 +318,32 @@ const RenderBlock: React.FC<{
               </div>
           </div>
       );
-
+    
+    case 'messageBar': {
+      const colorStyles: { [key: string]: { bg: string; border: string; icon: string; title: string; text: string } } = {
+        green: { bg: 'bg-green-50', border: 'border-green-400', icon: 'text-green-400', title: 'text-green-800', text: 'text-green-700' },
+        blue: { bg: 'bg-blue-50', border: 'border-blue-400', icon: 'text-blue-400', title: 'text-blue-800', text: 'text-blue-700' },
+        yellow: { bg: 'bg-yellow-50', border: 'border-yellow-400', icon: 'text-yellow-400', title: 'text-yellow-800', text: 'text-yellow-700' },
+        red: { bg: 'bg-red-50', border: 'border-red-400', icon: 'text-red-400', title: 'text-red-800', text: 'text-red-700' },
+        gray: { bg: 'bg-brand-card', border: 'border-gray-400', icon: 'text-gray-400', title: 'text-brand-dark', text: 'text-brand-dark/80' },
+      };
+      const styles = colorStyles[block.color || 'gray'] || colorStyles.gray;
+      return (
+        <div className={`my-8 not-prose p-4 border-l-4 rounded-r-lg ${styles.bg} ${styles.border}`}>
+            <div className="flex">
+                <div className="flex-shrink-0">
+                    <InformationCircleIcon className={`h-5 w-5 ${styles.icon}`} aria-hidden="true" />
+                </div>
+                <div className="ml-3">
+                    {block.title && <h3 className={`text-base font-medium ${styles.title} m-0`}>{block.title}</h3>}
+                    <div className={`text-base leading-relaxed ${styles.text} ${block.title ? 'mt-2' : ''}`}>
+                      {parseAndRenderContent(block.text)}
+                    </div>
+                </div>
+            </div>
+        </div>
+      );
+    }
 
     default:
       return null;
