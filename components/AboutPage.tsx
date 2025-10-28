@@ -166,9 +166,12 @@ const AboutPage: React.FC = () => {
                   {connect.text}
               </p>
               <div className="mt-10">
-                  <button className="bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity">
-                      {connect.buttonText}
-                  </button>
+                  <a 
+                    href="mailto:abhinav191@gmail.com"
+                    className="inline-block bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-all hover:scale-[1.02] duration-300"
+                  >
+                    {connect.buttonText}
+                  </a>
               </div>
           </section>
         </AnimateOnScroll>
