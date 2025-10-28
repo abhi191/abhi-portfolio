@@ -1,4 +1,3 @@
-
 import type { Project } from '../types';
 import { googleEcommerceProject } from './1-google-ecommerce';
 //import { vmwareDashboardProject } from './2-vmware-dashboard';
@@ -8,13 +7,18 @@ import { saasOnboardingProject } from './5-saas-runtime-onboarding';
 import { featureFlagsCelProject } from './6-feature-flags-cel';
 import { crestaCommandCenterProject } from './7-cresta-command-center';
 import { gcpSaaSRuntimeProject } from './8-gcp-saas-runtime';
-//import { saasRuntimeProjectV2 } from './9-saas-runtime';
+import { saasRuntimeProjectV2 } from './9-saas-runtime';
+import { designVelocityAmplifiedProject } from './10-design-velocity-amplified';
+import { operaAnalyzerProject } from './11-opera-analyzer';
 
 /**
  * The order of projects on the website is determined by the order in this array.
  * To add a new project, import it from its file and add it to this array.
  */
 export const projects: Project[] = [
+  operaAnalyzerProject,
+  designVelocityAmplifiedProject,
+  saasRuntimeProjectV2,
   googleEcommerceProject,
   crestaCommandCenterProject,
   gcpSaaSRuntimeProject,

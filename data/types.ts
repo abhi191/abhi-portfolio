@@ -87,6 +87,7 @@ export interface Project {
   heroImage: string;
   overview: string;
   details: ProjectDetail[]; // Flexible key-value pairs for role, timeline, etc.
+  gradientBackgroundColor?: string;
   
   // New flexible content structure for case studies
   sections: ProjectSection[];

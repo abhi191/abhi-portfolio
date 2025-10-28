@@ -52,6 +52,26 @@
         opacity: 1;
         transform: translateY(0);
       }
+      
+      /* --- Custom Project Page Gradient Backgrounds --- */
+      /* This is the base style for the gradient effect element. */
+      .project-gradient-base {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1000px;
+      }
+
+      /* Add new gradient color classes here. The start color should be a light tint.
+         For consistency, you can use the same hex codes defined for the 'highlight-*-bg'
+         colors in the tailwind.config below. */
+      .gradient-purple { background: linear-gradient(180deg, #F3E8FF 0%, #FBFBFB 80%); }
+      .gradient-blue   { background: linear-gradient(180deg, #DBEAFE 0%, #FBFBFB 80%); }
+      .gradient-green  { background: linear-gradient(180deg, #D1FAE5 0%, #FBFBFB 80%); }
+      .gradient-yellow { background: linear-gradient(180deg, #FEF3C7 0%, #FBFBFB 80%); }
+      .gradient-red    { background: linear-gradient(180deg, #FEE2E2 0%, #FBFBFB 80%); }
+      .gradient-gray   { background: linear-gradient(180deg, #E5E7EB 0%, #FBFBFB 80%); }
     </style>
     <script>
       tailwind.config = {

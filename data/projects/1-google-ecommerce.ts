@@ -24,6 +24,7 @@ export const googleEcommerceProject: Project = {
     { label: 'Timeline', value: '6 Months (Jan 2024 - Jun 2024)' },
     { label: 'Platform', value: 'Web & Mobile' },
   ],
+  gradientBackgroundColor: 'purple',
   
   sections: [
     {

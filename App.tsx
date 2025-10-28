@@ -29,14 +29,18 @@ const parseRoute = (): Route => {
   return { page: 'projects' };
 };
 
-const ProjectBackgroundEffect: React.FC = () => {
+interface ProjectBackgroundEffectProps {
+  color: string;
+}
+
+const ProjectBackgroundEffect: React.FC<ProjectBackgroundEffectProps> = ({ color }) => {
+  // Map the color name to a CSS class defined in index.html
+  const gradientClass = `gradient-${color}`;
+  
   return (
     <div 
       aria-hidden="true"
-      className="absolute top-0 left-0 right-0 h-[1000px]"
-      style={{
-        background: 'linear-gradient(180deg, #F3E8FF 0%, #FBFBFB 80%)'
-      }}
+      className={`project-gradient-base ${gradientClass}`}
     />
   );
 };
@@ -47,6 +51,10 @@ const App: React.FC = () => {
   // Instead, track if the *currently viewed* project has been unlocked.
   const [isCurrentProjectUnlocked, setIsCurrentProjectUnlocked] = React.useState(false);
   const [projectToUnlock, setProjectToUnlock] = React.useState<Project | null>(null);
+
+  const currentProject = route.page === 'projectDetail'
+    ? projects.find(p => p.slug === route.slug)
+    : undefined;
 
   // Listen for changes in the URL hash to navigate between pages
   React.useEffect(() => {
@@ -143,11 +151,9 @@ const App: React.FC = () => {
     }
   };
 
-  const isEcommercePage = route.page === 'projectDetail' && route.slug === 'google-ecommerce-redesign';
-
   return (
     <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-brand-background">
-      {isEcommercePage && <ProjectBackgroundEffect />}
+      {currentProject?.gradientBackgroundColor && <ProjectBackgroundEffect color={currentProject.gradientBackgroundColor} />}
       
       {/* This wrapper creates a new stacking context to ensure content appears above the background effect */}
       <div className="relative z-10 flex flex-col flex-grow">

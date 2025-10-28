@@ -152,13 +152,11 @@ This gives you complete control to define the details that matter most for each 
 3.  Finally, add your new project to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
     ```javascript
     export const projects: Project[] = [
-      myNewProject, // <-- Add your new project, often at the top
+      designVelocityAmplifiedProject, // <-- Add your new project at the top
       saasRuntimeProjectV2,
       googleEcommerceProject,
       crestaCommandCenterProject,
       gcpSaaSRuntimeProject,
-      vmwareDashboardProject,
-      sapHealthcareProject,
       saasRuntimeProject,
       saasOnboardingProject,
       featureFlagsCelProject,
@@ -469,3 +467,43 @@ You can define your own reusable colors for the text highlighting feature.
 // ...
 ```
 5.  That's it! Now you can use your new color in any project file like this: `==purple:This text will have a purple highlight==`. You can add as many custom colors as you like.
+
+### J. Adding a Gradient Background to a Project Page
+
+You can add a subtle, colored gradient to the top of any project page for a more polished look.
+
+#### Step 1: Set the Color in Your Project File
+1.  Open the project file you want to change (e.g., `data/projects/1-google-ecommerce.ts`).
+2.  Add a new property called `gradientBackgroundColor` and give it a color name as a string.
+
+*Code Example:*
+```javascript
+export const myProject: Project = {
+  id: 1,
+  slug: 'my-project-slug',
+  gradientBackgroundColor: 'blue', // <-- Add this line!
+  // ... rest of project data
+};
+```
+-   To remove the gradient, simply delete the `gradientBackgroundColor` line.
+-   **Available Colors:** `purple`, `blue`, `green`, `yellow`, `red`, `gray`.
+
+#### Step 2: Adding a New Custom Gradient Color
+You can easily define new colors.
+1.  **Open `index.html`**.
+2.  Find the `<style>` tag near the top of the file.
+3.  Look for the comment `--- Custom Project Page Gradient Backgrounds ---`.
+4.  Add a new CSS class following the pattern `.gradient-NAME`.
+5.  The gradient fades from your chosen color to the page's main background color (`#FBFBFB`).
+6.  **Pro Tip:** For a consistent look, use one of the light background colors you've defined for text highlights (the `highlight-*-bg` colors in `tailwind.config`).
+
+*Code Example: Adding a new "orange" gradient*
+```css
+/* Inside the <style> tag in index.html */
+/* ... existing gradient classes ... */
+.gradient-gray { background: linear-gradient(180deg, #E5E7EB 0%, #FBFBFB 80%); }
+
+/* Add your new class here */
+.gradient-orange { background: linear-gradient(180deg, #FED7AA 0%, #FBFBFB 80%); } /* #FED7AA is a light orange */
+```
+Now you can use `'orange'` as a value for `gradientBackgroundColor` in any project file.
