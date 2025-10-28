@@ -6,7 +6,7 @@ const crestaLogoUrl = "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 106 22'
 export const operaAnalyzerProject: Project = {
   id: 11,
   slug: 'opera-analyzer-no-code',
-  company: 'Cresta',
+  company: ' ',
   companyLogoUrl: crestaLogoUrl,
   title: 'Opera Analyzer: No code command center',
   description: 'Empowering non-technical users to build, test, and deploy complex, AI-driven rules for coaching, quality assurance, and real-time agent assistance without writing a single line of code.',

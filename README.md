@@ -249,3 +249,38 @@ To run this website on your own computer outside of the development environment,
 3.  Install a simple server package by running: `npm install -g serve`
 4.  Start the server by running: `serve .`
 5.  Open your web browser and go to the local address the terminal gives you!
+
+### Adding hyperlinks
+I've added support for hyperlinks in text content. You can now add links using Markdown-style syntax: [link text](url). Here's how to use it in different contexts:
+
+In a quote:
+{ 
+  type: 'quote', 
+  text: "Check out our [design system](https://design.example.com) for more details", 
+  author: "Design Team" 
+}
+
+In an image caption:
+{ 
+  type: 'image', 
+  src: '/path/to/image.jpg', 
+  caption: "Interface designed using [Figma](https://figma.com)" 
+}
+
+In regular paragraph text:
+{ 
+  type: 'paragraph', 
+  content: "We used [React](https://reactjs.org) and [TypeScript](https://typescriptlang.org) for this project." 
+}
+
+Combining with other formatting:
+{ 
+  type: 'paragraph', 
+  content: "**Bold text** with a [link](https://example.com) and ==highlight:some highlighted text== all in one paragraph." 
+}
+
+The links will:
+- Appear in the brand accent color
+- Show an underline on hover
+- Open in a new tab (using target="_blank")
+- Include security best practices (rel="noopener noreferrer")

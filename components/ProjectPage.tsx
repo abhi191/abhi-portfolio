@@ -23,38 +23,73 @@ const getEmbedUrl = (url: string): string => {
 };
 
 const parseAndRenderContent = (content: string) => {
-    // Regex for both highlights (==color:text== or ==text==) and bold (**text**)
-    const regex = /(==(?:[a-zA-Z0-9_-]+:)?.*?==|\*\*.*?\*\*)/g;
-    const parts = content.split(regex);
+    if (!content) return null;
 
-    const elements = parts.map((part, index) => {
-        if (!part) return null;
-
-        // Check for highlight
-        const highlightMatch = part.match(/^==(?:([a-zA-Z0-9_-]+):)?(.*?)==$/);
-        if (highlightMatch) {
-            const color = highlightMatch[1] || 'yellow';
-            const text = highlightMatch[2];
-            const bgClass = `bg-highlight-${color}-bg`;
-            const textClass = `text-highlight-${color}-text`;
-            return (
-                <mark key={`part-${index}`} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
-                    {text}
-                </mark>
-            );
+    // Process the content in steps
+    const processText = (text: string) => {
+        // Step 1: Process links first
+        let processedText = text;
+        const links: Array<{text: string; url: string}> = [];
+        
+        // Find all links and store them
+        const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        let linkMatch;
+        while ((linkMatch = linkRegex.exec(text)) !== null) {
+            links.push({
+                text: linkMatch[1],
+                url: linkMatch[2]
+            });
         }
 
-        // Check for bold
-        const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
-        if (boldMatch) {
-            return <strong key={`part-${index}`}>{boldMatch[1]}</strong>;
-        }
+        // Step 2: Split content by links and other formatting
+        const parts = text.split(/(\[.*?\]\(.*?\)|==.*?==|\*\*.*?\*\*)/g);
 
-        // Regular text
-        return <React.Fragment key={`part-${index}`}>{part}</React.Fragment>;
-    });
+        return parts.map((part, index) => {
+            if (!part) return null;
 
-    return <>{elements}</>;
+            // Handle links
+            if (part.match(/^\[(.*?)\]\((.*?)\)$/)) {
+                const [_, linkText, url] = part.match(/^\[(.*?)\]\((.*?)\)$/) || [];
+                return (
+                    <a
+                        key={index}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-brand-accent hover:underline decoration-1 underline-offset-2"
+                    >
+                        {linkText}
+                    </a>
+                );
+            }
+
+            // Handle highlights
+            const highlightMatch = part.match(/^==(?:([a-zA-Z0-9_-]+):)?(.*?)==$/);
+            if (highlightMatch) {
+                const color = highlightMatch[1] || 'yellow';
+                const text = highlightMatch[2];
+                const bgClass = `bg-highlight-${color}-bg`;
+                const textClass = `text-highlight-${color}-text`;
+                return (
+                    <mark key={index} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
+                        {text}
+                    </mark>
+                );
+            }
+
+            // Handle bold text
+            const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
+            if (boldMatch) {
+                return <strong key={index}>{boldMatch[1]}</strong>;
+            }
+
+            // Return regular text
+            return <React.Fragment key={index}>{part}</React.Fragment>;
+        });
+    };
+
+    // Process the content and return the result
+    return <>{processText(content)}</>;
 };
 
 
@@ -98,7 +133,7 @@ const RenderBlock: React.FC<{
               onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
             />
           </div>
-          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{block.caption}</figcaption>}
+          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{parseAndRenderContent(block.caption)}</figcaption>}
         </figure>
       );
     
@@ -113,7 +148,7 @@ const RenderBlock: React.FC<{
                 onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
               />
           </div>
-          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4 max-w-3xl mx-auto px-6">{block.caption}</figcaption>}
+          {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4 max-w-3xl mx-auto px-6">{parseAndRenderContent(block.caption)}</figcaption>}
         </figure>
       );
     
@@ -185,7 +220,7 @@ const RenderBlock: React.FC<{
 
                 {/* Caption - give it a fixed height to prevent layout shift */}
                 <p className="mt-3 text-center text-sm text-brand-dark/60 h-5">
-                    {currentSlide.caption || ''}
+                    {currentSlide.caption ? parseAndRenderContent(currentSlide.caption) : ''}
                 </p>
             </div>
         </div>
@@ -217,21 +252,20 @@ const RenderBlock: React.FC<{
         </div>
       );
 
-case 'threeColumn':
-  return (
-    <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 mt-8">
-      <div>
-        {block.columns[0].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
-      </div>
-      <div>
-        {block.columns[1].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
-      </div>
-      <div>
-        {block.columns[2].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
-      </div>
-    </div>
-  );
-  
+    case 'threeColumn':
+      return (
+        <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 mt-8">
+          <div>
+            {block.columns[0].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+          </div>
+          <div>
+            {block.columns[1].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+          </div>
+          <div>
+            {block.columns[2].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+          </div>
+        </div>
+      );
 
     case 'metricCards':
       const colorStyles: { [key: string]: { bg: string; value: string; label: string } } = {
@@ -251,7 +285,7 @@ case 'threeColumn':
         return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
       };
 
-       return (
+      return (
         <div className="mt-12 not-prose">
           <div className={`grid ${getGridCols(block.metrics.length)} gap-6 md:gap-8 auto-rows-fr w-full max-w-6xl mx-auto px-4`}>
             {block.metrics.map((metric: Metric, index: number) => {
@@ -311,7 +345,7 @@ case 'threeColumn':
         <figure className={`my-10 not-prose p-6 md:p-8 rounded-2xl ${styles.bg} transition-colors`}>
           <blockquote className="relative text-center">
             <p className={`text-lg italic ${styles.text} font-medium leading-relaxed`}>
-              "{block.text}"
+              "{parseAndRenderContent(block.text)}"
             </p>
             {block.author && (
               <figcaption className="mt-4 text-center">
