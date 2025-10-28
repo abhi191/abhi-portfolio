@@ -19,5 +19,4 @@ export const projects: Project[] = [
   saasRuntimeProjectV2,
   operaAnalyzerProject,
   designVelocityAmplifiedProject,
-  googleEcommerceProject,
 ];
