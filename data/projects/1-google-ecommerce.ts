@@ -14,6 +14,7 @@ export const googleEcommerceProject: Project = {
     { value: '-25%', label: 'Cart abandonment' },
     { value: '+85%', label: 'Mobile revenue' },
   ],
+  showMetricsOnCard: false,
   imageUrl: '/project-assets/google-ecommerce/card-image.jpg',
   imagePosition: 'left',
   

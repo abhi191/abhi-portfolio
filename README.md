@@ -104,7 +104,7 @@ If you're comfortable with code, you can still add and edit projects manually. Y
 2.  To create a new project, the easiest way is to **duplicate an existing project file** (like `1-google-ecommerce.ts`).
 3.  Rename your new file. It's good practice to start the filename with a number to help with ordering (e.g., `10-my-new-project.ts`).
 
-#### Step 2: Edit Your Project's Content
+#### Step 2: Edit Your Project's Top-Level Content
 1.  Open your new project file. You'll see a structure with fields like `id`, `slug`, `title`, etc. **Carefully edit the content for each field.**
 2.  Make sure the `id` is a **unique number** that no other project uses.
 3.  **Add a Unique URL Slug:** Each project needs a unique, URL-friendly identifier called a `slug`. This is what will appear in the browser's address bar (e.g., `/#/projects/my-new-project-slug`).
@@ -112,399 +112,140 @@ If you're comfortable with code, you can still add and edit projects manually. Y
     -   Use hyphens (`-`) instead of spaces.
     -   Make it descriptive but not too long.
     -   **Every project must have a unique slug!**
+4.  **Customize Project Details:** The header of your project page is fully customizable. Use the `details` array to add as many key-value pairs as you need.
     ```javascript
-    export const myNewProject: Project = {
-      id: 10,
-      slug: 'my-new-project-slug', // <-- Add this required field!
+    details: [
+      { label: 'Role', value: 'Lead UX Designer, Researcher' },
+      { label: 'Timeline', value: '6 Months (Jan 2024 - Jun 2024)' },
+      { label: 'Platform', value: 'Web & Mobile' },
+      // Add more details as needed!
+    ],
+    ```
+
+#### Step 3: Configure the Homepage Card
+You can control how the project card appears on the homepage.
+- **Hiding Metrics:** By default, the key metrics you define will be shown. If you prefer to hide them:
+    ```javascript
+    export const myProject: Project = {
+      // ... other properties
+      showMetricsOnCard: false, // <-- Add this line
       // ... rest of project data
     };
     ```
-4.  Fill out the top-level details like `title`, `description`, and the `metrics` for the homepage card.
+    To show them again, set this to `true` or remove the line entirely.
 
-#### Step 3: Customize Your Project Page Details (Role, Timeline, etc.)
-The header of your project page (with details like your role and the project timeline) is now fully customizable. Instead of fixed fields, you can create your own labels and add as many details as you need.
+#### Step 4: Building Your Case Study Content
+Your case study is built from a series of "content blocks." Here are all the available blocks you can use in the `sections` array of your project file.
 
-In your project file, find the `details` section. It's an array where you can add your own custom label/value pairs.
-
-*Code Example:*
-```javascript
-// --- BEFORE (Old way) ---
-// role: 'Lead UX Designer',
-// timeline: '6 Months',
-
-// --- AFTER (New, flexible way) ---
-details: [
-  { label: 'Role', value: 'Lead UX Designer & Researcher' },
-  { label: 'Months', value: '6 Months (Jan - Jun 2024)' }, // You can change 'Timeline' to 'Months'!
-  { label: 'Platform', value: 'Web & Mobile' }, // You can add new details!
-  { label: 'Team', value: 'Product, Engineering, Marketing' }
-],
-```
-This gives you complete control to define the details that matter most for each specific project.
-
-#### Step 4: Add Your New Project to the Main List
-1.  Now, open the file `data/projects/index.ts`. This file controls which projects appear on your site and in what order.
-2.  At the top of the file, **import your new project**.
-    ```javascript
-    // Add this line at the top with the other imports
-    import { myNewProject } from './10-my-new-project'; 
-    ```
-3.  Finally, add your new project to the `projects` array. The order of projects in this array is the order they will appear on your homepage.
-    ```javascript
-    export const projects: Project[] = [
-      designVelocityAmplifiedProject, // <-- Add your new project at the top
-      saasRuntimeProjectV2,
-      googleEcommerceProject,
-      crestaCommandCenterProject,
-      gcpSaaSRuntimeProject,
-      saasRuntimeProject,
-      saasOnboardingProject,
-      featureFlagsCelProject,
-    ];
-    ```
-That's it! Your new project will now appear on your website.
-
-### D. Building Your Case Study (Content Blocks)
-
-This is where you have the most creative control! The case study page is built from a series of flexible content blocks.
-
-In your project file (e.g., `10-my-new-project.ts`), all the content for the case study lives inside the `sections` array. A `section` is just a headline followed by a series of content blocks.
-
-**The basic structure looks like this:**
-
-```javascript
-sections: [
-  {
-    title: 'The First Section Headline',
-    blocks: [
-      // ... content blocks go here ...
-    ]
-  },
-  {
-    title: 'The Second Section Headline',
-    blocks: [
-      // ... more content blocks go here ...
-    ]
-  }
-]
-```
-
-To build your case study, you simply add different types of blocks to the `blocks` array for each section.
-
-**Pro Tip:** Open the file `data/projects/1-google-ecommerce.ts`. It contains an example of every single content block described below. You can copy and paste the code for any block you want to use!
+- **Heading (`heading`)**: For titles and subtitles.
+  ```javascript
+  { type: 'heading', level: 3, content: 'My Heading', color: 'blue' }
+  ```
+- **Paragraph (`paragraph`)**: For your main text. You can add highlights like `==yellow:this==` or make text `**bold**`.
+  ```javascript
+  { type: 'paragraph', content: 'This is the main text.' }
+  ```
+- **Image (`image` & `fullWidthImage`)**: To display images. `fullWidthImage` breaks out of the main text column.
+  ```javascript
+  { type: 'image', src: '/path/to/image.jpg', caption: 'Optional caption.', isExpandable: true }
+  { type: 'fullWidthImage', src: '/path/to/image.jpg', caption: 'Full width!' }
+  ```
+- **List (`list`)**: For ordered (numbered) or unordered (bulleted) lists.
+  ```javascript
+  { type: 'list', style: 'ordered', items: ['First item', 'Second item'] }
+  ```
+- **Two Columns (`twoColumn`)**: Places content side-by-side on larger screens.
+  ```javascript
+  { type: 'twoColumn', columns: [
+      { blocks: [{ type: 'paragraph', content: 'Left column text.' }] },
+      { blocks: [{ type: 'image', src: '/path/to/image.jpg' }] }
+  ]}
+  ```
+- **Metric Cards (`metricCards`)**: A grid of cards to showcase key results.
+  ```javascript
+  { type: 'metricCards', metrics: [{ value: '+20%', label: 'Success', color: 'green' }] }
+  ```
+- **Table (`table`)**: For structured data.
+  ```javascript
+  { type: 'table', headers: ['Feature', 'Status'], rows: [['Onboarding', 'Complete']] }
+  ```
+- **Carousel (`carousel`)**: An interactive slideshow for images.
+  ```javascript
+  { type: 'carousel', slides: [{ src: '/path/to/image1.jpg', caption: 'Slide 1' }] }
+  ```
+- **Quote (`quote`)**: For pull quotes or testimonials.
+  ```javascript
+  { type: 'quote', text: 'This was a game-changer.', author: 'CEO', color: 'green' }
+  ```
+- **Video (`video`)**: Embeds a YouTube or Vimeo video.
+  ```javascript
+  { type: 'video', url: 'https://www.youtube.com/watch?v=your_video_id', caption: 'Promo video' }
+  ```
+- **Call to Action (`callToAction`)**: A colorful block to link to external resources.
+  ```javascript
+  { type: 'callToAction', title: 'View Prototype', text: 'Explore the design on Figma.', buttonText: 'Open Figma', buttonUrl: '#', color: 'blue' }
+  ```
+- **Message Bar (`messageBar`)**: An informational bar to highlight key points.
+  ```javascript
+  { type: 'messageBar', title: 'Key Takeaway', text: 'This feature was critical for success.', color: 'blue' }
+  ```
 
 ---
 
-#### Content Block Types You Can Use:
+## 4. Customizing Your Website's Look & Feel
 
-**1. Paragraph**
-For any standard text. Add a new block for each new paragraph.
+You have several easy ways to change the visual style of your portfolio.
 
-**Text Highlighting:** You can draw attention to specific parts of your text using highlights.
--   **Default Highlight:** Wrap your text in double equal signs, like `==this==`, for a standard yellow highlight.
--   **Colored Highlights:** To use a specific color, add the color name followed by a colon, like `==red:this text will be red==`.
+### A. Changing Your Colors and Fonts
+Open `index.html`. Inside the first `<script>` tag, you'll find the `tailwind.config` section. This is your main style controller.
 
-The built-in colors are `red`, `yellow`, `green`, `blue`, and `gray`. You can also **add your own custom colors!** See section **I. Adding Custom Highlight Colors** below for instructions.
+-   **To change a color:** Find the `colors` section and edit the hex codes. For example, to change the main accent color, edit `'brand-accent': '#A15DD9'`.
+-   **To add a new highlight color:** Add a new pair of `'highlight-NAME-bg'` and `'highlight-NAME-text'` colors.
+-   **To change fonts:** Edit the `fontFamily` section.
 
-*Code Example:*
-```javascript
-{ 
-  type: 'paragraph', 
-  content: 'This paragraph demonstrates the ==highlight feature==. You can use different colors like ==green:success== or ==red:danger== to add emphasis.' 
-}
-```
+### B. Customizing Project Page Backgrounds
+Each project page can have a beautiful gradient background.
 
-**2. Heading**
-To add sub-headings within a section for better organization. The AI assistant will convert Markdown-style headings (`##`, `###`, `####`) into these blocks.
+1.  **Define the Gradient:** In `index.html`, find the `/* --- Custom Project Page Gradient Backgrounds --- */` section. You can add new CSS classes here (e.g., `.gradient-orange`).
+2.  **Apply it to a Project:** In your project file (e.g., `1-google-ecommerce.ts`), add the `gradientBackgroundColor` property and set its value to the name of your new gradient (without the "gradient-" prefix).
+    ```javascript
+    gradientBackgroundColor: 'purple', // This will apply the .gradient-purple class
+    ```
 
-*Code Example:*
-```javascript
-{ 
-  type: 'heading', 
-  level: 3, // Can be 2, 3, or 4
-  content: 'This is a Level 3 Sub-heading'
-}
-```
+### C. Customizing Heading Colors
+You can apply custom colors to the titles and headings on your project pages. The color name (e.g., `'blue'`) maps to the text color you defined in `index.html` (e.g., `'highlight-blue-text'`).
 
-**3. Lists (Bulleted or Numbered)**
-Perfect for project goals, key learnings, or any list of items.
-
-*Code Example (Bulleted):*
-```javascript
-{ 
-  type: 'list', 
-  style: 'unordered', // or 'ordered' for a numbered list
-  items: [
-    "First list item.",
-    "Second list item.",
-    "Third list item."
-  ]
-}
-```
-
-**4. Image with Optional Caption**
-To display a standard, centered image. You can optionally make it "expandable," meaning a user can click it to see it in a full-screen view.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'image', 
-  src: '/project-assets/my-project/image-name.jpg', // URL for the image
-  caption: 'This is an optional caption for the image.',
-  isExpandable: true // Add this line to make the image clickable!
-}
-```
-
-**5. Full-Width Image**
-Perfect for high-impact mockups. This block breaks out of the text container to span a much wider area. It can also be made expandable.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'fullWidthImage', 
-  src: '/project-assets/my-project/full-width-mockup.png',
-  caption: 'This is an optional caption for the full-width image.',
-  isExpandable: true // Make it clickable!
-}
-```
-
-**6. Image Carousel**
-An interactive slideshow. **Images in a carousel are always expandable** into a full-screen lightbox view by default.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'carousel', 
-  slides: [
+-   **Main Project Title (H1):** In the project file, add `titleColor`.
+    ```javascript
+    title: 'E-commerce Redesign',
+    titleColor: 'purple',
+    ```
+-   **Section Title (H2):** In the project file, inside a `sections` item, add `titleColor`.
+    ```javascript
+    sections: [{
+      title: 'The Problem',
+      titleColor: 'blue',
+      // ... blocks
+    }]
+    ```
+-   **Subheadings (H2, H3, H4):** For a `heading` content block, add a `color` property.
+    ```javascript
     { 
-      src: '/project-assets/my-project/slide-1.jpg', 
-      caption: 'Slide 1: This is the first caption.' 
-    },
-    { 
-      src: '/project-assets/my-project/slide-2.jpg', 
-      caption: 'Slide 2: A different caption.' 
-    },
-    { 
-      src: '/project-assets/my-project/slide-3.jpg' // Caption is optional
+      type: 'heading', 
+      level: 3, 
+      content: 'Key Findings', 
+      color: 'green' 
     }
-  ]
-}
-```
-
-**7. Quote**
-Perfect for highlighting user testimonials, stakeholder feedback, or key pull quotes. You can optionally add a `color` to wrap the quote in a colored box, just like the Metric Cards.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'quote', 
-  text: 'This new design has transformed our workflow and saved us hours every week.',
-  author: 'John Smith, Project Stakeholder', // Author is optional
-  color: 'blue' // Optional: 'green', 'blue', 'yellow', 'red'. Defaults to gray.
-}
-```
-
-**8. Video Embed**
-Embed a video from platforms like YouTube or Vimeo. The block automatically converts standard video links into the correct embeddable format.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'video', 
-  url: 'https://www.youtube.com/watch?v=your_video_id',
-  caption: 'This is an optional caption for the video.'
-}
-```
-
-**9. Two-Column Layout**
-A powerful way to place content side-by-side. Each column can contain any other block type (like paragraphs or an image).
-
-*Code Example:*
-```javascript
-{ 
-  type: 'twoColumn', 
-  columns: [
-    { // Left Column
-      blocks: [
-        { type: 'paragraph', content: 'This text will appear in the left column.' },
-        { type: 'paragraph', content: 'You can add multiple blocks here.' }
-      ]
-    },
-    { // Right Column
-      blocks: [
-        { type: 'image', src: '/project-assets/my-project/column-image.jpg' }
-      ]
-    }
-  ]
-}
-```
-
-**10. Metric Cards**
-Great for showcasing the final results and impact of your project in a visually appealing way. You can optionally add a color to each card to add more visual meaning.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'metricCards', 
-  metrics: [
-    { value: '+40%', label: 'Increase in Conversion Rate', color: 'green' },
-    { value: '-25%', label: 'Reduction in Support Tickets', color: 'green' },
-    { value: '+85%', label: 'Growth in Mobile Revenue', color: 'blue' },
-    { value: '75%', label: 'Faster Checkout Time', color: 'yellow' },
-    { value: '-40%', label: 'Reduction in Support Calls', color: 'red' },
-    { value: '50k+', label: 'Active Users' }, // Default gray color
-  ]
-}
-```
-Available colors are: `green`, `blue`, `yellow`, and `red`. If you don't specify a color, it will default to the standard gray.
-
-**11. Table**
-Use this for structured data, like a competitive analysis.
-
-*Code Example:*
-```javascript
-{ 
-  type: 'table', 
-  headers: ['Feature', 'Competitor A', 'Competitor B', 'Our Solution'], 
-  rows: [
-    ['Guest Checkout', 'Yes', 'No', 'Yes (Streamlined)'],
-    ['Mobile Performance', 'Good', 'Average', 'Excellent'],
-    ['Return Process', 'Complex', 'Easy', 'One-click returns']
-  ]
-}
-```
-
-**12. Call to Action**
-A prominent, full-width block with a colored background, text, and a button. Perfect for concluding a case study, linking to a prototype, or prompting visitors to get in touch.
-
-*Code Example:*
-```javascript
-{
-  type: 'callToAction',
-  title: 'View the live prototype',
-  text: 'Explore the interactive prototype to get a hands-on feel for the redesigned user flow and key interactions.',
-  buttonText: 'Open Figma Prototype',
-  buttonUrl: 'https://www.figma.com/...', // The URL for the button
-  color: 'blue' // Optional: 'green', 'blue', 'yellow', 'red'. Defaults to gray.
-}
-```
-
----
-### E. How to Edit the "About Me" Page
-
-The content for your "About Me" page is all stored in a single, easy-to-edit file.
-
-1.  **Open the file `data/about.ts`**.
-2.  Inside this file, you'll find all the text for the intro, your design philosophy, your career journey, etc. Simply edit the text within the quotes (`'...'`) to update the content.
-
-**Changing Your Profile Picture:**
-1.  **Add your photo to the `public` folder.** See the **"How to Manage Local Images"** section above for detailed instructions.
-2.  **Update the path.** In `data/about.ts`, find the line that starts with `profileImageUrl`.
-3.  **Change the value** to the path of your new image.
-
-*Code Example in `data/about.ts`:*
-```javascript
-// Change this line:
-profileImageUrl: '/profile-image.jpg',
-```
+    ```
 
 ---
 
-### F. Setting Project Passwords
+## 5. Setting up for Local Development
 
-You can set a unique password for each project.
+To run this website on your own computer outside of the development environment, you don't need any complex tools.
 
-1.  Open the specific project's file (e.g., `data/projects/1-google-ecommerce.ts`).
-2.  Add a `password` property to it, right after the `slug`.
-    ```javascript
-    export const myProject: Project = {
-      id: 4,
-      slug: 'my-new-project-slug',
-      password: 'my-secret-password-123',
-      // ... rest of the project data
-    };
-    ```
-3.  To make a project public, simply make sure it **does not** have a `password` property.
-
-**Important Security Note:** Passwords are **not** stored or cached in the browser. This is a security feature. Users will be required to enter the password **every single time** they visit a protected page, whether they clicked a link or used a direct URL.
-
-### G. Updating Project Company & Logos
-
-Each project card can display a "chip" with the company's logo and name.
-
-#### Method 1: Linking to an SVG File (Recommended)
-1.  Add your SVG file (e.g., `new-company.svg`) to your `public/logos/` folder.
-2.  In your project file, update the `companyLogoUrl` to the path of your file.
-    ```javascript
-    companyLogoUrl: '/logos/new-company.svg', // <-- Update this path
-    ```
-
-#### Method 2: Embedding the SVG as a Data URI (Advanced)
-This is useful for small icons. You can use an online "SVG to data URI encoder" to convert your SVG code into a long string and paste it as the `companyLogoUrl`.
-
-### H. Changing Colors & Fonts
-
-To change colors or fonts, open `index.html` and find the `<script> tailwind.config = { ... } </script>` section. You can edit the color codes and font families in there.
-
-### I. Adding Custom Highlight Colors
-
-You can define your own reusable colors for the text highlighting feature.
-
-1.  **Open `index.html`**.
-2.  Find the `<script>` tag containing `tailwind.config`.
-3.  Inside `theme.extend.colors`, you'll see a commented section called `-- Custom Text Highlight Colors --`.
-4.  To add a new color (e.g., `purple`), add two new lines: one for the background and one for the text color. Follow the naming pattern `highlight-NAME-bg` and `highlight-NAME-text`.
-
-*Code Example: Adding a new "purple" highlight color*
-```javascript
-// Inside theme.extend.colors in index.html
-
-// ... existing colors ...
-'highlight-gray-text': '#1F2937',
-
-// Add your new color definitions here:
-'highlight-purple-bg': '#F3E8FF', // A light purple background
-'highlight-purple-text': '#6B21A8', // A dark purple text
-// ...
-```
-5.  That's it! Now you can use your new color in any project file like this: `==purple:This text will have a purple highlight==`. You can add as many custom colors as you like.
-
-### J. Adding a Gradient Background to a Project Page
-
-You can add a subtle, colored gradient to the top of any project page for a more polished look.
-
-#### Step 1: Set the Color in Your Project File
-1.  Open the project file you want to change (e.g., `data/projects/1-google-ecommerce.ts`).
-2.  Add a new property called `gradientBackgroundColor` and give it a color name as a string.
-
-*Code Example:*
-```javascript
-export const myProject: Project = {
-  id: 1,
-  slug: 'my-project-slug',
-  gradientBackgroundColor: 'blue', // <-- Add this line!
-  // ... rest of project data
-};
-```
--   To remove the gradient, simply delete the `gradientBackgroundColor` line.
--   **Available Colors:** `purple`, `blue`, `green`, `yellow`, `red`, `gray`.
-
-#### Step 2: Adding a New Custom Gradient Color
-You can easily define new colors.
-1.  **Open `index.html`**.
-2.  Find the `<style>` tag near the top of the file.
-3.  Look for the comment `--- Custom Project Page Gradient Backgrounds ---`.
-4.  Add a new CSS class following the pattern `.gradient-NAME`.
-5.  The gradient fades from your chosen color to the page's main background color (`#FBFBFB`).
-6.  **Pro Tip:** For a consistent look, use one of the light background colors you've defined for text highlights (the `highlight-*-bg` colors in `tailwind.config`).
-
-*Code Example: Adding a new "orange" gradient*
-```css
-/* Inside the <style> tag in index.html */
-/* ... existing gradient classes ... */
-.gradient-gray { background: linear-gradient(180deg, #E5E7EB 0%, #FBFBFB 80%); }
-
-/* Add your new class here */
-.gradient-orange { background: linear-gradient(180deg, #FED7AA 0%, #FBFBFB 80%); } /* #FED7AA is a light orange */
-```
-Now you can use `'orange'` as a value for `gradientBackgroundColor` in any project file.
+1.  Make sure you have [Node.js](https://nodejs.org/) installed.
+2.  Open your terminal in the project's main folder.
+3.  Install a simple server package by running: `npm install -g serve`
+4.  Start the server by running: `serve .`
+5.  Open your web browser and go to the local address the terminal gives you!

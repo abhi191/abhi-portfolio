@@ -217,6 +217,22 @@ const RenderBlock: React.FC<{
         </div>
       );
 
+case 'threeColumn':
+  return (
+    <div className="grid md:grid-cols-3 gap-x-8 gap-y-8 mt-8">
+      <div>
+        {block.columns[0].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+      </div>
+      <div>
+        {block.columns[1].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+      </div>
+      <div>
+        {block.columns[2].blocks.map((colBlock, index) => <RenderBlock key={index} block={colBlock} onImageClick={onImageClick} />)}
+      </div>
+    </div>
+  );
+  
+
     case 'metricCards':
       const colorStyles: { [key: string]: { bg: string; value: string; label: string } } = {
         green: { bg: 'bg-green-50', value: 'text-green-800', label: 'text-green-700' },
@@ -226,16 +242,25 @@ const RenderBlock: React.FC<{
         gray: { bg: 'bg-brand-card', value: 'text-brand-dark', label: 'text-brand-dark/70' },
       };
 
-      return (
+      // Calculate the grid columns based on the number of metrics
+      const getGridCols = (count: number) => {
+        if (count === 1) return 'grid-cols-1';
+        if (count === 2) return 'grid-cols-1 sm:grid-cols-2';
+        if (count === 3) return 'grid-cols-1 sm:grid-cols-3';
+        if (count === 4) return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+      };
+
+       return (
         <div className="mt-12 not-prose">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+          <div className={`grid ${getGridCols(block.metrics.length)} gap-6 md:gap-8 auto-rows-fr w-full max-w-6xl mx-auto px-4`}>
             {block.metrics.map((metric: Metric, index: number) => {
               const styles = colorStyles[metric.color || 'gray'] || colorStyles.gray;
               return (
                 <AnimateOnScroll key={index} delay={index * 100}>
-                  <div className={`p-6 rounded-2xl ${styles.bg}`}>
+                  <div className={`p-6 md:p-8 rounded-2xl ${styles.bg} flex flex-col justify-center items-center h-full transition-transform hover:scale-[1.02] duration-300`}>
                     <p className={`text-project-h2 font-bold ${styles.value}`}>{metric.value}</p>
-                    <p className={`text-lg mt-2 ${styles.label}`}>{metric.label}</p>
+                    <p className={`text-lg mt-3 ${styles.label}`}>{metric.label}</p>
                   </div>
                 </AnimateOnScroll>
               )
@@ -279,6 +304,7 @@ const RenderBlock: React.FC<{
         yellow: { bg: 'bg-yellow-50', text: 'text-yellow-900', author: 'text-yellow-700' },
         red: { bg: 'bg-red-50', text: 'text-red-900', author: 'text-red-700' },
         gray: { bg: 'bg-brand-card', text: 'text-brand-dark', author: 'text-brand-dark/80' },
+        purple: { bg: 'bg-purple-50', text: 'text-purple-900', author: 'text-purple-700' },
       };
       const styles = colorStyles[block.color || 'gray'] || colorStyles.gray;
       return (

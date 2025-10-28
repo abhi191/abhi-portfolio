@@ -16,8 +16,8 @@ import { operaAnalyzerProject } from './11-opera-analyzer';
  * To add a new project, import it from its file and add it to this array.
  */
 export const projects: Project[] = [
+  saasRuntimeProjectV2,
   operaAnalyzerProject,
   designVelocityAmplifiedProject,
-  saasRuntimeProjectV2,
   googleEcommerceProject,
 ];

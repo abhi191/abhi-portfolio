@@ -12,6 +12,7 @@ export const saasRuntimeProjectV2: Project = {
     { value: '400+', label: 'Deployments' },
     { value: '80%', label: 'Bug Resolution' },
   ],
+  showMetricsOnCard: false,
   imageUrl: '/images/projects/saas-runtime/image-15.png',
   imagePosition: 'left',
   
@@ -24,14 +25,14 @@ export const saasRuntimeProjectV2: Project = {
   ],
 
   sections: [
-    {
+   /* {
       title: 'My Role',
       blocks: [
         { type: 'paragraph', content: '**Lead Designer** — 0–1 design, research, and stakeholder alignment for the successful public preview of the product.' },
         { type: 'paragraph', content: 'Contributed to integrations with multiple GCP products, leadership buy-in, design process improvements using AI, UI testing, and refinements.' },
         { type: 'paragraph', content: '**Timeline:** October 2024 – April 2025' },
       ],
-    },
+    }, */
     {
       title: 'Context',
       blocks: [
@@ -41,7 +42,7 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'image', src: '/images/projects/saas-runtime/sr-1.png', isExpandable: true },
       ],
     },
-    {
+ /*   {
       title: 'Value Proposition for SaaS Runtime',
       blocks: [
         { type: 'heading', level: 3, content: 'Key Benefits for Producers' },
@@ -58,11 +59,11 @@ export const saasRuntimeProjectV2: Project = {
             '*(Future)* Enable one-click self-service onboarding via Marketplace, keeping users within GCP.'
         ] },
       ],
-    },
+    }, */
     {
       title: 'The Problem',
       blocks: [
-        { type: 'paragraph', content: 'Many users struggled to set up their SaaS applications due to confusing terminology and complex requirements — leading to **70% drop-off before completion**.' },
+        { type: 'paragraph', content: 'Many users struggled to set up their SaaS applications due to confusing terminology and complex requirements — leading to ==red: 70% drop-off before completion==.' },
         { type: 'paragraph', content: 'This risked early adoption and threatened the success of SaaS Runtime.' },
         { type: 'list', style: 'unordered', items: [
             'Onboarding barriers caused high abandonment rates.',
@@ -77,7 +78,7 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'paragraph', content: 'As the lead UX designer, I led an **Impact-First strategy** to:' },
         { type: 'list', style: 'unordered', items: [
             'Simplify onboarding and normalize terminology.',
-            'Align engineering and product around *applications* rather than infrastructure.',
+            'Align engineering and product around applications rather than infrastructure.',
             'Establish proactive design operations (“Fixit Weeks”) to ensure UI stability and compliance for the public preview.'
         ] },
       ],
@@ -100,79 +101,84 @@ export const saasRuntimeProjectV2: Project = {
       title: 'UX Considerations',
       blocks: [
         { type: 'list', style: 'unordered', items: [
-            '**Tightly scoped:** Worked within limited timelines and resources.',
-            '**Developer unblock:** Iterated rapidly to validate workflows.',
-            '**Onboarding improvements:** Simplified concepts and terminology.',
-            '**Extensibility:** Ensured UI was future-proof without large refactors.'
+            '==green:Tightly scoped:== Worked within limited timelines and resources.',
+            '==green:Unblock developers:== Iterated rapidly to validate workflows.',
+            '==green:Onboarding improvements:== Simplified concepts and terminology.',
+            '==green:Extensibility:== Ensured UI was future-proof without large refactors.'
         ] },
       ],
     },
     {
       title: 'Deliverables',
       blocks: [
-        { type: 'heading', level: 3, content: 'Improved Onboarding / Product Learning Flow' },
-        { type: 'carousel', slides: [
-            { src: '/images/projects/saas-runtime/image-2.png' },
-            { src: '/images/projects/saas-runtime/image-3.png' },
-            { src: '/images/projects/saas-runtime/image-4.png' },
-            { src: '/images/projects/saas-runtime/image-5.png' },
-        ] },
-        { type: 'quote', text: 'Clear CTAs, guided steps, and visual “How it works” diagrams helped users understand both the system and mental models.' },
+        { type: 'heading', level: 4, content: 'Improved onboarding/ product learning flows:' },
+        { type: 'quote', text: 'Clear CTAs, guided steps, and visual “How it works” diagrams helped users understand both the system and mental models.', color: 'blue' },
         
-        { type: 'heading', level: 3, content: 'Self-Serve Experience' },
         { type: 'carousel', slides: [
-            { src: '/images/projects/saas-runtime/image-6.png' },
-            { src: '/images/projects/saas-runtime/image-7.png' },
-            { src: '/images/projects/saas-runtime/image-8.png' },
-            { src: '/images/projects/saas-runtime/image-9.png' },
-            { src: '/images/projects/saas-runtime/image-10.png' },
+            { src: '/images/projects/saas-runtime/image-2.png', caption:'Clear CTA’s on how to start using the product' },
+            { src: '/images/projects/saas-runtime/image-3.png', caption:'Step by step introduction of the steps to take with guided help' },
+            { src: '/images/projects/saas-runtime/image-4.png', caption:'A how it works diagram to map the system data model to user’s mental modal.' },
+            { src: '/images/projects/saas-runtime/image-5.png', caption:'Onboarding panel - list out the required steps vs optional steps to take advantage of the SaaS Runtime platform' },
         ] },
-        { type: 'quote', text: 'Users were guided with contextual explanations, debugging tips, and observability dashboards to track system health.' },
+        
+        { type: 'heading', level: 4, content: 'Self-serve experience' },
+         { type: 'quote', text: 'Users were guided with contextual explanations, debugging tips, and observability dashboards to track system health.', color:'blue' },
 
-        { type: 'heading', level: 3, content: 'Seamless Multi-Product Integrations' },
         { type: 'carousel', slides: [
-            { src: '/images/projects/saas-runtime/image-11.png' },
-            { src: '/images/projects/saas-runtime/image-12.png' },
-            { src: '/images/projects/saas-runtime/image-13.png' },
-            { src: '/images/projects/saas-runtime/image-14.png' },
+            { src: '/images/projects/saas-runtime/image-6.png', caption:'Explaining users whats happening, why its happening and how to debug in case of errors' },
+            { src: '/images/projects/saas-runtime/image-7.png', caption:'Helpful visualisations and easy to digest information' },
+            { src: '/images/projects/saas-runtime/image-8.png', caption:'Observability dashboard as a one stop view of system health and any alerts that might need triaging' },
+            { src: '/images/projects/saas-runtime/image-9.png', caption:'UI building options via both UI and code based systems.' },
+            { src: '/images/projects/saas-runtime/image-10.png', caption:'UI building options via both UI and code based systems.'  },
         ] },
-        { type: 'quote', text: 'SaaS Runtime integrated with multiple GCP surfaces — including App Design Center and GCP Marketplace — offering both UI and code-based experiences.' },
+       
+        { type: 'heading', level: 4, content: 'Seamless multi-product integrations' },
+        { type: 'quote', text: 'SaaS Runtime integrated with multiple GCP surfaces — including App Design Center and GCP Marketplace — offering both UI and code-based experiences.', color:'blue' },
+        { type: 'carousel', slides: [
+            { src: '/images/projects/saas-runtime/image-11.png', caption:'Integrating flows with App Design Center' },
+            { src: '/images/projects/saas-runtime/image-12.png', caption:'Integrating flows with App Design Center' },
+            { src: '/images/projects/saas-runtime/image-13.png', caption:'Integration with GCP marketplace' },
+            { src: '/images/projects/saas-runtime/image-14.png', caption:'Integration with GCP marketplace' },
+        ] }
+        
       ],
     },
     {
       title: 'Impact',
       blocks: [
         { type: 'list', style: 'unordered', items: [
-            '**Product Usage:** 870 unique users, 95 API activations.',
-            '**Engagement:** 400+ deployments and 200+ rollouts during early adoption.',
-            '**UI Quality:** Achieved **80% resolution** of high-priority UI bugs through the Fixit process.',
-            '**Usability:** GUI consistently perceived as easier than CLI for onboarding and understanding product flows.'
+            '==green:Product Usage:== 870 unique users, 95 API activations.',
+            '==green:Engagement:== 400+ deployments and 200+ rollouts during early adoption.',
+            '==green:UI Quality:== Achieved **80% resolution** of high-priority UI bugs through the Fixit process.',
+            '==green:Usability:== GUI consistently perceived as easier than CLI for onboarding and understanding product flows.'
         ] },
-        { type: 'paragraph', content: '**User Feedback Highlights:**' },
-        { type: 'quote', text: '“This could be a real game changer… it actually simplifies a lot of work.”', author: 'ConvergeOne' },
-        { type: 'quote', text: '“It’s structured, intuitive, and gently guides you to organize ahead of time.”', author: 'Pitney Bowes' },
+        { type: 'heading', level:4, content: 'User Feedback Highlights:' },
+        { type: 'quote', text: '“This could be a real game changer… it actually simplifies a lot of work.”', author: 'ConvergeOne', color:'purple' },
+        { type: 'quote', text: '“It’s structured, intuitive, and gently guides you to organize ahead of time.”', author: 'Pitney Bowes', color:'purple' },
       ],
     },
     {
       title: 'Retrospective & Future Vision',
       blocks: [
-        { type: 'heading', level: 3, content: 'Key Learnings' },
+        { type: 'heading', level: 4, content: 'Key Learnings' },
         { type: 'list', style: 'unordered', items: [
             'The greatest challenge was balancing API constraints with user comprehension.',
             '**Design leadership must influence terminology early** to avoid UX friction.',
             'Collaborative design artifacts (UI compliance specs, App-centric flow maps) were vital for cross-team alignment.'
         ] },
-        { type: 'heading', level: 3, content: 'What I Would Do Differently' },
+        { type: 'heading', level: 4, content: 'What I Would Do Differently' },
         { type: 'paragraph', content: 'I would initiate formal UX vocabulary documentation earlier to unify terminology across PM and engineering while APIs were still evolving.' },
-        { type: 'heading', level: 3, content: 'Forward-Looking Vision' },
-        { type: 'paragraph', content: 'This foundational work sets the stage for the **App-centric MVP GA (Q1 ’26)**.' },
-        { type: 'paragraph', content: 'Next milestones include:' },
-        { type: 'list', style: 'unordered', items: [
-            '**App Hub integration (Q2 ’26)**',
-            '**App-centric control in Cloud Hub (Q3 ’26)**'
-        ] },
-        { type: 'paragraph', content: 'Continuous feedback and telemetry will guide architectural evolution toward API V2.' },
+        
+        {
+          type: 'callToAction',
+          title: 'SaaS Runtime launch at Google Cloud next',
+          text: 'View the launch of SaaS Runtime at Google Cloud Next conference in April 2025',
+          buttonText: 'View video',
+          buttonUrl: 'https://www.youtube.com/watch?v=PVz_NKIXMUY',
+          color: 'blue'
+        },
       ],
     },
+    
   ],
 };

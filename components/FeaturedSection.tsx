@@ -13,6 +13,7 @@ const ProjectCard: React.FC<Project> = ({
   metrics,
   imageUrl,
   imagePosition = 'left',
+  showMetricsOnCard = true,
 }) => {
   return (
     <div
@@ -45,18 +46,20 @@ const ProjectCard: React.FC<Project> = ({
         </div>
 
         <div className="mt-10 flex-grow flex flex-col justify-end">
-          <div className="">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-dark/60 mb-6">Key metrics</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
-              {metrics.slice(0, 3).map((metric, index) => (
-                <div key={index}>
-                  <p className="text-2xl md:text-3xl font-bold text-brand-dark">{metric.value}</p>
-                  <p className="text-sm text-brand-dark/70 mt-1">{metric.label}</p>
-                </div>
-              ))}
+          {showMetricsOnCard && (
+            <div className="">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-dark/60 mb-6">Key metrics</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
+                {metrics.slice(0, 3).map((metric, index) => (
+                  <div key={index}>
+                    <p className="text-2xl md:text-3xl font-bold text-brand-dark">{metric.value}</p>
+                    <p className="text-sm text-brand-dark/70 mt-1">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="mt-12 flex items-center text-brand-dark font-semibold group-hover:text-brand-accent transition-colors duration-300">
+          )}
+          <div className={`flex items-center text-brand-dark font-semibold group-hover:text-brand-accent transition-colors duration-300 ${showMetricsOnCard ? 'mt-12' : ''}`}>
             <span>View case study</span>
             <ArrowRightIcon className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
           </div>

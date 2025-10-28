@@ -57,11 +57,12 @@ export type ContentBlock =
   | { type: 'image'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'list'; style: 'ordered' | 'unordered'; items: string[] }
   | { type: 'twoColumn'; columns: [{ blocks: ContentBlock[] }, { blocks: ContentBlock[] }] }
+  | { type: 'threeColumn'; columns: [{ blocks: ContentBlock[] }, { blocks: ContentBlock[] }, { blocks: ContentBlock[] }] }
   | { type: 'metricCards'; metrics: Metric[] }
   | { type: 'table'; headers: string[]; rows: (string | number)[][] }
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'carousel'; slides: { src: string; caption?: string }[] }
-  | { type: 'quote'; text: string; author?: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' }
+  | { type: 'quote'; text: string; author?: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' | 'purple'  }
   | { type: 'video'; url: string; caption?: string }
   | { type: 'callToAction'; title: string; text: string; buttonText: string; buttonUrl: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' }
   | { type: 'messageBar'; title?: string; text: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' };
@@ -82,6 +83,7 @@ export interface Project {
   titleColor?: string;
   description: string; // Short description for the card
   metrics: Metric[]; // Key metrics for the homepage card
+  showMetricsOnCard?: boolean; // Controls visibility of metrics on homepage card
   imageUrl?: string;
   imagePosition?: 'left' | 'right';
 
