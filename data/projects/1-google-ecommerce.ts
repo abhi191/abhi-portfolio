@@ -3,10 +3,11 @@ import type { Project } from '../types';
 export const googleEcommerceProject: Project = {
   id: 1,
   slug: 'google-ecommerce-redesign',
-  password: '1234',
+  //password: '1234',
   company: 'Google',
   companyLogoUrl: "data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z'/%3E%3Cpath d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 6.59L5.84 9.43c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3Cpath d='M1 1h22v22H1z' fill='none'/%3E%3C/svg%3E",
   title: 'E-commerce redesign',
+  titleColor: 'purple',
   description: 'Complete UX overhaul of a fashion e-commerce platform focusing on streamlined navigation, simplified checkout process, and mobile-first design approach.',
   metrics: [
     { value: '+40%', label: 'Conversion rate' },
@@ -30,12 +31,19 @@ export const googleEcommerceProject: Project = {
     {
       title: 'The problem',
       blocks: [
+        {
+          type: 'heading',
+          level: 3,
+          content: 'Identifying the Core Issues',
+          color: 'purple',
+        },
         { type: 'paragraph', content: "The existing platform was built on an outdated architecture, leading to ==red:slow load times== and a clunky user interface. User feedback consistently highlighted a ==yellow:confusing navigation structure==, a frustratingly long checkout process, and a ==purple:poor mobile experience==." },
         { type: 'paragraph', content: "Analytics confirmed these issues: mobile bounce rates were over ==gray:70%==, and the multi-page checkout process saw a ==red:45% drop-off rate==." }
       ]
     },
     {
       title: 'Project goals',
+      titleColor: 'blue',
       blocks: [
         { type: 'list', style: 'ordered', items: [
           "Increase overall conversion rate by at least 30%.",
@@ -48,6 +56,12 @@ export const googleEcommerceProject: Project = {
     {
       title: 'My design process',
       blocks: [
+        {
+          type: 'heading',
+          level: 4,
+          content: 'From Research to Refinement',
+          color: 'purple',
+        },
         { type: 'paragraph', content: 'We followed a user-centered design methodology, starting with in-depth research to understand our users\' frustrations. This included user interviews, competitive analysis, and creating detailed personas. We then moved to low-fidelity wireframes and interactive prototypes, conducting multiple rounds of usability testing to refine the navigation and checkout flow before committing to high-fidelity designs.'},
         { type: 'image', src: '/project-assets/google-ecommerce/design-process.jpg', caption: 'Our collaborative design process in action. This image is expandable.', isExpandable: true }
       ]
@@ -100,7 +114,18 @@ export const googleEcommerceProject: Project = {
     {
       title: 'The solution',
       blocks: [
+        {
+          type: 'heading',
+          level: 3,
+          content: 'Crafting a Seamless Experience'
+        },
         { type: 'paragraph', content: 'The final design introduced a streamlined, single-page checkout, a visually-driven mega menu for intuitive navigation, and personalized product recommendations. We implemented a clean, minimalist UI with high-quality product imagery at its core. The entire experience was rebuilt from the ground up to be fully responsive and optimized for mobile performance.' },
+        {
+          type: 'heading',
+          level: 4,
+          content: 'Key Feature: One-Page Checkout',
+          color: 'green'
+        },
         { type: 'image', src: '/project-assets/google-ecommerce/solution.jpg', caption: 'The final, clean user interface.' }
       ]
     },
@@ -110,7 +135,8 @@ export const googleEcommerceProject: Project = {
         { 
           type: 'quote', 
           text: 'This was a game-changer for our mobile conversion. The new design is not only beautiful but incredibly intuitive for our customers.', 
-          author: 'Jane Doe, Head of Product' 
+          author: 'Jane Doe, Head of Product',
+          color: 'green'
         },
         { type: 'metricCards', metrics: [
             { value: '+40%', label: 'Increase in conversion rate', color: 'green' },

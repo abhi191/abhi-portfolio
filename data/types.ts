@@ -52,7 +52,7 @@ export interface AboutPageData {
 
 
 export type ContentBlock =
-  | { type: 'heading'; level: 2 | 3 | 4; content: string }
+  | { type: 'heading'; level: 2 | 3 | 4; content: string; color?: string }
   | { type: 'paragraph'; content: string }
   | { type: 'image'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'list'; style: 'ordered' | 'unordered'; items: string[] }
@@ -61,13 +61,14 @@ export type ContentBlock =
   | { type: 'table'; headers: string[]; rows: (string | number)[][] }
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'carousel'; slides: { src: string; caption?: string }[] }
-  | { type: 'quote'; text: string; author?: string }
+  | { type: 'quote'; text: string; author?: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' }
   | { type: 'video'; url: string; caption?: string }
   | { type: 'callToAction'; title: string; text: string; buttonText: string; buttonUrl: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' }
   | { type: 'messageBar'; title?: string; text: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' };
 
 export interface ProjectSection {
   title: string;
+  titleColor?: string;
   blocks: ContentBlock[];
 }
 
@@ -78,6 +79,7 @@ export interface Project {
   company: string; // The company where the project was done
   companyLogoUrl: string; // URL or data URI for the company logo
   title: string;
+  titleColor?: string;
   description: string; // Short description for the card
   metrics: Metric[]; // Key metrics for the homepage card
   imageUrl?: string;

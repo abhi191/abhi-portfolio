@@ -292,14 +292,15 @@ An interactive slideshow. **Images in a carousel are always expandable** into a 
 ```
 
 **7. Quote**
-Perfect for highlighting user testimonials, stakeholder feedback, or key pull quotes.
+Perfect for highlighting user testimonials, stakeholder feedback, or key pull quotes. You can optionally add a `color` to wrap the quote in a colored box, just like the Metric Cards.
 
 *Code Example:*
 ```javascript
 { 
   type: 'quote', 
   text: 'This new design has transformed our workflow and saved us hours every week.',
-  author: 'John Smith, Project Stakeholder' // Author is optional
+  author: 'John Smith, Project Stakeholder', // Author is optional
+  color: 'blue' // Optional: 'green', 'blue', 'yellow', 'red'. Defaults to gray.
 }
 ```
 

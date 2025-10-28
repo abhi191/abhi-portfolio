@@ -65,15 +65,27 @@ const RenderBlock: React.FC<{
 }> = ({ block, onImageClick }) => {
   switch (block.type) {
     case 'heading': {
-      // Render as h2, h3, or h4 and let Tailwind's prose styles handle it
-      // FIX: Use 'as React.ElementType' to correctly type the dynamic tag for JSX.
-      // This resolves the "Cannot find namespace 'JSX'" and related errors.
       const Tag = `h${block.level}` as React.ElementType;
-      return <Tag>{parseAndRenderContent(block.content)}</Tag>;
+      const colorClass = block.color ? `text-highlight-${block.color}-text` : 'text-brand-dark';
+      let styles = '';
+      switch (block.level) {
+        case 2:
+          styles = `text-project-h2 font-bold ${colorClass} mt-12 mb-4`;
+          break;
+        case 3:
+          styles = `text-project-h3 font-bold ${colorClass} mt-8 mb-3`;
+          break;
+        case 4:
+          styles = `text-project-h4 font-bold ${colorClass} mt-6 mb-2`;
+          break;
+        default:
+          styles = `text-xl font-bold ${colorClass} mt-6 mb-2`;
+      }
+      return <Tag className={styles}>{parseAndRenderContent(block.content)}</Tag>;
     }
     
     case 'paragraph':
-      return <p className="mt-4">{parseAndRenderContent(block.content)}</p>;
+      return <p className="my-5">{parseAndRenderContent(block.content)}</p>;
     
     case 'image':
       return (
@@ -184,8 +196,12 @@ const RenderBlock: React.FC<{
       const ListTag = block.style === 'ordered' ? 'ol' : 'ul';
       const listStyle = block.style === 'ordered' ? 'list-decimal' : 'list-disc';
       return (
-        <ListTag className={`list-inside space-y-3 mt-6 ${listStyle}`}>
-          {block.items.map((item, index) => <li key={index}>{parseAndRenderContent(item)}</li>)}
+        <ListTag className={`list-inside space-y-3 my-5 marker:text-brand-dark/40 ${listStyle}`}>
+          {block.items.map((item, index) => (
+            <li key={index} className="pl-2">
+              {parseAndRenderContent(item)}
+            </li>
+          ))}
         </ListTag>
       );
       
@@ -256,21 +272,30 @@ const RenderBlock: React.FC<{
         </div>
       );
       
-    case 'quote':
+    case 'quote': {
+      const colorStyles: { [key: string]: { bg: string; text: string; author: string } } = {
+        green: { bg: 'bg-green-50', text: 'text-green-900', author: 'text-green-700' },
+        blue: { bg: 'bg-blue-50', text: 'text-blue-900', author: 'text-blue-700' },
+        yellow: { bg: 'bg-yellow-50', text: 'text-yellow-900', author: 'text-yellow-700' },
+        red: { bg: 'bg-red-50', text: 'text-red-900', author: 'text-red-700' },
+        gray: { bg: 'bg-brand-card', text: 'text-brand-dark', author: 'text-brand-dark/80' },
+      };
+      const styles = colorStyles[block.color || 'gray'] || colorStyles.gray;
       return (
-        <figure className="my-10">
-          <blockquote className="relative text-center p-4">
-            <p className="text-lg italic text-brand-dark font-medium leading-relaxed">
+        <figure className={`my-10 not-prose p-6 md:p-8 rounded-2xl ${styles.bg} transition-colors`}>
+          <blockquote className="relative text-center">
+            <p className={`text-lg italic ${styles.text} font-medium leading-relaxed`}>
               "{block.text}"
             </p>
             {block.author && (
               <figcaption className="mt-4 text-center">
-                <cite className="text-base not-italic text-brand-dark/80">— {block.author}</cite>
+                <cite className={`text-base not-italic ${styles.author}`}>— {block.author}</cite>
               </figcaption>
             )}
           </blockquote>
         </figure>
       );
+    }
 
     case 'video':
       const embedUrl = getEmbedUrl(block.url);
@@ -472,7 +497,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
       {/* Project Hero */}
       <AnimateOnScroll>
         <header className="text-center max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-project-h1 font-medium leading-tight tracking-tight">
+          <h1 className={`text-3xl sm:text-4xl md:text-project-h1 font-medium leading-tight tracking-tight ${project.titleColor ? `text-highlight-${project.titleColor}-text` : ''}`}>
             {project.title}
           </h1>
           <p className="mt-8 text-lg md:text-xl text-brand-dark/80">
@@ -499,7 +524,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
         {project.sections.map((section, sectionIndex) => (
           <AnimateOnScroll key={sectionIndex}>
             <section className="py-12 md:py-20">
-              <h2 className="text-xl md:text-project-h2 font-medium tracking-tight text-center">{section.title}</h2>
+              <h2 className={`text-xl md:text-project-h2 font-medium tracking-tight text-center ${section.titleColor ? `text-highlight-${section.titleColor}-text` : ''}`}>{section.title}</h2>
               <div className="mt-8">
                 {section.blocks.map((block, blockIndex) => {
                   const isFullWidth = block.type === 'fullWidthImage' || block.type === 'carousel' || block.type === 'callToAction';
@@ -507,7 +532,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
                     return <RenderBlock key={blockIndex} block={block} onImageClick={handleImageClick} />;
                   }
                   return (
-                    <div key={blockIndex} className="max-w-3xl mx-auto text-lg text-brand-dark/80 leading-relaxed prose prose-lg">
+                    <div key={blockIndex} className="max-w-3xl mx-auto text-lg text-brand-dark/80 leading-relaxed">
                       <RenderBlock block={block} onImageClick={handleImageClick}/>
                     </div>
                   );
