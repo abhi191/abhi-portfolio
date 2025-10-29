@@ -89,6 +89,12 @@ export interface Project {
 
   // --- Detailed page content ---
   heroImage: string;
+  /**
+   * Optional flag to hide the hero image on the project details page.
+   * Useful for projects that shouldn't show a large banner or when you
+   * want the page to start directly with content sections.
+   */
+  hideHero?: boolean;
   overview: string;
   details: ProjectDetail[]; // Flexible key-value pairs for role, timeline, etc.
   gradientBackgroundColor?: string;

@@ -573,12 +573,14 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
         </header>
       </AnimateOnScroll>
 
-      {/* Hero Image */}
-      <AnimateOnScroll delay={200}>
-        <div className="mt-16 md:mt-20 rounded-3xl overflow-hidden aspect-w-16 aspect-h-9 bg-brand-card">
-          <img src={project.heroImage} alt={`${project.title} hero image`} className="w-full h-full object-cover" />
-        </div>
-      </AnimateOnScroll>
+      {/* Hero Image (render only when not explicitly hidden) */}
+      {!project.hideHero && project.heroImage && (
+        <AnimateOnScroll delay={200}>
+          <div className="mt-16 md:mt-20 rounded-3xl overflow-hidden aspect-w-16 aspect-h-9 bg-brand-card">
+            <img src={project.heroImage} alt={`${project.title} hero image`} className="w-full h-full object-cover" />
+          </div>
+        </AnimateOnScroll>
+      )}
 
       <div className="divide-y divide-brand-dark/10">
         {project.sections.map((section, sectionIndex) => (

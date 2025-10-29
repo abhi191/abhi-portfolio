@@ -8,7 +8,7 @@ import { featureFlagsCelProject } from './6-feature-flags-cel';
 import { crestaCommandCenterProject } from './7-cresta-command-center';
 import { gcpSaaSRuntimeProject } from './8-gcp-saas-runtime';
 import { saasRuntimeProjectV2 } from './9-saas-runtime';
-import { designVelocityAmplifiedProject } from './10-design-velocity-amplified';
+import { designwithAI } from './10-design-with-ai';
 import { operaAnalyzerProject } from './11-opera-analyzer';
 
 /**
@@ -18,5 +18,5 @@ import { operaAnalyzerProject } from './11-opera-analyzer';
 export const projects: Project[] = [
   saasRuntimeProjectV2,
   operaAnalyzerProject,
-  designVelocityAmplifiedProject,
+  designwithAI
 ];

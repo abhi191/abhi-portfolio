@@ -8,7 +8,7 @@ export const operaAnalyzerProject: Project = {
   slug: 'opera-analyzer-no-code',
   company: ' ',
   companyLogoUrl: crestaLogoUrl,
-  title: 'Opera Analyzer: No code command center',
+  title: 'Opera: Designing no code AI workflows',
   description: 'Empowering non-technical users to build, test, and deploy complex, AI-driven rules for coaching, quality assurance, and real-time agent assistance without writing a single line of code.',
   metrics: [
     { value: 'Data-driven', label: 'QA Process' },
@@ -16,11 +16,11 @@ export const operaAnalyzerProject: Project = {
     { value: 'Confident', label: 'Deployments' },
   ],
   showMetricsOnCard: false,
-  imageUrl: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image.png',
+  imageUrl: '/images/projects/opera-analyzer/cr-card.png',
   imagePosition: 'right',
 
-  heroImage: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image.png',
-  overview: "Opera is a user-friendly, orchestration engine that puts the power of AI in your hands to fine-tune models, deploy AI workflows, and automate processes, turning insights into action across your customer experience. The goal was to empower non-technical users—like managers and QA specialists—to build, test, and deploy complex, AI-driven rules for coaching, quality assurance, and real-time agent assistance without writing a single line of code.",
+  heroImage: '/images/projects/opera-analyzer/image.png',
+  overview: "Opera is a user-friendly, orchestration engine that puts the power of AI in your hands to fine-tune models, deploy AI workflows, and automate processes, turning insights into action across your customer experience. The goal was to empower non-technical users- like managers and QA specialists- to build, test, and deploy complex, AI-driven rules for coaching, quality assurance, and real-time agent assistance without writing a single line of code.",
   details: [
     { label: 'Role', value: 'Senior Product Designer' },
     { label: 'Timeline', value: '6 Months (Apr 2024 - Sep 2024)' },
@@ -61,7 +61,7 @@ export const operaAnalyzerProject: Project = {
                 "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
                 "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
             ]},
-            { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 1.png', isExpandable: true }
+            { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
       ]
     },
   /*  {
@@ -75,7 +75,7 @@ export const operaAnalyzerProject: Project = {
                 "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
                 "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
             ]},
-            { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 1.png', isExpandable: true }
+            { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
         ]
     }, */
     {
@@ -95,25 +95,25 @@ export const operaAnalyzerProject: Project = {
       blocks: [
         { type: 'heading', level: 3, content: 'Rule Transparency:' },
         { type: 'paragraph', content: "Introduced a rule detail side-panel embedded within the conversation view. Users can directly inspect which rule components fired and see at-a-glance why a rule succeeded or failed. Metadata timelines visualize how external data shaped rule logic, solving frequent troubleshooting mysteries." },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 2.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 3.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 2.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 3.png', isExpandable: true },
         { type: 'heading', level: 3, content: 'Review & Calibration:' },
         { type: 'paragraph', content: 'Added a "Review" step where rules are tested on a representative batch of conversations. Users calibrate the scoring by answering guided questions, establishing a clear confidence score before making live changes—eliminating risky, uninformed deployments.' },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 4.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 5.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 6.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 4.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 5.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 6.png', isExpandable: true },
         { type: 'heading', level: 3, content: 'Overwritten Conversations Dashboard:' },
         { type: 'paragraph', content: 'Aggregated manual corrections from users in a dedicated dashboard, driving instant pattern recognition and reducing reliance on cumbersome external spreadsheets. This dashboard makes ongoing rule refinement fast, systematic, and collaborative.' },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 7.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 8.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 7.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 8.png', isExpandable: true },
         { type: 'heading', level: 3, content: 'Version Comparison:' },
         { type: 'paragraph', content: 'Enabled instant side-by-side checks between rule versions, highlighting what’s improved using real, calibrated data. Users see specific error types reduced and can quickly drill into conversations for deeper context.' },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 9.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 10.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 9.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 10.png', isExpandable: true },
         { type: 'heading', level: 3, content: 'Multiple entry points' },
         { type: 'paragraph', content: 'Users have the ability to analyze individual conversations from the closed conversation view so that they can grade convos even when they are evaluating individual conversations.' },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 11.png', isExpandable: true },
-        { type: 'image', src: '/Opera Analyzer No code command center 299ecf95c0c880c7a4c9fbdbe2793b0c/image 12.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 11.png', isExpandable: true },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 12.png', isExpandable: true },
       ]
     },
    /* {
