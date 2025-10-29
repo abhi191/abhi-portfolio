@@ -44,24 +44,7 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'image', src: '/images/projects/saas-runtime/sr-1.png', isExpandable: true },
       ],
     },
- /*   {
-      title: 'Value Proposition for SaaS Runtime',
-      blocks: [
-        { type: 'heading', level: 3, content: 'Key Benefits for Producers' },
-        { type: 'list', style: 'ordered', items: [
-            'Easily design SaaS Apps using the Application Design Center (ADC) and Gemini-assisted tools such as Gemini CLI.',
-            'Auto-register services and workloads in App Hub to unlock App-centric experiences across GCP.',
-            'Deploy and track SaaS instances associated with application templates across tenants.',
-            'Bake in GCP best practices with recommended SaaS Application templates.'
-        ] },
-        { type: 'heading', level: 3, content: 'Benefits for Consumers' },
-        { type: 'list', style: 'ordered', items: [
-            'Discover and group first-party and third-party services in App Hub for App-centric experiences (e.g. App Monitoring, Cost Explorer).',
-            '*(Future)* Use 3P services in ADC’s design canvas when designing new applications.',
-            '*(Future)* Enable one-click self-service onboarding via Marketplace, keeping users within GCP.'
-        ] },
-      ],
-    }, */
+
     {
       title: 'The Problem',
       blocks: [
@@ -99,6 +82,29 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'image', src: '/images/projects/saas-runtime/image-1.png', caption: 'Outcomes of the 3-day design workshop.', isExpandable: true },
       ],
     },
+        {
+      title: 'Research overview',
+      blocks: [
+        { type: 'heading', level: 4, content: 'Objectives' },
+        { type: 'list', style: 'ordered', items: [
+            'Designed a research plan to understan 3P service producers needs and pain points.',
+            'Get feedback on the concepts and workflows of SaaS Runtime.',
+            'Validate the needs for cross-product integrations with App Design Center and GCP Marketplace.',
+        ] },
+        { type: 'heading', level: 4, content: 'Methodology' },
+        { type: 'list', style: 'ordered', items: [
+            'Remote 75 minute user interviews with 12 participants from companies like Atlassian, Pitney Bowes, GitLab and more.',
+            'Walkthrough of MVP workflows using interactive prototypes.',
+        ] },
+        { type: 'heading', level: 4, content: 'Insights' },
+        { type: 'list', style: 'ordered', items: [
+            'Help ==guide user for onboarding== and understanding the unique concepts of SaaS Runtime.',
+            'Ample ==examples, templates, visual explanations and documentation== were needed to explain complex concepts.',
+            'Enable and simplify context sharing, pipeline building and ==handshakes between user roles=='
+        ] },
+        { type: 'image', src: '/images/projects/saas-runtime/research.png', caption: 'User journey validated from the research sessions to get a holistic picture of users workflows', isExpandable: true },
+      ],
+    }, 
     {
       title: 'UX Considerations',
       blocks: [
