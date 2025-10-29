@@ -1,5 +1,4 @@
 import type { Project } from '../types';
-import { GoogleLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons';
 
 export const designwithAI: Project = {
   id: 10,

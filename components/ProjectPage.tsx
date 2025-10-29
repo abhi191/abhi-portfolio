@@ -586,7 +586,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
         {project.sections.map((section, sectionIndex) => (
           <AnimateOnScroll key={sectionIndex}>
             <section className="py-12 md:py-20">
-              <h2 className={`text-xl md:text-project-h2 font-medium tracking-tight text-center ${section.titleColor ? `text-highlight-${section.titleColor}-text` : ''}`}>{section.title}</h2>
+              <h2 className={`text-xl md:text-project-h2 font-bold tracking-normal text-center ${section.titleColor ? `text-highlight-${section.titleColor}-text` : ''}`}>{section.title}</h2>
               <div className="mt-8">
                 {section.blocks.map((block, blockIndex) => {
                   const isFullWidth = block.type === 'fullWidthImage' || block.type === 'carousel' || block.type === 'callToAction';
