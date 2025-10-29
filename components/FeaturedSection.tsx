@@ -21,9 +21,17 @@ const ProjectCard: React.FC<Project> = ({
     >
       {/* Image Part - Renders only if imageUrl exists */}
       {imageUrl && (
-        <div className={`min-h-[300px] lg:min-h-0 p-8 lg:p-12 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}>
-          <div className="relative h-full w-full rounded-2xl overflow-hidden">
-            <img src={imageUrl} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+        <div
+          className={`p-4 sm:p-8 lg:p-12 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}
+        >
+          <div
+            className="w-full rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[4/3] lg:aspect-auto min-h-[180px] sm:min-h-[220px] lg:min-h-0 flex items-center justify-center bg-brand-card"
+          >
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full h-full object-contain sm:object-cover"
+            />
           </div>
         </div>
       )}

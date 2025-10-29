@@ -50,7 +50,7 @@ export const aboutPageContent: AboutPageData = {
         company: 'Google',
         companyLogo: GoogleLogo,
         position: 'Senior Interaction Designer',
-        description: 'Leading design for Google Cloud SaaS platform.',
+        description: 'Led the design for a completely new product SaaS Runtime from ground up, 0 → 1, being the sole designer handling multiple integrations with Google Cloud products and stakeholders, leading to successful preview in Google Cloud Next’25.',
         location: 'Toronto, Canada',
         period: 'Oct 2024 – Present'
       },
@@ -58,7 +58,7 @@ export const aboutPageContent: AboutPageData = {
         company: 'Cresta',
         companyLogo: CrestaLogo,
         position: 'Senior Product Designer',
-        description: 'Designing a no-code command center for building AI-driven rules that support coaching, QA, and real-time agent assistance.',
+        description: 'Worked and owned the design for the flagship no code Gen AI platform to make automated workflows helping contact center admins to track progress and provide coaching opportunities.',
         location: 'Toronto, Canada',
         period: 'Apr 2024 – Sep 2024'
       },
@@ -66,7 +66,7 @@ export const aboutPageContent: AboutPageData = {
         company: 'Google',
         companyLogo: GoogleLogo,
         position: 'Interaction Designer',
-        description: 'Worked on automating release tools (CI/CD) for rolling out new features and versions of applications like YouTube, Gmail, and Workspace.',
+        description: 'Worked on release tools(CI/CD) for Google to help rollout new versions and updates to apps like Youtube, Gmail, Workspace etc to consumers all around the world',
         location: 'London, UK',
         period: 'May 2022 – Apr 2024'
       },

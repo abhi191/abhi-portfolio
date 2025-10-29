@@ -26,7 +26,7 @@ const AboutPage: React.FC = () => {
         {/* Intro Section */}
         <AnimateOnScroll>
           <section className="text-center flex flex-col items-center">
-            <div className="w-96 h-96 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
+            <div className="w-56 h-56 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
               <img 
                 src={profileImageUrl} 
                 alt="Abhinav Gupta" 
