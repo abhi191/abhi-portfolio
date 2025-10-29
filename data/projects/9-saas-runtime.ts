@@ -123,10 +123,11 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'quote', text: 'Clear CTAs, guided steps, and visual “How it works” diagrams helped users understand both the system and mental models.', color: 'blue' },
         
         { type: 'carousel', slides: [
-            { src: '/images/projects/saas-runtime/image-2.png', caption:'Clear CTA’s on how to start using the product' },
-            { src: '/images/projects/saas-runtime/image-3.png', caption:'Step by step introduction of the steps to take with guided help' },
+          { src: '/images/projects/saas-runtime/image-5.png', caption:'Onboarding panel - list out the required steps vs optional steps to take advantage of the SaaS Runtime platform' },  
+          { src: '/images/projects/saas-runtime/image-3.png', caption:'Step by step introduction of the steps to take with guided help' },
+          { src: '/images/projects/saas-runtime/image-2.png', caption:'Clear CTA’s on how to start using the product' }, 
             { src: '/images/projects/saas-runtime/image-4.png', caption:'A how it works diagram to map the system data model to user’s mental modal.' },
-            { src: '/images/projects/saas-runtime/image-5.png', caption:'Onboarding panel - list out the required steps vs optional steps to take advantage of the SaaS Runtime platform' },
+            
         ] },
         
         { type: 'heading', level: 4, content: 'Self-serve experience:' },
