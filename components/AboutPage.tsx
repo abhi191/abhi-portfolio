@@ -149,14 +149,14 @@ const AboutPage: React.FC = () => {
         </AnimateOnScroll>
         
         {/* Beyond the Pixels Section */}
-        <AnimateOnScroll>
+     {/*}   <AnimateOnScroll>
           <section className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{beyondPixels.title}</h2>
               <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
                   {beyondPixels.text}
               </p>
           </section>
-        </AnimateOnScroll>
+        </AnimateOnScroll> */}
 
         {/* Connect Section */}
         <AnimateOnScroll>

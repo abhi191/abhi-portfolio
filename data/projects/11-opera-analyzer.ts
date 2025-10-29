@@ -6,6 +6,7 @@ const crestaLogoUrl = "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 106 22'
 export const operaAnalyzerProject: Project = {
   id: 11,
   slug: 'opera-analyzer-no-code',
+  password: 'portfolio2025',
   company: ' ',
   companyLogoUrl: crestaLogoUrl,
   title: 'Opera: Designing no code AI workflows',
@@ -25,6 +26,7 @@ export const operaAnalyzerProject: Project = {
     { label: 'Role', value: 'Senior Product Designer' },
     { label: 'Timeline', value: '6 Months (Apr 2024 - Sep 2024)' },
   ],
+  gradientBackgroundColor: 'purple',
   
   sections: [
     {
