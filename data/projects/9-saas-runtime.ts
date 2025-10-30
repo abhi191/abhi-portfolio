@@ -41,7 +41,7 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'paragraph', content: 'SaaS Runtime is a comprehensive, fully-managed service lifecycle management platform. It empowers Service Providers to efficiently design, deploy, and operate Software as a Service (SaaS) solutions at scale.' },
         { type: 'paragraph', content: 'By automating complex infrastructure operations, SaaS Runtime enables service producers to prioritize their core business logic.' },
         { type: 'paragraph', content: 'SaaS Runtime was launched in public preview at Google Cloud Next ’25, featuring capabilities across each service phase to simplify service management at scale.' },
-        { type: 'image', src: '/images/projects/saas-runtime/sr-1.png', isExpandable: true },
+     //   { type: 'image', src: '/images/projects/saas-runtime/sr-1.png', isExpandable: true },
       ],
     },
 
@@ -135,9 +135,10 @@ export const saasRuntimeProjectV2: Project = {
          { type: 'quote', text: 'Users were guided with contextual explanations, debugging tips, and observability dashboards to track system health.', color:'blue' },
 
         { type: 'carousel', slides: [
-            { src: '/images/projects/saas-runtime/image-6.png', caption:'Explaining users whats happening, why its happening and how to debug in case of errors' },
-            { src: '/images/projects/saas-runtime/image-7.png', caption:'Helpful visualisations and easy to digest information' },
-            { src: '/images/projects/saas-runtime/image-8.png', caption:'Observability dashboard as a one stop view of system health and any alerts that might need triaging' },
+           { src: '/images/projects/saas-runtime/image-8.png', caption:'Observability dashboard as a one stop view of system health and any alerts that might need triaging' } ,
+          { src: '/images/projects/saas-runtime/image-7.png', caption:'Helpful visualisations and easy to digest information' },  
+          { src: '/images/projects/saas-runtime/image-6.png', caption:'Explaining users whats happening, why its happening and how to debug in case of errors' },
+          
             { src: '/images/projects/saas-runtime/image-9.png', caption:'UI building options via both UI and code based systems.' },
             { src: '/images/projects/saas-runtime/image-10.png', caption:'UI building options via both UI and code based systems.'  },
         ] },
@@ -145,8 +146,9 @@ export const saasRuntimeProjectV2: Project = {
         { type: 'heading', level: 4, content: 'Seamless multi-product integrations:' },
         { type: 'quote', text: 'SaaS Runtime integrated with multiple GCP surfaces — including App Design Center and GCP Marketplace — offering both UI and code-based experiences.', color:'blue' },
         { type: 'carousel', slides: [
+                 { src: '/images/projects/saas-runtime/image-12.png', caption:'Integrating flows with App Design Center' },
             { src: '/images/projects/saas-runtime/image-11.png', caption:'Integrating flows with App Design Center' },
-            { src: '/images/projects/saas-runtime/image-12.png', caption:'Integrating flows with App Design Center' },
+     
             { src: '/images/projects/saas-runtime/image-13.png', caption:'Integration with GCP marketplace' },
             { src: '/images/projects/saas-runtime/image-14.png', caption:'Integration with GCP marketplace' },
         ] }
