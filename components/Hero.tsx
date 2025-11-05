@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
           <h1 
             className="text-5xl sm:text-6xl font-display leading-tight tracking-normal"
           >
-            Hi, myself Abhinav 👋
+            Hi, I'm Abhinav 👋
           </h1>
           <div className="space-y-6">
             <p 
