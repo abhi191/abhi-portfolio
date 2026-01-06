@@ -1,19 +1,43 @@
 
 import React from 'react';
 import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
+import InteractiveGrid from './InteractiveGrid';
 
 const Hero: React.FC = () => {
   return (
-    <section className="py-24 md:py-40 overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Aurora Background */}
+      <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
+
+        {/* Top-right blob (Blue) */}
+        <div
+          className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full bg-brand-highlight mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-1"
+        />
+
+        {/* Top-left blob (Purple/Accent) */}
+        <div
+          className="absolute top-0 -left-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full bg-brand-accent/40 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-2"
+        />
+
+        {/* Bottom-center blob (Subtle Gray/Warm) */}
+        <div
+          className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full bg-blue-100 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-3"
+        />
+
+      </div>
+
+      {/* Interactive Dot Grid */}
+      <InteractiveGrid />
+
+      <div className="max-w-4xl mx-auto text-center relative z-10 container px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         <div className="space-y-10">
-          <h1 
+          <h1
             className="text-5xl sm:text-6xl font-display leading-tight tracking-normal"
           >
             Hi, I'm Abhinav 👋
           </h1>
           <div className="space-y-6">
-            <p 
+            <p
               className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose"
             >
               A multi-disciplinary designer with 9+ years of experience in designing and developing for enterprise and consumer grade applications. I focus on creating meaningful, clear, and effective products.
@@ -21,7 +45,7 @@ const Hero: React.FC = () => {
             <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose">
               <span className="font-semibold text-brand-dark">
                 Currently designing experiences at
-                 <GoogleLogo 
+                <GoogleLogo
                   className="inline-block h-[1.5em] w-auto align-baseline relative top-[0.5em] ml-3"
                 />
               </span>
@@ -51,6 +75,8 @@ const Hero: React.FC = () => {
         </div>
       </div> 
       */}
+      {/* Gradient Fade to Background */}
+      <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-gradient-to-t from-brand-background to-transparent pointer-events-none z-20" />
     </section>
   );
 };

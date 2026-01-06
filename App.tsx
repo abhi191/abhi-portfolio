@@ -17,15 +17,15 @@ export interface Route {
 // Simple hash parser to determine the current page from the URL
 const parseRoute = (): Route => {
   const hash = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
-  
+
   if (hash[0] === 'about') {
     return { page: 'about' };
   }
-  
+
   if (hash[0] === 'projects' && hash[1]) {
     return { page: 'projectDetail', slug: hash[1] };
   }
-  
+
   return { page: 'projects' };
 };
 
@@ -36,9 +36,9 @@ interface ProjectBackgroundEffectProps {
 const ProjectBackgroundEffect: React.FC<ProjectBackgroundEffectProps> = ({ color }) => {
   // Map the color name to a CSS class defined in index.html
   const gradientClass = `gradient-${color}`;
-  
+
   return (
-    <div 
+    <div
       aria-hidden="true"
       className={`project-gradient-base ${gradientClass}`}
     />
@@ -60,7 +60,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const newRoute = parseRoute();
-      
+
       // On every navigation, reset the lock status.
       // This ensures the password prompt appears every time.
       setIsCurrentProjectUnlocked(false);
@@ -69,7 +69,7 @@ const App: React.FC = () => {
       if (newRoute.page !== 'projectDetail') {
         setProjectToUnlock(null);
       }
-      
+
       setRoute(newRoute);
       window.scrollTo(0, 0);
     };
@@ -84,7 +84,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     if (route.page === 'projectDetail') {
       const project = projects.find(p => p.slug === route.slug);
-      
+
       // If the project requires a password and hasn't been unlocked yet for this view,
       // show the password prompt.
       if (project && project.password && !isCurrentProjectUnlocked) {
@@ -108,20 +108,20 @@ const App: React.FC = () => {
     }
     return false;
   };
-  
+
   // Navigates to the homepage, which will trigger the hash change listener to clean up state.
   const handleClosePrompt = () => {
     window.location.hash = '#/';
   };
-  
+
   const renderPage = () => {
     switch (route.page) {
       case 'about':
         return <AboutPage />;
-      
+
       case 'projectDetail':
         const project = projects.find(p => p.slug === route.slug);
-        
+
         if (!project) {
           // Fallback to projects list if project slug is invalid
           return (
@@ -154,11 +154,11 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-brand-background">
       {currentProject?.gradientBackgroundColor && <ProjectBackgroundEffect color={currentProject.gradientBackgroundColor} />}
-      
+
       {/* This wrapper creates a new stacking context to ensure content appears above the background effect */}
       <div className="relative z-10 flex flex-col flex-grow">
         <Header currentRoute={route} />
-        <main className="flex-grow container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+        <main className="flex-grow">
           {renderPage()}
         </main>
         <Footer />

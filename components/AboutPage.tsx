@@ -4,14 +4,14 @@ import { aboutPageContent } from '../data/about';
 import { ChevronDownIcon } from './icons';
 
 const AboutPage: React.FC = () => {
-  const { 
-    profileImageUrl, 
-    title, 
-    intro, 
-    designPhilosophy, 
-    journey, 
-    beyondPixels, 
-    connect 
+  const {
+    profileImageUrl,
+    title,
+    intro,
+    designPhilosophy,
+    journey,
+    beyondPixels,
+    connect
   } = aboutPageContent;
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -21,15 +21,15 @@ const AboutPage: React.FC = () => {
   };
 
   return (
-    <div className="py-24 md:py-32">
+    <div className="py-24 md:py-32 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
       <div className="max-w-4xl mx-auto space-y-20 md:space-y-28">
         {/* Intro Section */}
         <AnimateOnScroll>
           <section className="text-center flex flex-col items-center">
             <div className="w-56 h-56 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
-              <img 
-                src={profileImageUrl} 
-                alt="Abhinav Gupta" 
+              <img
+                src={profileImageUrl}
+                alt="Abhinav Gupta"
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -111,18 +111,18 @@ const AboutPage: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Right Side: Chevron only */}
                     <div className="flex-shrink-0 flex items-center justify-end self-center">
                       {item.description ? (
-                         <div
-                            className="p-2 rounded-full group-hover:bg-brand-card transition-colors flex-shrink-0"
-                            aria-hidden="true"
-                          >
-                            <ChevronDownIcon 
-                              className={`h-5 w-5 text-brand-dark/70 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`} 
-                            />
-                          </div>
+                        <div
+                          className="p-2 rounded-full group-hover:bg-brand-card transition-colors flex-shrink-0"
+                          aria-hidden="true"
+                        >
+                          <ChevronDownIcon
+                            className={`h-5 w-5 text-brand-dark/70 transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}
+                          />
+                        </div>
                       ) : (
                         <div className="w-9 h-9 flex-shrink-0" /> // Placeholder for alignment
                       )}
@@ -147,9 +147,9 @@ const AboutPage: React.FC = () => {
             </div>
           </section>
         </AnimateOnScroll>
-        
+
         {/* Beyond the Pixels Section */}
-     {/*}   <AnimateOnScroll>
+        {/*}   <AnimateOnScroll>
           <section className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{beyondPixels.title}</h2>
               <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
@@ -161,18 +161,18 @@ const AboutPage: React.FC = () => {
         {/* Connect Section */}
         <AnimateOnScroll>
           <section className="text-center py-12 md:py-16 bg-brand-card rounded-2xl">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{connect.title}</h2>
-              <p className="mt-6 text-lg text-brand-dark/80 max-w-xl mx-auto px-4">
-                  {connect.text}
-              </p>
-              <div className="mt-10">
-                  <a 
-                    href="mailto:abhinav191@gmail.com"
-                    className="inline-block bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-all hover:scale-[1.02] duration-300"
-                  >
-                    {connect.buttonText}
-                  </a>
-              </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{connect.title}</h2>
+            <p className="mt-6 text-lg text-brand-dark/80 max-w-xl mx-auto px-4">
+              {connect.text}
+            </p>
+            <div className="mt-10">
+              <a
+                href="mailto:abhinav191@gmail.com"
+                className="inline-block bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-all hover:scale-[1.02] duration-300"
+              >
+                {connect.buttonText}
+              </a>
+            </div>
           </section>
         </AnimateOnScroll>
       </div>

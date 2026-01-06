@@ -80,28 +80,30 @@ const ProjectCard: React.FC<Project> = ({
 const FeaturedSection: React.FC = () => {
   return (
     <section className="py-20 md:py-32">
-      <AnimateOnScroll>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected work</h2>
-      </AnimateOnScroll>
-      <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
-        {projects.map((project, index) => (
-          <AnimateOnScroll key={project.id} delay={index * 100}>
-            <div
-              onClick={() => (window.location.hash = `#/projects/${project.slug}`)}
-              role="link"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  window.location.hash = `#/projects/${project.slug}`;
-                }
-              }}
-              aria-label={`View case study for ${project.title}`}
-            >
-              <ProjectCard {...project} />
-            </div>
-          </AnimateOnScroll>
-        ))}
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+        <AnimateOnScroll>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected work</h2>
+        </AnimateOnScroll>
+        <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
+          {projects.map((project, index) => (
+            <AnimateOnScroll key={project.id} delay={index * 100}>
+              <div
+                onClick={() => (window.location.hash = `#/projects/${project.slug}`)}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.hash = `#/projects/${project.slug}`;
+                  }
+                }}
+                aria-label={`View case study for ${project.title}`}
+              >
+                <ProjectCard {...project} />
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
       </div>
     </section>
   );

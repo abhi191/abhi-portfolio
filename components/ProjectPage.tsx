@@ -23,78 +23,78 @@ const getEmbedUrl = (url: string): string => {
 };
 
 const parseAndRenderContent = (content: string) => {
-    if (!content) return null;
+  if (!content) return null;
 
-    // Process the content in steps
-    const processText = (text: string) => {
-        // Step 1: Process links first
-        let processedText = text;
-        const links: Array<{text: string; url: string}> = [];
-        
-        // Find all links and store them
-        const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-        let linkMatch;
-        while ((linkMatch = linkRegex.exec(text)) !== null) {
-            links.push({
-                text: linkMatch[1],
-                url: linkMatch[2]
-            });
-        }
+  // Process the content in steps
+  const processText = (text: string) => {
+    // Step 1: Process links first
+    let processedText = text;
+    const links: Array<{ text: string; url: string }> = [];
 
-        // Step 2: Split content by links and other formatting
-        const parts = text.split(/(\[.*?\]\(.*?\)|==.*?==|\*\*.*?\*\*)/g);
+    // Find all links and store them
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let linkMatch;
+    while ((linkMatch = linkRegex.exec(text)) !== null) {
+      links.push({
+        text: linkMatch[1],
+        url: linkMatch[2]
+      });
+    }
 
-        return parts.map((part, index) => {
-            if (!part) return null;
+    // Step 2: Split content by links and other formatting
+    const parts = text.split(/(\[.*?\]\(.*?\)|==.*?==|\*\*.*?\*\*)/g);
 
-            // Handle links
-            if (part.match(/^\[(.*?)\]\((.*?)\)$/)) {
-                const [_, linkText, url] = part.match(/^\[(.*?)\]\((.*?)\)$/) || [];
-                return (
-                    <a
-                        key={index}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium text-brand-accent hover:underline decoration-1 underline-offset-2"
-                    >
-                        {linkText}
-                    </a>
-                );
-            }
+    return parts.map((part, index) => {
+      if (!part) return null;
 
-            // Handle highlights
-            const highlightMatch = part.match(/^==(?:([a-zA-Z0-9_-]+):)?(.*?)==$/);
-            if (highlightMatch) {
-                const color = highlightMatch[1] || 'yellow';
-                const text = highlightMatch[2];
-                const bgClass = `bg-highlight-${color}-bg`;
-                const textClass = `text-highlight-${color}-text`;
-                return (
-                    <mark key={index} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
-                        {text}
-                    </mark>
-                );
-            }
+      // Handle links
+      if (part.match(/^\[(.*?)\]\((.*?)\)$/)) {
+        const [_, linkText, url] = part.match(/^\[(.*?)\]\((.*?)\)$/) || [];
+        return (
+          <a
+            key={index}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-brand-accent hover:underline decoration-1 underline-offset-2"
+          >
+            {linkText}
+          </a>
+        );
+      }
 
-            // Handle bold text
-            const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
-            if (boldMatch) {
-                return <strong key={index}>{boldMatch[1]}</strong>;
-            }
+      // Handle highlights
+      const highlightMatch = part.match(/^==(?:([a-zA-Z0-9_-]+):)?(.*?)==$/);
+      if (highlightMatch) {
+        const color = highlightMatch[1] || 'yellow';
+        const text = highlightMatch[2];
+        const bgClass = `bg-highlight-${color}-bg`;
+        const textClass = `text-highlight-${color}-text`;
+        return (
+          <mark key={index} className={`px-1 py-0.5 rounded-md ${bgClass} ${textClass}`}>
+            {text}
+          </mark>
+        );
+      }
 
-            // Return regular text
-            return <React.Fragment key={index}>{part}</React.Fragment>;
-        });
-    };
+      // Handle bold text
+      const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
+      if (boldMatch) {
+        return <strong key={index}>{boldMatch[1]}</strong>;
+      }
 
-    // Process the content and return the result
-    return <>{processText(content)}</>;
+      // Return regular text
+      return <React.Fragment key={index}>{part}</React.Fragment>;
+    });
+  };
+
+  // Process the content and return the result
+  return <>{processText(content)}</>;
 };
 
 
 // Helper component to render a single content block
-const RenderBlock: React.FC<{ 
+const RenderBlock: React.FC<{
   block: ContentBlock;
   onImageClick: (images: { src: string; caption?: string }[], startIndex: number) => void;
 }> = ({ block, onImageClick }) => {
@@ -118,17 +118,17 @@ const RenderBlock: React.FC<{
       }
       return <Tag className={styles}>{parseAndRenderContent(block.content)}</Tag>;
     }
-    
+
     case 'paragraph':
       return <p className="my-5">{parseAndRenderContent(block.content)}</p>;
-    
+
     case 'image':
       return (
         <figure className="mt-10">
           <div className={`rounded-2xl overflow-hidden bg-brand-card ${block.isExpandable ? 'cursor-pointer' : ''}`}>
-            <img 
-              src={block.src} 
-              alt={block.caption || 'Project image'} 
+            <img
+              src={block.src}
+              alt={block.caption || 'Project image'}
               className={`w-full h-auto object-cover ${block.isExpandable ? 'transition-transform duration-300 hover:scale-105' : ''}`}
               onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
             />
@@ -136,37 +136,37 @@ const RenderBlock: React.FC<{
           {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4">{parseAndRenderContent(block.caption)}</figcaption>}
         </figure>
       );
-    
+
     case 'fullWidthImage':
       return (
         <figure className={`my-12 md:my-16 ${block.isExpandable ? 'cursor-pointer' : ''}`}>
           <div className="overflow-hidden">
-             <img 
-                src={block.src} 
-                alt={block.caption || 'Project full-width image'} 
-                className={`w-full h-auto object-cover ${block.isExpandable ? 'transition-transform duration-300 hover:scale-105' : ''}`}
-                onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
-              />
+            <img
+              src={block.src}
+              alt={block.caption || 'Project full-width image'}
+              className={`w-full h-auto object-cover ${block.isExpandable ? 'transition-transform duration-300 hover:scale-105' : ''}`}
+              onClick={block.isExpandable ? () => onImageClick([{ src: block.src, caption: block.caption }], 0) : undefined}
+            />
           </div>
           {block.caption && <figcaption className="text-center text-sm text-brand-dark/60 mt-4 max-w-3xl mx-auto px-6">{parseAndRenderContent(block.caption)}</figcaption>}
         </figure>
       );
-    
+
     case 'carousel': {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const [currentIndex, setCurrentIndex] = React.useState(0);
       const totalSlides = block.slides.length;
 
       const goToPrevious = () => {
-          const isFirstSlide = currentIndex === 0;
-          const newIndex = isFirstSlide ? totalSlides - 1 : currentIndex - 1;
-          setCurrentIndex(newIndex);
+        const isFirstSlide = currentIndex === 0;
+        const newIndex = isFirstSlide ? totalSlides - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
       };
 
       const goToNext = () => {
-          const isLastSlide = currentIndex === totalSlides - 1;
-          const newIndex = isLastSlide ? 0 : currentIndex + 1;
-          setCurrentIndex(newIndex);
+        const isLastSlide = currentIndex === totalSlides - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
       };
 
       const currentSlide = block.slides[currentIndex];
@@ -174,55 +174,54 @@ const RenderBlock: React.FC<{
       return (
         // Bounding box with background, padding, and border
         <div className="my-12 md:my-16 bg-brand-card/50 border border-brand-dark/10 rounded-3xl p-4 sm:p-6">
-            <div className="relative group">
-                {/* Image Container */}
-                <div className="aspect-w-16 aspect-h-9 bg-brand-dark/5 rounded-2xl overflow-hidden cursor-pointer">
-                    <img 
-                        src={currentSlide.src} 
-                        alt={currentSlide.caption || `Carousel image ${currentIndex + 1}`} 
-                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
-                        onClick={() => onImageClick(block.slides, currentIndex)}
-                    />
-                </div>
-
-                {/* Navigation Arrows */}
-                <button 
-                    onClick={goToPrevious} 
-                    className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110" 
-                    aria-label="Previous image"
-                >
-                    <ChevronLeftIcon className="h-6 w-6" />
-                </button>
-                <button 
-                    onClick={goToNext} 
-                    className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110" 
-                    aria-label="Next image"
-                >
-                    <ChevronRightIcon className="h-6 w-6" />
-                </button>
+          <div className="relative group">
+            {/* Image Container */}
+            <div className="aspect-w-16 aspect-h-9 bg-brand-dark/5 rounded-2xl overflow-hidden cursor-pointer">
+              <img
+                src={currentSlide.src}
+                alt={currentSlide.caption || `Carousel image ${currentIndex + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                onClick={() => onImageClick(block.slides, currentIndex)}
+              />
             </div>
 
-            {/* Centered Pagination Dots and Caption */}
-            <div className="mt-4">
-                {/* Dots */}
-                <div className="flex justify-center items-center space-x-3">
-                    {block.slides.map((_, index) => (
-                        <button 
-                            key={index} 
-                            onClick={() => setCurrentIndex(index)}
-                            className={`rounded-full transition-all duration-300 ease-in-out ${
-                                currentIndex === index ? 'w-6 h-2 bg-brand-dark' : 'w-2 h-2 bg-brand-dark/20 hover:bg-brand-dark/40'
-                            }`}
-                            aria-label={`Go to slide ${index + 1}`}
-                        />
-                    ))}
-                </div>
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110"
+              aria-label="Previous image"
+            >
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-dark p-2 rounded-full shadow-md transition-all duration-300 backdrop-blur-sm hover:scale-110"
+              aria-label="Next image"
+            >
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+          </div>
 
-                {/* Caption - give it a fixed height to prevent layout shift */}
-                <p className="mt-3 text-center text-sm text-brand-dark/60 h-5">
-                    {currentSlide.caption ? parseAndRenderContent(currentSlide.caption) : ''}
-                </p>
+          {/* Centered Pagination Dots and Caption */}
+          <div className="mt-4">
+            {/* Dots */}
+            <div className="flex justify-center items-center space-x-3">
+              {block.slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`rounded-full transition-all duration-300 ease-in-out ${currentIndex === index ? 'w-6 h-2 bg-brand-dark' : 'w-2 h-2 bg-brand-dark/20 hover:bg-brand-dark/40'
+                    }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
+
+            {/* Caption - give it a fixed height to prevent layout shift */}
+            <p className="mt-3 text-center text-sm text-brand-dark/60 h-5">
+              {currentSlide.caption ? parseAndRenderContent(currentSlide.caption) : ''}
+            </p>
+          </div>
         </div>
       );
     }
@@ -239,7 +238,7 @@ const RenderBlock: React.FC<{
           ))}
         </ListTag>
       );
-      
+
     case 'twoColumn':
       return (
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 mt-8">
@@ -302,35 +301,35 @@ const RenderBlock: React.FC<{
           </div>
         </div>
       );
-    
+
     case 'table':
       return (
         <div className="mt-8 overflow-x-auto">
-            <table className="min-w-full border border-brand-dark/10 divide-y divide-brand-dark/10">
-                <thead className="bg-brand-card">
-                    <tr>
-                        {block.headers.map((header, i) => (
-                            <th key={i} scope="col" className="px-6 py-3 text-left text-xs font-bold text-brand-dark uppercase tracking-wider">
-                                {header}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-brand-dark/10">
-                    {block.rows.map((row, i) => (
-                        <tr key={i}>
-                            {row.map((cell, j) => (
-                                <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-brand-dark/90">
-                                    {cell}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+          <table className="min-w-full border border-brand-dark/10 divide-y divide-brand-dark/10">
+            <thead className="bg-brand-card">
+              <tr>
+                {block.headers.map((header, i) => (
+                  <th key={i} scope="col" className="px-6 py-3 text-left text-xs font-bold text-brand-dark uppercase tracking-wider">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-brand-dark/10">
+              {block.rows.map((row, i) => (
+                <tr key={i}>
+                  {row.map((cell, j) => (
+                    <td key={j} className="px-6 py-4 whitespace-nowrap text-sm text-brand-dark/90">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
-      
+
     case 'quote': {
       const colorStyles: { [key: string]: { bg: string; text: string; author: string } } = {
         green: { bg: 'bg-green-50', text: 'text-green-900', author: 'text-green-700' },
@@ -378,32 +377,32 @@ const RenderBlock: React.FC<{
 
     case 'callToAction':
       const ctaColorStyles: { [key: string]: { bg: string; title: string; text: string; button: string } } = {
-          green: { bg: 'bg-green-50', title: 'text-green-900', text: 'text-green-800', button: 'bg-green-600 hover:bg-green-700 text-white' },
-          blue: { bg: 'bg-blue-50', title: 'text-blue-900', text: 'text-blue-800', button: 'bg-blue-600 hover:bg-blue-700 text-white' },
-          yellow: { bg: 'bg-yellow-50', title: 'text-yellow-900', text: 'text-yellow-800', button: 'bg-yellow-500 hover:bg-yellow-600 text-yellow-900' },
-          red: { bg: 'bg-red-50', title: 'text-red-900', text: 'text-red-800', button: 'bg-red-600 hover:bg-red-700 text-white' },
-          gray: { bg: 'bg-brand-card', title: 'text-brand-dark', text: 'text-brand-dark/80', button: 'bg-brand-dark hover:opacity-90 text-white' }
+        green: { bg: 'bg-green-50', title: 'text-green-900', text: 'text-green-800', button: 'bg-green-600 hover:bg-green-700 text-white' },
+        blue: { bg: 'bg-blue-50', title: 'text-blue-900', text: 'text-blue-800', button: 'bg-blue-600 hover:bg-blue-700 text-white' },
+        yellow: { bg: 'bg-yellow-50', title: 'text-yellow-900', text: 'text-yellow-800', button: 'bg-yellow-500 hover:bg-yellow-600 text-yellow-900' },
+        red: { bg: 'bg-red-50', title: 'text-red-900', text: 'text-red-800', button: 'bg-red-600 hover:bg-red-700 text-white' },
+        gray: { bg: 'bg-brand-card', title: 'text-brand-dark', text: 'text-brand-dark/80', button: 'bg-brand-dark hover:opacity-90 text-white' }
       };
       const styles = ctaColorStyles[block.color || 'gray'] || ctaColorStyles.gray;
       return (
-          <div className="my-12 md:my-16">
-              <div className={`text-center py-12 md:py-16 rounded-2xl ${styles.bg} transition-colors`}>
-                  <h3 className={`text-lg md:text-project-h3 font-medium tracking-tight ${styles.title}`}>{block.title}</h3>
-                  <p className={`mt-6 text-lg max-w-xl mx-auto px-4 ${styles.text}`}>{block.text}</p>
-                  <div className="mt-10">
-                      <a 
-                        href={block.buttonUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className={`inline-block text-base font-semibold py-3 px-8 rounded-lg transition-all ${styles.button}`}
-                      >
-                          {block.buttonText}
-                      </a>
-                  </div>
-              </div>
+        <div className="my-12 md:my-16">
+          <div className={`text-center py-12 md:py-16 rounded-2xl ${styles.bg} transition-colors`}>
+            <h3 className={`text-lg md:text-project-h3 font-medium tracking-tight ${styles.title}`}>{block.title}</h3>
+            <p className={`mt-6 text-lg max-w-xl mx-auto px-4 ${styles.text}`}>{block.text}</p>
+            <div className="mt-10">
+              <a
+                href={block.buttonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-block text-base font-semibold py-3 px-8 rounded-lg transition-all ${styles.button}`}
+              >
+                {block.buttonText}
+              </a>
+            </div>
           </div>
+        </div>
       );
-    
+
     case 'messageBar': {
       const colorStyles: { [key: string]: { bg: string; border: string; icon: string; title: string; text: string } } = {
         green: { bg: 'bg-green-50', border: 'border-green-400', icon: 'text-green-400', title: 'text-green-800', text: 'text-green-700' },
@@ -415,17 +414,17 @@ const RenderBlock: React.FC<{
       const styles = colorStyles[block.color || 'gray'] || colorStyles.gray;
       return (
         <div className={`my-8 not-prose p-4 border-l-4 rounded-r-lg ${styles.bg} ${styles.border}`}>
-            <div className="flex">
-                <div className="flex-shrink-0">
-                    <InformationCircleIcon className={`h-5 w-5 ${styles.icon}`} aria-hidden="true" />
-                </div>
-                <div className="ml-3">
-                    {block.title && <h3 className={`text-base font-medium ${styles.title} m-0`}>{block.title}</h3>}
-                    <div className={`text-base leading-relaxed ${styles.text} ${block.title ? 'mt-2' : ''}`}>
-                      {parseAndRenderContent(block.text)}
-                    </div>
-                </div>
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <InformationCircleIcon className={`h-5 w-5 ${styles.icon}`} aria-hidden="true" />
             </div>
+            <div className="ml-3">
+              {block.title && <h3 className={`text-base font-medium ${styles.title} m-0`}>{block.title}</h3>}
+              <div className={`text-base leading-relaxed ${styles.text} ${block.title ? 'mt-2' : ''}`}>
+                {parseAndRenderContent(block.text)}
+              </div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -449,7 +448,7 @@ const ScrollToTopButton: React.FC = () => {
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
-      
+
       const totalScrollable = docHeight - windowHeight;
 
       // Show button after scrolling 300px
@@ -475,31 +474,30 @@ const ScrollToTopButton: React.FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-brand-background/80 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      }`}
+      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-brand-background/80 backdrop-blur-sm shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
       aria-label="Go to top"
     >
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 52 52">
-          {/* Track Circle */}
-          <circle cx="26" cy="26" r={radius} strokeWidth="4" className="stroke-brand-dark/10" fill="none" />
-          {/* Progress Circle */}
-          <circle
-            cx="26"
-            cy="26"
-            r={radius}
-            strokeWidth="4"
-            className="stroke-brand-accent"
-            fill="none"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
-            style={{ transition: 'stroke-dashoffset 0.1s linear' }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-           <UpArrowIcon className="h-6 w-6 text-brand-dark" />
-        </div>
+      <svg className="w-full h-full -rotate-90" viewBox="0 0 52 52">
+        {/* Track Circle */}
+        <circle cx="26" cy="26" r={radius} strokeWidth="4" className="stroke-brand-dark/10" fill="none" />
+        {/* Progress Circle */}
+        <circle
+          cx="26"
+          cy="26"
+          r={radius}
+          strokeWidth="4"
+          className="stroke-brand-accent"
+          fill="none"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          style={{ transition: 'stroke-dashoffset 0.1s linear' }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <UpArrowIcon className="h-6 w-6 text-brand-dark" />
+      </div>
     </button>
   );
 };
@@ -514,11 +512,11 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
   const handleImageClick = (images: { src: string; caption?: string }[], startIndex: number) => {
     setLightbox({ images, currentIndex: startIndex });
   };
-  
+
   const handleCloseLightbox = () => {
     setLightbox(null);
   };
-  
+
   const handleLightboxNext = () => {
     if (!lightbox) return;
     const newIndex = (lightbox.currentIndex + 1) % lightbox.images.length;
@@ -530,7 +528,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
     const newIndex = (lightbox.currentIndex - 1 + lightbox.images.length) % lightbox.images.length;
     setLightbox({ ...lightbox, currentIndex: newIndex });
   };
-  
+
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!lightbox) return;
@@ -553,7 +551,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
   }, [lightbox]);
 
   return (
-    <article className="py-20 md:py-24">
+    <article className="py-20 md:py-24 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
       {/* Project Hero */}
       <AnimateOnScroll>
         <header className="text-center max-w-4xl mx-auto">
@@ -564,11 +562,11 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
             {project.overview}
           </p>
           <div className="mt-10 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold uppercase tracking-wider text-brand-dark/60">
-              {project.details.map((detail, index) => (
-                <div key={index}>
-                    <span className="font-mono">{detail.label}:</span> {detail.value}
-                </div>
-              ))}
+            {project.details.map((detail, index) => (
+              <div key={index}>
+                <span className="font-mono">{detail.label}:</span> {detail.value}
+              </div>
+            ))}
           </div>
         </header>
       </AnimateOnScroll>
@@ -595,7 +593,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
                   }
                   return (
                     <div key={blockIndex} className="max-w-3xl mx-auto text-lg text-brand-dark/80 leading-relaxed">
-                      <RenderBlock block={block} onImageClick={handleImageClick}/>
+                      <RenderBlock block={block} onImageClick={handleImageClick} />
                     </div>
                   );
                 })}
@@ -604,24 +602,24 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
           </AnimateOnScroll>
         ))}
       </div>
-      
+
       {/* Back to Projects link at the bottom */}
       <AnimateOnScroll>
         <section className="py-12 md:py-16 text-center border-t border-brand-dark/10 mt-12 md:mt-20">
-            <button
-              onClick={() => (window.location.hash = '#/')}
-              className="inline-flex items-center gap-3 bg-brand-card hover:bg-brand-dark/10 text-brand-dark font-semibold py-3 px-6 rounded-lg transition-colors duration-200 group"
-              role="link"
-            >
-              <LeftArrowIcon className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1" />
-              <span>All projects</span>
-            </button>
+          <button
+            onClick={() => (window.location.hash = '#/')}
+            className="inline-flex items-center gap-3 bg-brand-card hover:bg-brand-dark/10 text-brand-dark font-semibold py-3 px-6 rounded-lg transition-colors duration-200 group"
+            role="link"
+          >
+            <LeftArrowIcon className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>All projects</span>
+          </button>
         </section>
       </AnimateOnScroll>
 
       {/* Lightbox */}
       {lightbox && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
           onClick={handleCloseLightbox}
         >
@@ -641,8 +639,8 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
 
           {/* Image Container */}
           <div className="relative max-w-4xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={lightbox.images[lightbox.currentIndex].src} 
+            <img
+              src={lightbox.images[lightbox.currentIndex].src}
               alt={lightbox.images[lightbox.currentIndex].caption || 'Expanded view'}
               className="w-full h-full object-contain"
             />
@@ -650,7 +648,7 @@ const ProjectPage: React.FC<{ project: Project }> = ({ project }) => {
               <p className="text-center text-white/80 mt-2 text-sm">{lightbox.images[lightbox.currentIndex].caption}</p>
             )}
           </div>
-          
+
           {/* Next Button */}
           {lightbox.images.length > 1 && (
             <button
