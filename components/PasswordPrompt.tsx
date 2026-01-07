@@ -77,18 +77,26 @@ const PasswordPrompt: React.FC<PasswordPromptProps> = ({ onSubmit, onClose }) =>
               className="w-full px-4 py-3 bg-brand-background border-2 border-brand-dark/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-brand-accent transition"
               aria-describedby="password-error"
             />
-             {error && (
+            {error && (
               <p id="password-error" className="text-red-600 text-sm mt-2 text-center" role="alert">
                 {error}
               </p>
             )}
           </div>
-          <button
-            type="submit"
-            className="w-full bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark"
-          >
-            Unlock project
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              type="submit"
+              className="flex-1 bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark order-1 sm:order-2"
+            >
+              Unlock project
+            </button>
+            <a
+              href="mailto:abhinav191@gmail.com?subject=Need%20access%20to%20portfolio%20projects"
+              className="flex-1 bg-transparent border-2 border-brand-dark/10 text-brand-dark font-semibold py-3 px-6 rounded-lg hover:bg-brand-dark/5 transition-colors text-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark flex items-center justify-center order-2 sm:order-1"
+            >
+              Need access?
+            </a>
+          </div>
         </form>
       </div>
     </div>
