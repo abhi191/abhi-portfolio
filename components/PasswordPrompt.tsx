@@ -1,6 +1,7 @@
-
 import React from 'react';
 import { CloseIcon } from './icons';
+
+
 
 interface PasswordPromptProps {
   onSubmit: (password: string) => boolean;

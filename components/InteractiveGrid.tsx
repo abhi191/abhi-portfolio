@@ -7,6 +7,7 @@ interface Point {
     originY: number;
     vx: number;
     vy: number;
+    color: string;
 }
 
 const InteractiveGrid: React.FC = () => {
@@ -21,6 +22,7 @@ const InteractiveGrid: React.FC = () => {
     const STIFFNESS = 0.08; // Less snappy/springy
     const DAMPING = 0.92; // Higher damping to reduce oscillation
     const COLOR = '#1C1C1C'; // Brand Dark
+    const SPOTLIGHT_RADIUS = 400; // Radius for the spotlight effect
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -57,12 +59,18 @@ const InteractiveGrid: React.FC = () => {
                 for (let j = 0; j <= rows; j++) {
                     const x = offsetX + i * GRID_SPACING;
                     const y = offsetY + j * GRID_SPACING;
+
+                    // Generate random vibrant color
+                    const hue = Math.floor(Math.random() * 360);
+                    const color = `hsl(${hue}, 85%, 60%)`;
+
                     pointsRef.current.push({
                         x, y,
                         originX: x,
                         originY: y,
                         vx: 0,
-                        vy: 0
+                        vy: 0,
+                        color
                     });
                 }
             }
@@ -94,9 +102,10 @@ const InteractiveGrid: React.FC = () => {
             ctx.clearRect(0, 0, rect.width, rect.height);
 
             ctx.fillStyle = COLOR;
-            ctx.globalAlpha = 0.15; // Much more transparent for clean look
+            // ctx.globalAlpha = 0.15; // Moved to per-dot calculation
 
             pointsRef.current.forEach(point => {
+
                 // Calculate distance to mouse
                 const dx = mouseRef.current.x - point.x;
                 const dy = mouseRef.current.y - point.y;
@@ -131,7 +140,18 @@ const InteractiveGrid: React.FC = () => {
                 point.x += point.vx;
                 point.y += point.vy;
 
+                // Spotlight Effect
+                let opacity = 0.15; // Base opacity
+                if (distance < SPOTLIGHT_RADIUS) {
+                    const spotlightIntensity = 1 - (distance / SPOTLIGHT_RADIUS);
+                    opacity = 0.15 + (0.6 * spotlightIntensity); // Boost opacity up to 0.75
+                    ctx.fillStyle = point.color;
+                } else {
+                    ctx.fillStyle = COLOR;
+                }
+
                 // Draw dot
+                ctx.globalAlpha = opacity;
                 ctx.beginPath();
                 ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
                 ctx.fill();

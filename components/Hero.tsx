@@ -32,9 +32,14 @@ const Hero: React.FC = () => {
       <div className="max-w-4xl mx-auto text-center relative z-10 container px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         <div className="space-y-10">
           <h1
-            className="text-5xl sm:text-6xl font-display leading-tight tracking-normal"
+            className="text-5xl sm:text-6xl font-display leading-tight tracking-normal text-brand-dark"
           >
-            Hi, I'm Abhinav 👋
+            Hi, I'm <span
+              className="bg-clip-text text-transparent animate-gradient-flow"
+              style={{
+                backgroundImage: 'linear-gradient(to right, #ef4444, #f97316, #f59e0b, #eab308, #84cc16, #22c55e, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #d946ef, #ec4899, #f43f5e, #ef4444)'
+              }}
+            >Abhinav</span> 👋
           </h1>
           <div className="space-y-6">
             <p
