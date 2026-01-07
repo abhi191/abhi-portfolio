@@ -145,6 +145,16 @@
       }
     }
 
+    @keyframes retro-progress {
+      from {
+        width: 100%;
+      }
+
+      to {
+        width: 0%;
+      }
+    }
+
     @keyframes gradient-flow {
       0% {
         background-position: 0% 50%;
@@ -190,6 +200,53 @@
 
     .gradient-gray {
       background: linear-gradient(180deg, #E5E7EB 0%, #FBFBFB 80%);
+    }
+
+    /* --- Retro Mode Easter Egg --- */
+    body.retro-mode {
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif !important;
+      background-color: #000080 !important;
+      /* Windows 95 Blue */
+      color: #00FF00 !important;
+      /* Matrix Green / Retro Terminal */
+      cursor: crosshair !important;
+    }
+
+    body.retro-mode * {
+      border-radius: 0 !important;
+      /* No rounded corners in the 90s! */
+      box-shadow: none !important;
+    }
+
+    body.retro-mode h1,
+    body.retro-mode h2,
+    body.retro-mode h3 {
+      font-family: "Courier New", Courier, monospace !important;
+      color: #FFFF00 !important;
+      /* Neon Yellow */
+      text-shadow: 2px 2px #FF0000 !important;
+      /* Red shadow */
+    }
+
+    body.retro-mode .bg-brand-card,
+    body.retro-mode header,
+    body.retro-mode footer {
+      background-color: #C0C0C0 !important;
+      /* Win 95 Gray */
+      border: 4px outset #FFFFFF !important;
+      color: #000000 !important;
+    }
+
+    body.retro-mode button,
+    body.retro-mode a {
+      text-decoration: underline !important;
+      color: #0000FF !important;
+      /* Hyperlink Blue */
+    }
+
+    body.retro-mode img,
+    body.retro-mode svg {
+      filter: contrast(150%) hue-rotate(90deg) !important;
     }
   </style>
   <script>
