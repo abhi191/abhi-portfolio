@@ -11,6 +11,8 @@ import { saasRuntimeProjectV2 } from './9-saas-runtime';
 import { designwithAI } from './10-design-with-ai';
 import { operaAnalyzerProject } from './11-opera-analyzer';
 
+import { saasRuntimePlaygroundProject } from './99-playground-saas-runtime';
+
 /**
  * The order of projects on the website is determined by the order in this array.
  * To add a new project, import it from its file and add it to this array.

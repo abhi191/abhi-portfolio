@@ -41,20 +41,24 @@ const Hero: React.FC = () => {
               }}
             >Abhinav</span> 👋
           </h1>
-          <div className="space-y-6">
+          <div className="space-y-8">
             <p
               className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose"
             >
               A multi-disciplinary designer with 9+ years of experience in designing and developing for enterprise and consumer grade applications. I focus on creating meaningful, clear, and effective products.
             </p>
-            <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose">
-              <span className="font-semibold text-brand-dark">
-                Currently designing experiences at
-                <GoogleLogo
-                  className="inline-block h-[1.5em] w-auto align-baseline relative top-[0.5em] ml-3"
-                />
+
+            <div className="flex flex-col items-center gap-6">
+              <span className="text-xl md:text-2xl font-semibold text-brand-dark">
+                Designed experiences for
               </span>
-            </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <GoogleLogo className="h-8 w-auto text-brand-dark" />
+                <CrestaLogo className="h-6 w-auto text-brand-dark" />
+                <VMWareLogo className="h-4 w-auto text-brand-dark" />
+                <SAPLogo className="h-8 w-auto text-brand-dark" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

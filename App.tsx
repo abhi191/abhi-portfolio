@@ -4,8 +4,14 @@ import Hero from './components/Hero';
 import FeaturedSection from './components/FeaturedSection';
 import Footer from './components/Footer';
 import AboutPage from './components/AboutPage';
+import ProjectPageRedesign from './components/ProjectPageRedesign';
 import ProjectPage from './components/ProjectPage';
 import PasswordPrompt from './components/PasswordPrompt';
+
+// ... (keep existing imports if matching context, but since I am replacing a block inside renderPage, I only need to add the import at the top. Wait, replace_file_content works on a single block. I need multiple edits: one for import, one for logic. Using multi_replace_file_content would be safer/better, but I can use replace_file_content for logic if I added import manually or use multi. Let's use multi_replace for safety.)
+// Actually, I'll use replace_file_content for the import first, then for logic to keep it simple or just make a robust replacement. The previous attempt failed because of chunk mismatch.
+// I'll try to add the import with the first tool, and logic with second? No, `replace_file_content` is one contiguous block.
+// I will use multi_replace_file_content.
 import { projects } from './data/projects';
 import type { Project } from './data/types';
 
@@ -138,6 +144,11 @@ const App: React.FC = () => {
           return null;
         }
 
+        // PLAYGROUND: Render the Redesign component for the specific playground project
+        if (project.slug === 'saas-runtime-playground') {
+          return <ProjectPageRedesign project={project} />;
+        }
+
         return <ProjectPage project={project} />;
 
       case 'projects':
@@ -152,7 +163,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-brand-background">
+    <div className="min-h-screen flex flex-col relative bg-brand-background">
       {currentProject?.gradientBackgroundColor && <ProjectBackgroundEffect color={currentProject.gradientBackgroundColor} />}
 
       {/* This wrapper creates a new stacking context to ensure content appears above the background effect */}

@@ -4,6 +4,7 @@ import { DribbbleIcon, LinkedInIcon, TwitterIcon, EmailIcon } from './icons';
 
 const Footer: React.FC = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [hasClicked, setHasClicked] = useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const endRetroMode = () => {
@@ -58,6 +59,7 @@ const Footer: React.FC = () => {
 
             // Trigger retro mode
             document.body.classList.add('retro-mode');
+            setHasClicked(true);
 
             // Trigger Confetti
             confetti({
@@ -80,7 +82,16 @@ const Footer: React.FC = () => {
           aria-label="90s Mode"
           title="Whoops, left this here..."
         >
-          💾
+          <span className={!hasClicked ? "animate-wiggle" : ""}>
+            💾
+            {!hasClicked && (
+              <>
+                <span className="spark" style={{ top: '-5px', left: '50%', transform: 'translate(-50%, -50%)' }} />
+                <span className="spark" style={{ top: '20%', right: '-5px', transform: 'translate(50%, -50%)' }} />
+                <span className="spark" style={{ bottom: '20%', left: '-5px', transform: 'translate(-50%, -50%)' }} />
+              </>
+            )}
+          </span>
         </button>
 
         <div className="flex items-center space-x-2 mt-4 sm:mt-0">

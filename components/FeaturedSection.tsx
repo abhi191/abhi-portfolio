@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRightIcon } from './icons';
 import { projects } from '../data/projects';
