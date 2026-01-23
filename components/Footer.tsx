@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { DribbbleIcon, LinkedInIcon, TwitterIcon, EmailIcon } from './icons';
 
 const Footer: React.FC = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [hasClicked, setHasClicked] = useState(false);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const endRetroMode = () => {
     document.body.classList.remove('retro-mode');
@@ -19,7 +36,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-brand-background mt-24 md:mt-32 relative">
+    <footer ref={footerRef} className="bg-brand-background mt-24 md:mt-32 relative">
       {/* 90s Snackbar */}
       {showSnackbar && (
         <div className="fixed bottom-10 right-10 bg-blue-800 border-4 border-gray-300 outline outline-2 outline-black text-white font-mono z-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-72">
@@ -82,7 +99,7 @@ const Footer: React.FC = () => {
           aria-label="90s Mode"
           title="Whoops, left this here..."
         >
-          <span className={!hasClicked ? "animate-wiggle" : ""}>
+          <span className={!hasClicked && isVisible ? "animate-wiggle" : ""}>
             💾
             {!hasClicked && (
               <>
