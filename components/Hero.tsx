@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
+import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo, ChevronDownIcon } from './icons';
 import InteractiveGrid from './InteractiveGrid';
 
 const Hero: React.FC = () => {
@@ -59,6 +59,10 @@ const Hero: React.FC = () => {
                 <SAPLogo className="h-8 w-auto text-brand-dark" />
               </div>
             </div>
+            {/* Scroll Down Indicator */}
+            <div className="flex justify-center mt-16 animate-bounce cursor-pointer" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+              <ChevronDownIcon className="w-8 h-8 text-brand-dark/40" />
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +90,8 @@ const Hero: React.FC = () => {
       */}
       {/* Gradient Fade to Background */}
       <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-gradient-to-t from-brand-background to-transparent pointer-events-none z-20" />
+
+
     </section>
   );
 };
