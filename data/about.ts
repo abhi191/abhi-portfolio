@@ -24,7 +24,7 @@ export const aboutPageContent: AboutPageData = {
   profileImageUrl: '/profile-image.jpg',
   title: 'Hi, I’m Abhinav Gupta.',
   intro: 'I’m an Interaction Designer at Google, where I focus on creating meaningful, clear, and effective products. With over 9 years of experience, I\'ve had the privilege of designing and developing for both enterprise and consumer-grade applications. I thrive on solving complex problems and crafting experiences that are not only functional but also delightful to use.',
-  
+
   designPhilosophy: {
     title: 'My design philosophy',
     points: [
@@ -42,7 +42,7 @@ export const aboutPageContent: AboutPageData = {
       }
     ]
   },
-  
+
   journey: {
     title: 'My journey',
     history: [
@@ -52,7 +52,7 @@ export const aboutPageContent: AboutPageData = {
         position: 'Senior Interaction Designer',
         description: 'Led the design for a completely new product SaaS Runtime from ground up, 0 → 1, being the sole designer handling multiple integrations with Google Cloud products and stakeholders, leading to successful preview in Google Cloud Next’25.',
         location: 'Toronto, Canada',
-        period: 'Oct 2024 – Present'
+        period: 'Oct 2024 – Dec 2025'
       },
       {
         company: 'Cresta',
@@ -89,19 +89,19 @@ export const aboutPageContent: AboutPageData = {
       {
         company: 'Group10',
         companyLogo: 'Group10',
-        position: 'Sr. UI Designer',
+        position: 'Sr. Design Engineer',
         description: 'Specialized in mobile app design for Android using material design guidelines, focused on process management and GPS tracking systems.',
         location: 'Gurugram, India',
         period: 'Oct 2012 – Jun 2015'
       }
     ]
   },
-  
+
   beyondPixels: {
     title: 'Beyond the pixels',
     text: 'When I\'m not designing, you can find me exploring the outdoors, trying to capture the perfect landscape shot with my camera, or getting lost in a good book. I\'m also a passionate cook who loves experimenting with new recipes. These hobbies fuel my creativity and provide fresh perspectives that I bring back to my work.'
   },
-  
+
   connect: {
     title: 'Let\'s connect',
     text: 'I\'m always open to discussing new projects, sharing ideas, or just talking about design. Feel free to reach out!',

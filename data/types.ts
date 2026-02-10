@@ -62,7 +62,7 @@ export type ContentBlock =
   | { type: 'table'; headers: string[]; rows: (string | number)[][] }
   | { type: 'fullWidthImage'; src: string; caption?: string; isExpandable?: boolean }
   | { type: 'carousel'; slides: { src: string; caption?: string }[] }
-  | { type: 'quote'; text: string; author?: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' | 'purple'  }
+  | { type: 'quote'; text: string; author?: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' | 'purple' }
   | { type: 'video'; url: string; caption?: string }
   | { type: 'callToAction'; title: string; text: string; buttonText: string; buttonUrl: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' }
   | { type: 'messageBar'; title?: string; text: string; color?: 'green' | 'blue' | 'yellow' | 'red' | 'gray' };
@@ -98,7 +98,7 @@ export interface Project {
   overview: string;
   details: ProjectDetail[]; // Flexible key-value pairs for role, timeline, etc.
   gradientBackgroundColor?: string;
-  
+
   // New flexible content structure for case studies
   sections: ProjectSection[];
 }

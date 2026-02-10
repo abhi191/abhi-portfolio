@@ -13,7 +13,7 @@ const ProjectCard: React.FC<Project> = ({
   imageUrl,
   imagePosition = 'left',
   showMetricsOnCard = true,
-}) => {
+}: Project) => {
   return (
     <div
       className={`block group rounded-3xl overflow-hidden bg-brand-card hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
@@ -46,7 +46,9 @@ const ProjectCard: React.FC<Project> = ({
           </div>
         )}
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-dark">{title}</h3>
+          <div className="flex items-start justify-between">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-dark">{title}</h3>
+          </div>
           <p className="mt-6 text-lg text-brand-dark/80 leading-relaxed">
             {description}
           </p>
@@ -77,6 +79,7 @@ const ProjectCard: React.FC<Project> = ({
 };
 
 const FeaturedSection: React.FC = () => {
+
   return (
     <section className="py-20 md:py-32">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
@@ -98,7 +101,9 @@ const FeaturedSection: React.FC = () => {
                 }}
                 aria-label={`View case study for ${project.title}`}
               >
-                <ProjectCard {...project} />
+                <ProjectCard
+                  {...project}
+                />
               </div>
             </AnimateOnScroll>
           ))}
