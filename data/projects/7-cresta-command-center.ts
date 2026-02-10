@@ -6,7 +6,7 @@ const crestaLogoUrl = "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 106 22'
 export const crestaCommandCenterProject: Project = {
   id: 7,
   slug: 'cresta-command-center',
-  password: 'cresta',
+  password: ['portfolio2025', 'portfolio2026'],
   company: 'Cresta',
   companyLogoUrl: crestaLogoUrl,
   title: 'No-code Command Center for AI-driven rules',
@@ -27,18 +27,20 @@ export const crestaCommandCenterProject: Project = {
     { label: 'Timeline', value: '6 Months (Apr 2024 - Sep 2024)' },
     { label: 'Platform', value: 'Web Application' },
   ],
-  
+
   sections: [
     {
       title: 'The Challenge: Democratizing AI Rule Creation',
       blocks: [
         { type: 'paragraph', content: "Historically, creating and modifying business logic for Cresta's real-time agent assistance required engineering intervention. This created a significant bottleneck, slowing down the ability of teams to adapt to new customer needs and optimize their coaching strategies. The core challenge was to translate the power of a complex rules engine into a simple, visual, and intuitive interface for non-developers." },
-        { type: 'list', style: 'ordered', items: [
+        {
+          type: 'list', style: 'ordered', items: [
             "Empower contact center managers and QA analysts to create and manage their own business logic.",
             "Drastically reduce the time-to-deployment for new coaching and QA rules.",
             "Ensure the system was flexible enough to handle complex nested conditions without overwhelming the user.",
             "Create a safe environment for testing and validating rules before rolling them out to live agents."
-        ]}
+          ]
+        }
       ]
     },
     {
@@ -49,41 +51,47 @@ export const crestaCommandCenterProject: Project = {
       ]
     },
     {
-        title: 'The Solution: A Visual, No-Code Rule Builder',
-        blocks: [
-            { type: 'paragraph', content: "The final solution is a drag-and-drop style interface that allows users to construct rules visually. Users can define triggers (e.g., 'when a customer mentions competitor'), add multiple conditions with AND/OR logic, and specify actions (e.g., 'show agent a specific coaching tip'). The UI provides real-time validation and a testing sandbox to ensure rules work as expected." },
-            { type: 'fullWidthImage', src: '/project-assets/cresta-command-center/solution-full-width.jpg', caption: 'The main dashboard of the Command Center, providing a high-level overview of all active rules.', isExpandable: true },
-            { type: 'carousel', slides: [
-                { src: '/project-assets/cresta-command-center/carousel-1.jpg', caption: 'The intuitive rule builder interface with triggers, conditions, and actions.' },
-                { src: '/project-assets/cresta-command-center/carousel-2.jpg', caption: 'Users can easily manage complex, nested logic with a clear visual hierarchy.' },
-                { src: '/project-assets/cresta-command-center/carousel-3.jpg', caption: 'A dedicated testing panel allows for safe validation of new rules before deployment.' },
-            ]}
-        ]
+      title: 'The Solution: A Visual, No-Code Rule Builder',
+      blocks: [
+        { type: 'paragraph', content: "The final solution is a drag-and-drop style interface that allows users to construct rules visually. Users can define triggers (e.g., 'when a customer mentions competitor'), add multiple conditions with AND/OR logic, and specify actions (e.g., 'show agent a specific coaching tip'). The UI provides real-time validation and a testing sandbox to ensure rules work as expected." },
+        { type: 'fullWidthImage', src: '/project-assets/cresta-command-center/solution-full-width.jpg', caption: 'The main dashboard of the Command Center, providing a high-level overview of all active rules.', isExpandable: true },
+        {
+          type: 'carousel', slides: [
+            { src: '/project-assets/cresta-command-center/carousel-1.jpg', caption: 'The intuitive rule builder interface with triggers, conditions, and actions.' },
+            { src: '/project-assets/cresta-command-center/carousel-2.jpg', caption: 'Users can easily manage complex, nested logic with a clear visual hierarchy.' },
+            { src: '/project-assets/cresta-command-center/carousel-3.jpg', caption: 'A dedicated testing panel allows for safe validation of new rules before deployment.' },
+          ]
+        }
+      ]
     },
     {
       title: 'Impact & Results',
       blocks: [
-        { 
-          type: 'quote', 
-          text: "The Command Center has transformed how we operate. Our managers can now implement new coaching strategies in minutes, not weeks. It's been a massive win for our team's agility.", 
-          author: 'VP of Operations, Fortune 500 Client' 
+        {
+          type: 'quote',
+          text: "The Command Center has transformed how we operate. Our managers can now implement new coaching strategies in minutes, not weeks. It's been a massive win for our team's agility.",
+          author: 'VP of Operations, Fortune 500 Client'
         },
-        { type: 'metricCards', metrics: [
+        {
+          type: 'metricCards', metrics: [
             { value: '-50%', label: 'Avg. time to create a new rule', color: 'green' },
             { value: '+30%', label: 'Adoption by non-technical users', color: 'blue' },
             { value: '95%', label: 'User satisfaction score (CSAT)', color: 'green' },
             { value: '-80%', label: 'Engineering support requests', color: 'yellow' },
-        ]}
+          ]
+        }
       ]
     },
     {
       title: 'Key Learnings',
       blocks: [
-        { type: 'list', style: 'unordered', items: [
-          "**Abstracting complexity is key:** The biggest success was creating a powerful abstraction layer that hid the underlying complexity of the rules engine, making it accessible to everyone.",
-          "**A testing sandbox builds trust:** For a mission-critical tool, providing a safe space for users to experiment without fear of breaking things was crucial for driving adoption and confidence.",
-          "**Early collaboration with engineering:** Working closely with the engineering team from day one ensured that my design vision was technically feasible and allowed us to find creative solutions to complex interaction challenges."
-        ]}
+        {
+          type: 'list', style: 'unordered', items: [
+            "**Abstracting complexity is key:** The biggest success was creating a powerful abstraction layer that hid the underlying complexity of the rules engine, making it accessible to everyone.",
+            "**A testing sandbox builds trust:** For a mission-critical tool, providing a safe space for users to experiment without fear of breaking things was crucial for driving adoption and confidence.",
+            "**Early collaboration with engineering:** Working closely with the engineering team from day one ensured that my design vision was technically feasible and allowed us to find creative solutions to complex interaction challenges."
+          ]
+        }
       ]
     }
   ]

@@ -6,7 +6,7 @@ const crestaLogoUrl = "data:image/svg+xml,%3Csvg role='img' viewBox='0 0 106 22'
 export const operaAnalyzerProject: Project = {
   id: 11,
   slug: 'opera-analyzer-no-code',
-  password: 'portfolio2025',
+  password: ['portfolio2025', 'portfolio2026'],
   company: ' ',
   companyLogoUrl: crestaLogoUrl,
   title: 'Opera: Designing no code AI workflows',
@@ -27,70 +27,78 @@ export const operaAnalyzerProject: Project = {
     { label: 'Timeline', value: '6 Months (Apr 2024 - Sep 2024)' },
   ],
   gradientBackgroundColor: 'purple',
-  
+
   sections: [
     {
       title: 'Problem',
       blocks: [
-        { type: 'list', style: 'unordered', items: [
-          "It’s difficult for users to understand ==red:what’s actually happening== in a rule and whether their rules will work as intended",
-          "Users don’t know ==red:where to start when troubleshooting== a rule and can’t identify what changes to make. They typically manually test across a number of conversations and make changes based on that.",
-          "Users have a hard time understanding whether the changes they’ve made will ==red:actually improve the rule==.",
-          "==red:Simulation and Preview== does not help users understand what is wrong with the rule created."
-        ]}
+        {
+          type: 'list', style: 'unordered', items: [
+            "It’s difficult for users to understand ==red:what’s actually happening== in a rule and whether their rules will work as intended",
+            "Users don’t know ==red:where to start when troubleshooting== a rule and can’t identify what changes to make. They typically manually test across a number of conversations and make changes based on that.",
+            "Users have a hard time understanding whether the changes they’ve made will ==red:actually improve the rule==.",
+            "==red:Simulation and Preview== does not help users understand what is wrong with the rule created."
+          ]
+        }
       ]
     },
     {
       title: 'Research and insights',
       blocks: [
-        { type: 'paragraph', content: '7 user interviews with Customer admins, made a detailed user interview guide to help facilitate discussions and illicit feedback'},
+        { type: 'paragraph', content: '7 user interviews with Customer admins, made a detailed user interview guide to help facilitate discussions and illicit feedback' },
         {
-          type: 'heading',level: 4,content: 'Research objective'
+          type: 'heading', level: 4, content: 'Research objective'
         },
-        { type: 'list', style: 'unordered', items: [
-          "How do users understand whether the rule they’re building will work as intended?",
-          "What is the current workflow to improving a rule for them?",
-          "How do they pick conversations to review for a rule?"
-        ]},
         {
-          type: 'heading',level: 4,content: 'Major research insights'
+          type: 'list', style: 'unordered', items: [
+            "How do users understand whether the rule they’re building will work as intended?",
+            "What is the current workflow to improving a rule for them?",
+            "How do they pick conversations to review for a rule?"
+          ]
         },
-           { type: 'list', style: 'unordered', items: [
-                "**Limited Rule Visibility:** Users couldn’t see which parts of a rule triggered or failed, causing confusion and frequent support questions.",
-                "**Manual Troubleshooting:** QA teams spent hours reviewing conversations without tools to spot patterns or automate checks.",
-                "**No Way to Compare Changes:** Preview and Simulator tools lacked filtering and version comparison, making results hard to validate.",
-                "**Need for Better Filtering:** Customers wanted to filter analytics by agent, team, or metadata to focus on relevant conversations.",
-                "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
-                "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
-            ]},
-            { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
+        {
+          type: 'heading', level: 4, content: 'Major research insights'
+        },
+        {
+          type: 'list', style: 'unordered', items: [
+            "**Limited Rule Visibility:** Users couldn’t see which parts of a rule triggered or failed, causing confusion and frequent support questions.",
+            "**Manual Troubleshooting:** QA teams spent hours reviewing conversations without tools to spot patterns or automate checks.",
+            "**No Way to Compare Changes:** Preview and Simulator tools lacked filtering and version comparison, making results hard to validate.",
+            "**Need for Better Filtering:** Customers wanted to filter analytics by agent, team, or metadata to focus on relevant conversations.",
+            "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
+            "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
+          ]
+        },
+        { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
       ]
     },
-  /*  {
-        title: 'Major research insights',
-        blocks: [
-            { type: 'list', style: 'unordered', items: [
-                "**Limited Rule Visibility:** Users couldn’t see which parts of a rule triggered or failed, causing confusion and frequent support questions.",
-                "**Manual Troubleshooting:** QA teams spent hours reviewing conversations without tools to spot patterns or automate checks.",
-                "**No Way to Compare Changes:** Preview and Simulator tools lacked filtering and version comparison, making results hard to validate.",
-                "**Need for Better Filtering:** Customers wanted to filter analytics by agent, team, or metadata to focus on relevant conversations.",
-                "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
-                "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
-            ]},
-            { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
-        ]
-    }, */
+    /*  {
+          title: 'Major research insights',
+          blocks: [
+              { type: 'list', style: 'unordered', items: [
+                  "**Limited Rule Visibility:** Users couldn’t see which parts of a rule triggered or failed, causing confusion and frequent support questions.",
+                  "**Manual Troubleshooting:** QA teams spent hours reviewing conversations without tools to spot patterns or automate checks.",
+                  "**No Way to Compare Changes:** Preview and Simulator tools lacked filtering and version comparison, making results hard to validate.",
+                  "**Need for Better Filtering:** Customers wanted to filter analytics by agent, team, or metadata to focus on relevant conversations.",
+                  "**Manual Calibration:** Teams tracked overwritten scores in spreadsheets and wanted standardized error categories with clear guidance.",
+                  "**Not Data-Driven:** Rule QA relied on random checks and manual reviews, lacking repeatable workflows or confidence metrics."
+              ]},
+              { type: 'image', src: '/images/projects/opera-analyzer/image 1.png', isExpandable: true }
+          ]
+      }, */
     {
-        title: 'My Role',
-        blocks: [
-            { type: 'paragraph', content: 'As the lead designer, I was responsible for:'},
-            { type: 'list', style: 'unordered', items: [
-                "**Research & Discovery:** Facilitating interviews and synthesizing pain points into actionable requirements.",
-                "**Design Leadership:** Architecting the experience and UI, establishing new patterns for diagnostics and comparison.",
-                "**Cross-Functional Alignment:** Driving consensus between engineering, PMs, and customer success, ensuring everyone was bought into the phased roadmap and could see incremental value.",
-                "**Continuous Testing:** Conducting rapid iteration cycles, validating improvements with users in real environments."
-            ]}
-        ]
+      title: 'My Role',
+      blocks: [
+        { type: 'paragraph', content: 'As the lead designer, I was responsible for:' },
+        {
+          type: 'list', style: 'unordered', items: [
+            "**Research & Discovery:** Facilitating interviews and synthesizing pain points into actionable requirements.",
+            "**Design Leadership:** Architecting the experience and UI, establishing new patterns for diagnostics and comparison.",
+            "**Cross-Functional Alignment:** Driving consensus between engineering, PMs, and customer success, ensuring everyone was bought into the phased roadmap and could see incremental value.",
+            "**Continuous Testing:** Conducting rapid iteration cycles, validating improvements with users in real environments."
+          ]
+        }
+      ]
     },
     {
       title: 'Solution Highlights',
@@ -118,26 +126,28 @@ export const operaAnalyzerProject: Project = {
         { type: 'image', src: '/images/projects/opera-analyzer/image 12.png', isExpandable: true },
       ]
     },
-   /* {
-      title: 'Approach to UX design based on insights',
-      blocks: [
-        { type: 'list', style: 'unordered', items: [
-          "Add a new step for users to review before publishing their rules",
-          "Transparency via the side-panel",
-          "Filtering and calibration workflows",
-          "Standardized error categories",
-          "Introduction of version comparison as a first-class feature."
-        ]}
-      ]
-    }, */
+    /* {
+       title: 'Approach to UX design based on insights',
+       blocks: [
+         { type: 'list', style: 'unordered', items: [
+           "Add a new step for users to review before publishing their rules",
+           "Transparency via the side-panel",
+           "Filtering and calibration workflows",
+           "Standardized error categories",
+           "Introduction of version comparison as a first-class feature."
+         ]}
+       ]
+     }, */
     {
       title: 'Impact',
       blocks: [
-        { type: 'list', style: 'unordered', items: [
-          "QA leads report being ==green:“confident to activate rules”== based on hard data, not hope.",
-          "Customers ==green:praised the transparency==: “We see exactly where errors happen—and how to fix them.”",
-          "The solution created a ==green:shared taxonomy and language for rule errors==, boosting collaboration across teams."
-        ]}
+        {
+          type: 'list', style: 'unordered', items: [
+            "QA leads report being ==green:“confident to activate rules”== based on hard data, not hope.",
+            "Customers ==green:praised the transparency==: “We see exactly where errors happen—and how to fix them.”",
+            "The solution created a ==green:shared taxonomy and language for rule errors==, boosting collaboration across teams."
+          ]
+        }
       ]
     },
     {

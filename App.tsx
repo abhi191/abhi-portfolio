@@ -106,7 +106,14 @@ const App: React.FC = () => {
   const handlePasswordSubmit = (password: string): boolean => {
     if (!projectToUnlock) return false;
 
-    if (password === projectToUnlock.password) {
+    const projectPassword = projectToUnlock.password;
+    if (Array.isArray(projectPassword)) {
+      if (projectPassword.includes(password)) {
+        setIsCurrentProjectUnlocked(true);
+        setProjectToUnlock(null);
+        return true;
+      }
+    } else if (password === projectPassword) {
       // If correct, mark the current project as unlocked and close the prompt.
       setIsCurrentProjectUnlocked(true);
       setProjectToUnlock(null);
