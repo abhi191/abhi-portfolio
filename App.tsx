@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import AboutPage from './components/AboutPage';
 import ProjectPageRedesign from './components/ProjectPageRedesign';
 import ProjectPage from './components/ProjectPage';
+import ResumePage from './components/ResumePage';
 import PasswordPrompt from './components/PasswordPrompt';
 
 // ... (keep existing imports if matching context, but since I am replacing a block inside renderPage, I only need to add the import at the top. Wait, replace_file_content works on a single block. I need multiple edits: one for import, one for logic. Using multi_replace_file_content would be safer/better, but I can use replace_file_content for logic if I added import manually or use multi. Let's use multi_replace for safety.)
@@ -16,7 +17,7 @@ import { projects } from './data/projects';
 import type { Project } from './data/types';
 
 export interface Route {
-  page: 'projects' | 'about' | 'projectDetail';
+  page: 'projects' | 'about' | 'projectDetail' | 'resume';
   slug?: string;
 }
 
@@ -26,6 +27,10 @@ const parseRoute = (): Route => {
 
   if (hash[0] === 'about') {
     return { page: 'about' };
+  }
+
+  if (hash[0] === 'resume') {
+    return { page: 'resume' };
   }
 
   if (hash[0] === 'projects' && hash[1]) {
@@ -131,6 +136,9 @@ const App: React.FC = () => {
     switch (route.page) {
       case 'about':
         return <AboutPage />;
+
+      case 'resume':
+        return <ResumePage />;
 
       case 'projectDetail':
         const project = projects.find(p => p.slug === route.slug);

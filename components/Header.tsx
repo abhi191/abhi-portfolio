@@ -39,11 +39,10 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
       <div style={{ height: headerHeight }} />
       <header
         ref={headerRef}
-        className={`w-full z-50 transition-all duration-300 ease-in-out ${
-          isScrolled
-            ? 'fixed top-0 bg-brand-background/80 backdrop-blur-lg shadow-sm'
-            : 'absolute top-0 bg-brand-background'
-        }`}
+        className={`w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
+          ? 'fixed top-0 bg-brand-background/80 backdrop-blur-lg shadow-sm'
+          : 'absolute top-0 bg-brand-background'
+          }`}
       >
         <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
           <div
@@ -56,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
             <NameLogoIcon className="h-6 w-auto" />
             <span className="font-sans font-bold">ABHINAV GUPTA</span>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation & Button */}
             <nav className="hidden md:flex items-center space-x-4">
@@ -72,14 +71,17 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
               >
                 About me
               </button>
-              <a href="/Abhinav.pdf" target="_blank" rel="noopener noreferrer" className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
+              <button
+                onClick={() => (window.location.hash = '#/resume')}
+                className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity"
+              >
                 Resume
-              </a>
+              </button>
             </nav>
 
             {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-3 rounded-md hover:bg-brand-card transition-colors"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
@@ -92,9 +94,8 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-brand-background flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out md:hidden ${
-          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
+        className={`fixed inset-0 z-40 bg-brand-background flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out md:hidden ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
       >
         <button
           onClick={closeMenu}
@@ -116,9 +117,12 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
           >
             About me
           </button>
-          <a href="/Abhinav.pdf" target="_blank" rel="noopener noreferrer" className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8">
+          <button
+            onClick={() => { window.location.hash = '#/resume'; closeMenu(); }}
+            className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8"
+          >
             Resume
-          </a>
+          </button>
         </nav>
       </div>
     </>
