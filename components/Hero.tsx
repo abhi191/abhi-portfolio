@@ -5,93 +5,68 @@ import InteractiveGrid from './InteractiveGrid';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Aurora Background */}
-      <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
-
-        {/* Top-right blob (Blue) */}
-        <div
-          className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full bg-brand-highlight mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-1"
-        />
-
-        {/* Top-left blob (Purple/Accent) */}
-        <div
-          className="absolute top-0 -left-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full bg-brand-accent/40 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-2"
-        />
-
-        {/* Bottom-center blob (Subtle Gray/Warm) */}
-        <div
-          className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full bg-blue-100 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-3"
-        />
-
-      </div>
-
-      {/* Interactive Dot Grid */}
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white">
+      {/* Subtle dot grid */}
       <InteractiveGrid />
+
+      {/* Soft atmospheric gradient — whisper-level, like Vercel's hero wash */}
+      <div
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(180,200,255,0.18) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(200,180,255,0.12) 0%, transparent 60%)'
+        }}
+      />
 
       <div className="max-w-4xl mx-auto text-center relative z-10 container px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         <div className="space-y-10">
           <h1
-            className="text-5xl sm:text-6xl font-display leading-tight tracking-normal text-brand-dark"
+            className="text-5xl sm:text-6xl md:text-7xl font-semibold leading-none text-brand-dark"
+            style={{ letterSpacing: '-0.05em' }}
           >
-            Hi, I'm <span
-              className="bg-clip-text text-transparent animate-gradient-flow"
+            Hi, I'm{' '}
+            <span
+              className="bg-clip-text text-transparent"
               style={{
-                backgroundImage: 'linear-gradient(to right, #ef4444, #f97316, #f59e0b, #eab308, #84cc16, #22c55e, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #d946ef, #ec4899, #f43f5e, #ef4444)'
+                backgroundImage: 'linear-gradient(135deg, #0072f5 0%, #7928ca 50%, #de1d8d 100%)'
               }}
-            >Abhinav</span> 👋
+            >
+              Abhinav
+            </span>{' '}
+            👋
           </h1>
           <div className="space-y-8">
             <p
-              className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose"
+              className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
+              style={{ color: '#4d4d4d' }}
             >
               A multi-disciplinary designer with 9+ years of experience in designing and developing for enterprise and consumer grade applications. I focus on creating meaningful, clear, and effective products.
             </p>
 
             <div className="flex flex-col items-center gap-6">
-              <span className="text-xl md:text-2xl font-semibold text-brand-dark">
+              <span className="text-sm font-medium uppercase tracking-widest" style={{ color: '#808080' }}>
                 Designed experiences for
               </span>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                <GoogleLogo className="h-8 w-auto text-brand-dark" />
-                <CrestaLogo className="h-6 w-auto text-brand-dark" />
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12" style={{ opacity: 0.6 }}>
+                <GoogleLogo className="h-7 w-auto text-brand-dark" />
+                <CrestaLogo className="h-5 w-auto text-brand-dark" />
                 <VMWareLogo className="h-4 w-auto text-brand-dark" />
-                <SAPLogo className="h-8 w-auto text-brand-dark" />
+                <SAPLogo className="h-7 w-auto text-brand-dark" />
               </div>
             </div>
-            {/* Scroll Down Indicator */}
-            <div className="flex justify-center mt-16 animate-bounce cursor-pointer" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-              <ChevronDownIcon className="w-8 h-8 text-brand-dark/40" />
+
+            {/* Scroll indicator */}
+            <div
+              className="flex justify-center mt-16 cursor-pointer animate-bounce"
+              onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            >
+              <ChevronDownIcon className="w-6 h-6" style={{ color: '#ebebeb' }} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* 
-      // Companies I've worked with card
-      <div className="mt-24 max-w-4xl mx-auto">
-        <div className="bg-brand-card rounded-3xl py-10 px-8 md:py-12 md:px-12 text-center">
-          <h2 className="text-sm font-semibold tracking-widest text-brand-dark/60 uppercase">
-            Companies I have previously worked with
-          </h2>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-16 text-brand-dark/70">
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="Cresta">
-                <CrestaLogo className="h-7 w-auto" />
-            </a>
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="VMware">
-                <VMWareLogo className="h-5 w-auto" />
-            </a>
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="SAP">
-                <SAPLogo className="h-9 w-auto" />
-            </a>
-          </div>
-        </div>
-      </div> 
-      */}
-      {/* Gradient Fade to Background */}
-      <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-gradient-to-t from-brand-background to-transparent pointer-events-none z-20" />
-
-
+      {/* Gradient fade to white */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-20" />
     </section>
   );
 };

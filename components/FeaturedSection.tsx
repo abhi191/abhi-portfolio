@@ -4,6 +4,9 @@ import { projects } from '../data/projects';
 import type { Project } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
+const CARD_SHADOW = '0px 0px 0px 1px rgba(0,0,0,0.08), 0px 2px 2px rgba(0,0,0,0.04), 0px 8px 8px -8px rgba(0,0,0,0.04), inset 0px 0px 0px 1px #fafafa';
+const CARD_SHADOW_HOVER = '0px 0px 0px 1px rgba(0,0,0,0.12), 0px 4px 12px rgba(0,0,0,0.08), 0px 16px 24px -8px rgba(0,0,0,0.06)';
+
 const ProjectCard: React.FC<Project> = ({
   company,
   companyLogoUrl,
@@ -14,17 +17,24 @@ const ProjectCard: React.FC<Project> = ({
   imagePosition = 'left',
   showMetricsOnCard = true,
 }: Project) => {
+  const [hovered, setHovered] = React.useState(false);
+
   return (
     <div
-      className={`block group rounded-3xl overflow-hidden bg-brand-card hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
+      className={`block group rounded-2xl overflow-hidden bg-white transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
+      style={{ boxShadow: hovered ? CARD_SHADOW_HOVER : CARD_SHADOW, transform: hovered ? 'translateY(-2px)' : 'none' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {/* Image Part - Renders only if imageUrl exists */}
+      {/* Image Part */}
       {imageUrl && (
         <div
-          className={`p-4 sm:p-8 lg:p-12 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}
+          className={`p-4 sm:p-6 lg:p-8 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}
+          style={{ borderRight: imagePosition !== 'right' ? '1px solid rgba(0,0,0,0.06)' : undefined, borderLeft: imagePosition === 'right' ? '1px solid rgba(0,0,0,0.06)' : undefined }}
         >
           <div
-            className="w-full rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[4/3] lg:aspect-auto min-h-[180px] sm:min-h-[220px] lg:min-h-0 flex items-center justify-center bg-brand-card"
+            className="w-full rounded-xl overflow-hidden aspect-[4/3] sm:aspect-[4/3] lg:aspect-auto min-h-[180px] sm:min-h-[220px] lg:min-h-0 flex items-center justify-center bg-[#fafafa]"
+            style={{ boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.06)' }}
           >
             <img
               src={imageUrl}
@@ -36,41 +46,62 @@ const ProjectCard: React.FC<Project> = ({
       )}
 
       {/* Content Part */}
-      <div className="p-10 sm:p-12 md:p-16 flex flex-col">
+      <div className="p-10 sm:p-12 md:p-14 flex flex-col">
         {company && companyLogoUrl && (
           <div className="mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70">
-              <img src={companyLogoUrl} alt={`${company} logo`} className="h-4 w-auto text-brand-dark/80" />
-              <span className="text-xs font-semibold text-brand-dark/80 tracking-wide uppercase">{company}</span>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
+              style={{ boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.08)', background: '#fafafa' }}
+            >
+              <img src={companyLogoUrl} alt={`${company} logo`} className="h-3.5 w-auto" />
+              <span className="text-xs font-medium tracking-wide uppercase" style={{ color: '#4d4d4d' }}>{company}</span>
             </div>
           </div>
         )}
+
         <div>
-          <div className="flex items-start justify-between">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-dark">{title}</h3>
-          </div>
-          <p className="mt-6 text-lg text-brand-dark/80 leading-relaxed">
+          <h3
+            className="text-2xl md:text-3xl font-semibold text-brand-dark"
+            style={{ letterSpacing: '-0.04em' }}
+          >
+            {title}
+          </h3>
+          <p className="mt-4 text-base leading-relaxed" style={{ color: '#4d4d4d' }}>
             {description}
           </p>
         </div>
 
         <div className="mt-10 flex-grow flex flex-col justify-end">
-          {showMetricsOnCard && (
-            <div className="">
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-brand-dark/60 mb-6">Key metrics</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
+          {showMetricsOnCard && metrics.length > 0 && (
+            <div>
+              <h4
+                className="text-xs font-medium uppercase tracking-widest mb-5"
+                style={{ color: '#808080', fontFamily: '"Geist Mono", monospace' }}
+              >
+                Key metrics
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6">
                 {metrics.slice(0, 3).map((metric, index) => (
                   <div key={index}>
-                    <p className="text-2xl md:text-3xl font-bold text-brand-dark">{metric.value}</p>
-                    <p className="text-sm text-brand-dark/70 mt-1">{metric.label}</p>
+                    <p
+                      className="text-2xl md:text-3xl font-semibold text-brand-dark"
+                      style={{ letterSpacing: '-0.04em' }}
+                    >
+                      {metric.value}
+                    </p>
+                    <p className="text-sm mt-1" style={{ color: '#4d4d4d' }}>{metric.label}</p>
                   </div>
                 ))}
               </div>
             </div>
           )}
-          <div className={`flex items-center text-brand-dark font-semibold group-hover:text-brand-accent transition-colors duration-300 ${showMetricsOnCard ? 'mt-12' : ''}`}>
+
+          <div
+            className={`flex items-center font-medium text-sm transition-colors duration-200 ${showMetricsOnCard ? 'mt-10' : ''}`}
+            style={{ color: hovered ? '#171717' : '#4d4d4d' }}
+          >
             <span>View case study</span>
-            <ArrowRightIcon className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRightIcon className="h-4 w-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" />
           </div>
         </div>
       </div>
@@ -79,16 +110,24 @@ const ProjectCard: React.FC<Project> = ({
 };
 
 const FeaturedSection: React.FC = () => {
-
   return (
-    <section className="py-20 md:py-32">
+    <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         <AnimateOnScroll>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center">Selected work</h2>
+          <h2
+            className="text-4xl md:text-5xl font-semibold text-center text-brand-dark"
+            style={{ letterSpacing: '-0.04em' }}
+          >
+            Selected work
+          </h2>
         </AnimateOnScroll>
-        <div className="mt-16 md:mt-20 space-y-12 md:space-y-16">
+
+        {/* Full-width divider like Vercel */}
+        <div className="mt-12 mb-12 md:mt-16 md:mb-16 border-t border-[#ebebeb]" />
+
+        <div className="space-y-8 md:space-y-10">
           {projects.map((project, index) => (
-            <AnimateOnScroll key={project.id} delay={index * 100}>
+            <AnimateOnScroll key={project.id} delay={index * 80}>
               <div
                 onClick={() => (window.location.hash = `#/projects/${project.slug}`)}
                 role="link"
@@ -101,9 +140,7 @@ const FeaturedSection: React.FC = () => {
                 }}
                 aria-label={`View case study for ${project.title}`}
               >
-                <ProjectCard
-                  {...project}
-                />
+                <ProjectCard {...project} />
               </div>
             </AnimateOnScroll>
           ))}

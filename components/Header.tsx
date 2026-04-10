@@ -39,41 +39,51 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
       <div style={{ height: headerHeight }} />
       <header
         ref={headerRef}
-        className={`w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
-          ? 'fixed top-0 bg-brand-background/80 backdrop-blur-lg shadow-sm'
-          : 'absolute top-0 bg-brand-background'
-          }`}
+        className={`w-full z-50 transition-all duration-200 ease-in-out bg-white/90 backdrop-blur-md ${
+          isScrolled
+            ? 'fixed top-0'
+            : 'absolute top-0'
+        }`}
+        style={{ boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.08)' }}
       >
-        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-6">
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 flex items-center justify-between py-4">
           <div
             onClick={() => (window.location.hash = '#/')}
-            className="flex items-center gap-3 text-xl font-medium tracking-tight cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer"
             role="link"
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') window.location.hash = '#/'; }}
           >
-            <NameLogoIcon className="h-6 w-auto" />
-            <span className="font-sans font-bold">ABHINAV GUPTA</span>
+            <NameLogoIcon className="h-5 w-auto" />
+            <span className="font-sans font-semibold text-sm tracking-tight text-brand-dark">ABHINAV GUPTA</span>
           </div>
 
-          <div className="flex items-center space-x-4">
-            {/* Desktop Navigation & Button */}
-            <nav className="hidden md:flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-1">
               <button
                 onClick={() => (window.location.hash = '#/')}
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
+                  currentRoute.page === 'projects' || currentRoute.page === 'projectDetail'
+                    ? 'text-brand-dark bg-[#f5f5f5]'
+                    : 'text-[#4d4d4d] hover:text-brand-dark hover:bg-[#f5f5f5]'
+                }`}
               >
                 Work
               </button>
               <button
                 onClick={() => (window.location.hash = '#/about')}
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
+                  currentRoute.page === 'about'
+                    ? 'text-brand-dark bg-[#f5f5f5]'
+                    : 'text-[#4d4d4d] hover:text-brand-dark hover:bg-[#f5f5f5]'
+                }`}
               >
-                About me
+                About
               </button>
               <button
                 onClick={() => (window.location.hash = '#/resume')}
-                className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity"
+                className="ml-2 bg-brand-dark text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-[#2a2a2a] transition-colors"
               >
                 Resume
               </button>
@@ -82,11 +92,11 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-3 rounded-md hover:bg-brand-card transition-colors"
+              className="md:hidden p-2 rounded-md hover:bg-[#f5f5f5] transition-colors text-brand-dark"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
-              <MenuIcon className="h-6 w-6" />
+              <MenuIcon className="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -94,32 +104,41 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-brand-background flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out md:hidden ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
+        className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center transition-opacity duration-200 ease-in-out md:hidden ${
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
       >
         <button
           onClick={closeMenu}
-          className="absolute top-6 right-6 p-3"
+          className="absolute top-5 right-6 p-2 text-brand-dark hover:bg-[#f5f5f5] rounded-md transition-colors"
           aria-label="Close menu"
         >
-          <CloseIcon className="h-7 w-7" />
+          <CloseIcon className="h-6 w-6" />
         </button>
-        <nav className="flex flex-col items-center space-y-8 text-center">
+        <nav className="flex flex-col items-center space-y-6 text-center">
           <button
             onClick={() => { window.location.hash = '#/'; closeMenu(); }}
-            className={`text-2xl font-medium transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+            className={`text-2xl font-semibold tracking-tight transition-colors ${
+              currentRoute.page === 'projects' || currentRoute.page === 'projectDetail'
+                ? 'text-brand-dark'
+                : 'text-[#4d4d4d] hover:text-brand-dark'
+            }`}
           >
             Work
           </button>
           <button
             onClick={() => { window.location.hash = '#/about'; closeMenu(); }}
-            className={`text-2xl font-medium transition-colors ${currentRoute.page === 'about' ? 'text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}
+            className={`text-2xl font-semibold tracking-tight transition-colors ${
+              currentRoute.page === 'about'
+                ? 'text-brand-dark'
+                : 'text-[#4d4d4d] hover:text-brand-dark'
+            }`}
           >
-            About me
+            About
           </button>
           <button
             onClick={() => { window.location.hash = '#/resume'; closeMenu(); }}
-            className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8"
+            className="bg-brand-dark text-white text-lg font-medium py-3 px-8 rounded-md hover:bg-[#2a2a2a] transition-colors mt-4"
           >
             Resume
           </button>
