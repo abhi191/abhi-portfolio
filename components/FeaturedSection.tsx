@@ -4,9 +4,6 @@ import { projects } from '../data/projects';
 import type { Project } from '../data/types';
 import AnimateOnScroll from './AnimateOnScroll';
 
-const CARD_SHADOW = '0px 0px 0px 1px rgba(0,0,0,0.08), 0px 2px 2px rgba(0,0,0,0.04), 0px 8px 8px -8px rgba(0,0,0,0.04), inset 0px 0px 0px 1px #fafafa';
-const CARD_SHADOW_HOVER = '0px 0px 0px 1px rgba(0,0,0,0.12), 0px 4px 12px rgba(0,0,0,0.08), 0px 16px 24px -8px rgba(0,0,0,0.06)';
-
 const ProjectCard: React.FC<Project> = ({
   company,
   companyLogoUrl,
@@ -21,8 +18,12 @@ const ProjectCard: React.FC<Project> = ({
 
   return (
     <div
-      className={`block group rounded-2xl overflow-hidden bg-white transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
-      style={{ boxShadow: hovered ? CARD_SHADOW_HOVER : CARD_SHADOW, transform: hovered ? 'translateY(-2px)' : 'none' }}
+      className={`block group rounded-2xl overflow-hidden transition-all duration-300 ease-in-out cursor-pointer ${imageUrl ? 'grid grid-cols-1 lg:grid-cols-2' : ''}`}
+      style={{
+        background: 'var(--bg)',
+        boxShadow: hovered ? 'var(--shadow-card-hover)' : 'var(--shadow-card)',
+        transform: hovered ? 'translateY(-2px)' : 'none',
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -30,11 +31,11 @@ const ProjectCard: React.FC<Project> = ({
       {imageUrl && (
         <div
           className={`p-4 sm:p-6 lg:p-8 ${imagePosition === 'right' ? 'lg:order-last' : ''}`}
-          style={{ borderRight: imagePosition !== 'right' ? '1px solid rgba(0,0,0,0.06)' : undefined, borderLeft: imagePosition === 'right' ? '1px solid rgba(0,0,0,0.06)' : undefined }}
+          style={{ borderRight: imagePosition !== 'right' ? '1px solid var(--divider)' : undefined, borderLeft: imagePosition === 'right' ? '1px solid var(--divider)' : undefined }}
         >
           <div
-            className="w-full rounded-xl overflow-hidden aspect-[4/3] sm:aspect-[4/3] lg:aspect-auto min-h-[180px] sm:min-h-[220px] lg:min-h-0 flex items-center justify-center bg-[#fafafa]"
-            style={{ boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.06)' }}
+            className="w-full rounded-xl overflow-hidden aspect-[4/3] sm:aspect-[4/3] lg:aspect-auto min-h-[180px] sm:min-h-[220px] lg:min-h-0 flex items-center justify-center"
+            style={{ background: 'var(--surface)', boxShadow: 'var(--shadow-border)' }}
           >
             <img
               src={imageUrl}
@@ -51,22 +52,22 @@ const ProjectCard: React.FC<Project> = ({
           <div className="mb-6">
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
-              style={{ boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.08)', background: '#fafafa' }}
+              style={{ boxShadow: 'var(--shadow-border)', background: 'var(--surface-2)' }}
             >
               <img src={companyLogoUrl} alt={`${company} logo`} className="h-3.5 w-auto" />
-              <span className="text-xs font-medium tracking-wide uppercase" style={{ color: '#4d4d4d' }}>{company}</span>
+              <span className="text-xs font-medium tracking-wide uppercase" style={{ color: 'var(--muted)' }}>{company}</span>
             </div>
           </div>
         )}
 
         <div>
           <h3
-            className="text-2xl md:text-3xl font-semibold text-brand-dark"
-            style={{ letterSpacing: '-0.04em' }}
+            className="text-2xl md:text-3xl font-semibold"
+            style={{ letterSpacing: '-0.04em', color: 'var(--fg)' }}
           >
             {title}
           </h3>
-          <p className="mt-4 text-base leading-relaxed" style={{ color: '#4d4d4d' }}>
+          <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--muted)' }}>
             {description}
           </p>
         </div>
@@ -76,7 +77,7 @@ const ProjectCard: React.FC<Project> = ({
             <div>
               <h4
                 className="text-xs font-medium uppercase tracking-widest mb-5"
-                style={{ color: '#808080', fontFamily: '"Geist Mono", monospace' }}
+                style={{ color: 'var(--subtle)', fontFamily: '"Geist Mono", monospace' }}
               >
                 Key metrics
               </h4>
@@ -84,12 +85,12 @@ const ProjectCard: React.FC<Project> = ({
                 {metrics.slice(0, 3).map((metric, index) => (
                   <div key={index}>
                     <p
-                      className="text-2xl md:text-3xl font-semibold text-brand-dark"
-                      style={{ letterSpacing: '-0.04em' }}
+                      className="text-2xl md:text-3xl font-semibold"
+                      style={{ letterSpacing: '-0.04em', color: 'var(--fg)' }}
                     >
                       {metric.value}
                     </p>
-                    <p className="text-sm mt-1" style={{ color: '#4d4d4d' }}>{metric.label}</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>{metric.label}</p>
                   </div>
                 ))}
               </div>
@@ -98,7 +99,7 @@ const ProjectCard: React.FC<Project> = ({
 
           <div
             className={`flex items-center font-medium text-sm transition-colors duration-200 ${showMetricsOnCard ? 'mt-10' : ''}`}
-            style={{ color: hovered ? '#171717' : '#4d4d4d' }}
+            style={{ color: hovered ? 'var(--fg)' : 'var(--muted)' }}
           >
             <span>View case study</span>
             <ArrowRightIcon className="h-4 w-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -111,19 +112,18 @@ const ProjectCard: React.FC<Project> = ({
 
 const FeaturedSection: React.FC = () => {
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-24 md:py-32" style={{ background: 'var(--bg)' }}>
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
         <AnimateOnScroll>
           <h2
-            className="text-4xl md:text-5xl font-semibold text-center text-brand-dark"
-            style={{ letterSpacing: '-0.04em' }}
+            className="text-4xl md:text-5xl font-semibold text-center"
+            style={{ letterSpacing: '-0.04em', color: 'var(--fg)' }}
           >
             Selected work
           </h2>
         </AnimateOnScroll>
 
-        {/* Full-width divider like Vercel */}
-        <div className="mt-12 mb-12 md:mt-16 md:mb-16 border-t border-[#ebebeb]" />
+        <div className="mt-12 mb-12 md:mt-16 md:mb-16" style={{ borderTop: '1px solid var(--divider)' }} />
 
         <div className="space-y-8 md:space-y-10">
           {projects.map((project, index) => (

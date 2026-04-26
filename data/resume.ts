@@ -29,10 +29,8 @@ export interface ResumeData {
     headline: string;
     summary: string;
     contact: {
-        phone: string;
         email: string;
         linkedin: string;
-        website: string;
     };
     experience: ResumeExperience[];
     skills: ResumeSkillCategory[];
@@ -45,10 +43,8 @@ export const resumeData: ResumeData = {
     summary:
         'A multi-disciplinary designer with 9+ years of domain experience in designing and developing for enterprise and consumer grade applications to create meaningful and easy to use products. Extensive working knowledge of LLMs, agentic AI concepts, vibe-coding and how they shape UX and the design process.',
     contact: {
-        phone: '+1 437-435-0345',
         email: 'abhinav191@gmail.com',
         linkedin: 'www.linkedin.com/in/abhinav191',
-        website: 'www.itsabhi.com',
     },
     experience: [
         {

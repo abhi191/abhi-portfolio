@@ -14,10 +14,54 @@
     href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
+    /* ── Design tokens: light ── */
+    :root {
+      --bg:              #ffffff;
+      --fg:              #171717;
+      --muted:           #4d4d4d;
+      --subtle:          #808080;
+      --surface:         #f5f5f5;
+      --surface-2:       #fafafa;
+      --border:          rgba(0,0,0,0.08);
+      --border-med:      rgba(0,0,0,0.12);
+      --divider:         rgba(0,0,0,0.06);
+
+      /* skill badge variants */
+      --skill-design-bg:     #ebf5ff;
+      --skill-design-text:   #0068d6;
+      --skill-design-border: #bfdbfe;
+      --skill-tools-bg:      #171717;
+      --skill-tools-text:    #ffffff;
+      --skill-tools-border:  #171717;
+      --skill-tech-bg:       #f0fdf4;
+      --skill-tech-text:     #166534;
+      --skill-tech-border:   #bbf7d0;
+
+      /* availability */
+      --avail-bg:     #f0fdf4;
+      --avail-text:   #166534;
+      --avail-border: rgba(22,101,52,0.15);
+      --avail-dot:    #22c55e;
+
+      /* shadows */
+      --shadow-border:      0px 0px 0px 1px rgba(0,0,0,0.08);
+      --shadow-border-med:  0px 0px 0px 1px rgba(0,0,0,0.12);
+      --shadow-card:        0px 0px 0px 1px rgba(0,0,0,0.08), 0px 2px 4px rgba(0,0,0,0.04), inset 0px 0px 0px 1px #fafafa;
+      --shadow-card-hover:  0px 0px 0px 1px rgba(0,0,0,0.12), 0px 8px 24px rgba(0,0,0,0.08), 0px 2px 4px rgba(0,0,0,0.04);
+
+      /* monogram */
+      --monogram-bg:   #171717;
+      --monogram-text: #ffffff;
+
+      /* interactive grid */
+      --grid-dot: #1c1c1c;
+    }
+
     body {
       font-family: 'Geist', Arial, sans-serif;
       font-feature-settings: "liga" 1;
-      background-color: #ffffff;
+      background-color: var(--bg);
+      color: var(--fg);
     }
 
     /* For initial page load animations */
@@ -177,29 +221,12 @@
     /* Add new gradient color classes here. The start color should be a light tint.
          For consistency, you can use the same hex codes defined for the 'highlight-*-bg'
          colors in the tailwind.config below. */
-    .gradient-purple {
-      background: linear-gradient(180deg, #f5f0ff 0%, #ffffff 80%);
-    }
-
-    .gradient-blue {
-      background: linear-gradient(180deg, #ebf5ff 0%, #ffffff 80%);
-    }
-
-    .gradient-green {
-      background: linear-gradient(180deg, #ebfdf4 0%, #ffffff 80%);
-    }
-
-    .gradient-yellow {
-      background: linear-gradient(180deg, #fef9eb 0%, #ffffff 80%);
-    }
-
-    .gradient-red {
-      background: linear-gradient(180deg, #fff0ef 0%, #ffffff 80%);
-    }
-
-    .gradient-gray {
-      background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 80%);
-    }
+    .gradient-purple { background: linear-gradient(180deg, #f5f0ff 0%, var(--bg) 80%); }
+    .gradient-blue   { background: linear-gradient(180deg, #ebf5ff 0%, var(--bg) 80%); }
+    .gradient-green  { background: linear-gradient(180deg, #ebfdf4 0%, var(--bg) 80%); }
+    .gradient-yellow { background: linear-gradient(180deg, #fef9eb 0%, var(--bg) 80%); }
+    .gradient-red    { background: linear-gradient(180deg, #fff0ef 0%, var(--bg) 80%); }
+    .gradient-gray   { background: linear-gradient(180deg, #f5f5f5 0%, var(--bg) 80%); }
 
     /* --- Retro Mode Easter Egg --- */
     body.retro-mode {
@@ -322,12 +349,12 @@
       theme: {
         extend: {
           colors: {
-            'brand-background': '#ffffff',
-            'brand-card': '#ffffff',
-            'brand-dark': '#171717',
+            'brand-background': 'var(--bg)',
+            'brand-card': 'var(--surface-2)',
+            'brand-dark': 'var(--fg)',
             'brand-accent': '#0072f5',
-            'brand-muted': '#4d4d4d',
-            'brand-border': 'rgba(0,0,0,0.08)',
+            'brand-muted': 'var(--muted)',
+            'brand-border': 'var(--border)',
 
             // -- Custom Text Highlight Colors --
             'highlight-red-bg': '#FEE2E2',
