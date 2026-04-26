@@ -27,11 +27,12 @@ type SectionId = typeof SECTIONS[number];
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
-const MailIcon: React.FC<{ className?: string }> = ({ className }) => (
+const ArrowUpRightIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
   </svg>
 );
+
 
 
 const LinkedInIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -235,12 +236,7 @@ const IdentityHero: React.FC<{ data: typeof resumeData }> = ({ data }) => {
           {summary}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-          <ContactPill icon={<MailIcon className="w-3.5 h-3.5" />} label={contact.email} href={`mailto:${contact.email}`} />
-          <ContactPill icon={<LinkedInIcon className="w-3.5 h-3.5" />} label="LinkedIn" href={`https://${contact.linkedin}`} />
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-3 flex-wrap">
+        <div className="mt-8 flex items-center justify-center">
           <a
             href="/Abhinav.pdf"
             target="_blank"
@@ -387,9 +383,9 @@ const StatusCard: React.FC<{ contact: typeof resumeData.contact }> = ({ contact 
     <p className="text-sm font-semibold" style={{ letterSpacing: '-0.01em', color: 'var(--fg)' }}>Currently at Google Canada</p>
     <p className="text-xs mt-1" style={{ color: 'var(--muted)' }}>Sr. Interaction Designer · Toronto</p>
     <div className="mt-4 pt-4" style={{ borderTop: '1px solid var(--divider)' }}>
-      <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors duration-200" style={{ color: '#0072f5' }}>
-        <MailIcon className="w-3 h-3" />
-        Get in touch
+      <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors duration-200" style={{ color: '#0072f5' }}>
+        <LinkedInIcon className="w-3 h-3" />
+        Connect on LinkedIn
         <ArrowUpRightIcon className="w-3 h-3" />
       </a>
     </div>
