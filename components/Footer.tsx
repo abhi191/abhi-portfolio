@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { DribbbleIcon, LinkedInIcon, TwitterIcon, EmailIcon } from './icons';
+import { LinkedInIcon, EmailIcon } from './icons';
 
 const Footer: React.FC = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -27,11 +27,6 @@ const Footer: React.FC = () => {
   const endRetroMode = () => {
     document.body.classList.remove('retro-mode');
     setShowSnackbar(false);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
-
-  const keepRetroMode = () => {
-    setShowSnackbar(false); // Hide snackbar but keep mode
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
@@ -66,7 +61,22 @@ const Footer: React.FC = () => {
         </div>
       )}
 
-      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 py-12 border-t border-brand-dark/10 flex flex-col sm:flex-row items-center justify-between text-sm text-brand-dark/60 relative">
+      {/* Contact block */}
+      <div className="border-t border-brand-dark/10">
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 pt-16 md:pt-24 pb-12 md:pb-16">
+          <h2 className="text-5xl md:text-7xl font-black tracking-tight text-brand-dark">
+            Let's talk
+          </h2>
+          <a
+            href="mailto:abhinav191@gmail.com"
+            className="inline-block mt-6 text-xl md:text-2xl font-medium text-brand-dark underline decoration-brand-accent decoration-2 underline-offset-8 hover:text-brand-accent transition-colors duration-300"
+          >
+            abhinav191@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 py-8 border-t border-brand-dark/10 flex flex-col sm:flex-row items-center justify-between text-sm text-brand-dark/60 relative">
         <p className="text-center sm:text-left">&copy; {new Date().getFullYear()} Made with ❤️ and vibecoding by Abhinav Gupta</p>
 
         {/* The "mistake" - Centered Floppy */}

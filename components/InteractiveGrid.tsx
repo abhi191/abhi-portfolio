@@ -21,7 +21,9 @@ const InteractiveGrid: React.FC = () => {
     const INTERACTION_RADIUS = 300; // Much larger interaction area
     const STIFFNESS = 0.08; // Less snappy/springy
     const DAMPING = 0.92; // Higher damping to reduce oscillation
-    const COLOR = '#1C1C1C'; // Brand Dark
+    const COLOR = '#16171A'; // Ink
+    // Accent follows the page-level CSS var so the dev accent switcher updates the grid live
+    const accentRef = useRef('#D6246E');
     const SPOTLIGHT_RADIUS = 400; // Radius for the spotlight effect
 
     useEffect(() => {
@@ -32,6 +34,12 @@ const InteractiveGrid: React.FC = () => {
         if (!ctx) return;
 
         let textFrameId: number;
+
+        const syncAccent = () => {
+            const v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+            if (v) accentRef.current = v;
+        };
+        syncAccent();
 
         const initGrid = () => {
             const dpr = window.devicePixelRatio || 1;
@@ -60,9 +68,7 @@ const InteractiveGrid: React.FC = () => {
                     const x = offsetX + i * GRID_SPACING;
                     const y = offsetY + j * GRID_SPACING;
 
-                    // Generate random vibrant color
-                    const hue = Math.floor(Math.random() * 360);
-                    const color = `hsl(${hue}, 85%, 60%)`;
+                    const color = accentRef.current;
 
                     pointsRef.current.push({
                         x, y,
@@ -145,7 +151,7 @@ const InteractiveGrid: React.FC = () => {
                 if (distance < SPOTLIGHT_RADIUS) {
                     const spotlightIntensity = 1 - (distance / SPOTLIGHT_RADIUS);
                     opacity = 0.15 + (0.6 * spotlightIntensity); // Boost opacity up to 0.75
-                    ctx.fillStyle = point.color;
+                    ctx.fillStyle = accentRef.current;
                 } else {
                     ctx.fillStyle = COLOR;
                 }
@@ -163,15 +169,29 @@ const InteractiveGrid: React.FC = () => {
         // Initial setup
         initGrid();
 
+        // Reduced motion: draw the grid once, no physics loop
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            ctx.fillStyle = COLOR;
+            ctx.globalAlpha = 0.15;
+            pointsRef.current.forEach(point => {
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, DOT_RADIUS, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            return;
+        }
+
         // Listeners
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('accentchange', syncAccent);
 
         animate();
 
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('accentchange', syncAccent);
             cancelAnimationFrame(textFrameId);
         };
     }, []);

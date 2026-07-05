@@ -10,8 +10,7 @@ const AboutPage: React.FC = () => {
     intro,
     designPhilosophy,
     journey,
-    beyondPixels,
-    connect
+    beyondPixels
   } = aboutPageContent;
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -21,37 +20,43 @@ const AboutPage: React.FC = () => {
   };
 
   return (
-    <div className="py-24 md:py-32 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
-      <div className="max-w-4xl mx-auto space-y-20 md:space-y-28">
-        {/* Intro Section */}
+    <div className="py-20 md:py-28 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-6xl mx-auto">
+        {/* Intro: asymmetric split, type left / portrait right */}
         <AnimateOnScroll>
-          <section className="text-center flex flex-col items-center">
-            <div className="w-56 h-56 md:w-56 md:h-56 rounded-full overflow-hidden bg-brand-card shadow-lg">
-              <img
-                src={profileImageUrl}
-                alt="Abhinav Gupta"
-                className="w-full h-full object-cover object-center"
-              />
+          <section className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <div className="md:col-span-7 order-2 md:order-1">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark">
+                {title}
+              </h1>
+              <p className="mt-8 text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-[58ch]">
+                {intro}
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mt-8">
-              {title}
-            </h1>
-            <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
-              {intro}
-            </p>
+            <div className="md:col-span-5 order-1 md:order-2">
+              <div className="max-w-xs sm:max-w-sm md:max-w-none mx-auto md:mx-0 rounded-2xl overflow-hidden border border-brand-dark/10 aspect-[4/5] bg-brand-card">
+                <img
+                  src={profileImageUrl}
+                  alt="Abhinav Gupta"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+            </div>
           </section>
         </AnimateOnScroll>
 
-        {/* Design Philosophy Section */}
+        {/* Design Philosophy: hairline columns, no cards */}
         <AnimateOnScroll>
-          <section>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{designPhilosophy.title}</h2>
-            <div className="mt-16 grid md:grid-cols-3 gap-10 md:gap-16 text-center">
+          <section className="mt-24 md:mt-32">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-brand-dark">
+              {designPhilosophy.title}
+            </h2>
+            <div className="mt-12 md:mt-16 grid md:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-10">
               {designPhilosophy.points.map((point, index) => (
-                <AnimateOnScroll key={index} delay={index * 150}>
-                  <div className="space-y-3 p-4">
-                    <h3 className="text-xl font-semibold">{point.title}</h3>
-                    <p className="text-brand-dark/80 leading-relaxed">{point.description}</p>
+                <AnimateOnScroll key={index} delay={index * 120}>
+                  <div className="border-t border-brand-dark/15 pt-6">
+                    <h3 className="text-lg md:text-xl font-bold text-brand-dark">{point.title}</h3>
+                    <p className="mt-3 text-brand-dark/70 leading-relaxed">{point.description}</p>
                   </div>
                 </AnimateOnScroll>
               ))}
@@ -59,13 +64,15 @@ const AboutPage: React.FC = () => {
           </section>
         </AnimateOnScroll>
 
-        {/* Journey Section */}
+        {/* Journey */}
         <AnimateOnScroll>
-          <section>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center">{journey.title}</h2>
-            <div className="mt-16 max-w-3xl mx-auto">
+          <section className="mt-24 md:mt-32">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-brand-dark">
+              {journey.title}
+            </h2>
+            <div className="mt-12 md:mt-16 max-w-4xl">
               {journey.history.map((item, index) => (
-                <div key={index} className="py-6 border-b border-brand-dark/10 last:border-b-0">
+                <div key={index} className="py-6 border-t border-brand-dark/10">
                   <div
                     className={`flex flex-row justify-between items-start gap-4 ${item.description ? 'cursor-pointer group' : ''}`}
                     onClick={item.description ? () => handleToggle(index) : undefined}
@@ -78,35 +85,35 @@ const AboutPage: React.FC = () => {
                   >
                     {/* Left Side: Logo and all text content */}
                     <div className="flex-1 flex items-start gap-6">
-                      <div className="bg-brand-card p-5 rounded-xl flex-shrink-0">
+                      <div className="w-12 flex-shrink-0 pt-1.5">
                         {typeof item.companyLogo === 'string' ? (
-                          <div className="h-12 w-12 flex items-center justify-center font-bold text-brand-dark/80 text-center text-xs leading-tight tracking-wider uppercase">
+                          <div className="h-8 flex items-center font-mono font-semibold text-brand-dark/70 text-[10px] leading-tight tracking-widest uppercase">
                             {item.companyLogo}
                           </div>
                         ) : (
-                          <item.companyLogo className="h-12 w-12 text-brand-dark/80" />
+                          <item.companyLogo className="h-8 w-12 text-brand-dark/80" />
                         )}
                       </div>
                       <div className="flex-1 pt-1">
                         {/* Desktop View: Split layout */}
                         <div className="hidden sm:block">
                           <div className="flex justify-between items-baseline">
-                            <h3 className="font-semibold text-xl text-brand-dark">{item.position}</h3>
-                            <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
+                            <h3 className="font-bold text-xl text-brand-dark">{item.position}</h3>
+                            <p className="text-brand-dark/70 text-base">{item.location}</p>
                           </div>
                           <div className="flex justify-between items-baseline mt-1">
-                            <p className="text-brand-dark/80">{item.company}</p>
-                            <p className="text-brand-dark/60 font-mono text-sm">{item.period}</p>
+                            <p className="text-brand-dark/70">{item.company}</p>
+                            <p className="text-brand-dark/50 font-mono text-sm">{item.period}</p>
                           </div>
                         </div>
 
                         {/* Mobile View: Stacked layout */}
                         <div className="sm:hidden">
-                          <h3 className="font-semibold text-xl text-brand-dark">{item.position}</h3>
-                          <p className="text-brand-dark/80 mt-1">{item.company}</p>
+                          <h3 className="font-bold text-xl text-brand-dark">{item.position}</h3>
+                          <p className="text-brand-dark/70 mt-1">{item.company}</p>
                           <div className="mt-2 text-left">
-                            <p className="text-brand-dark/90 font-medium text-base">{item.location}</p>
-                            <p className="text-brand-dark/60 font-mono text-sm mt-1">{item.period}</p>
+                            <p className="text-brand-dark/70 text-base">{item.location}</p>
+                            <p className="text-brand-dark/50 font-mono text-sm mt-1">{item.period}</p>
                           </div>
                         </div>
                       </div>
@@ -136,7 +143,7 @@ const AboutPage: React.FC = () => {
                       className={`grid transition-all duration-500 ease-in-out ${expandedIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
                     >
                       <div className="overflow-hidden">
-                        <p className="pt-4 text-brand-dark/70 leading-relaxed text-base pl-28">
+                        <p className="pt-4 text-brand-dark/70 leading-relaxed text-base pl-[72px]">
                           {item.description}
                         </p>
                       </div>
@@ -148,33 +155,8 @@ const AboutPage: React.FC = () => {
           </section>
         </AnimateOnScroll>
 
-        {/* Beyond the Pixels Section */}
-        {/*}   <AnimateOnScroll>
-          <section className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{beyondPixels.title}</h2>
-              <p className="mt-8 text-lg md:text-xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
-                  {beyondPixels.text}
-              </p>
-          </section>
-        </AnimateOnScroll> */}
-
-        {/* Connect Section */}
-        <AnimateOnScroll>
-          <section className="text-center py-12 md:py-16 bg-brand-card rounded-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{connect.title}</h2>
-            <p className="mt-6 text-lg text-brand-dark/80 max-w-xl mx-auto px-4">
-              {connect.text}
-            </p>
-            <div className="mt-10">
-              <a
-                href="mailto:abhinav191@gmail.com"
-                className="inline-block bg-brand-dark text-white text-base font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition-all hover:scale-[1.02] duration-300"
-              >
-                {connect.buttonText}
-              </a>
-            </div>
-          </section>
-        </AnimateOnScroll>
+        {/* Contact CTA intentionally omitted here; the footer's "Let's talk"
+            block handles it site-wide to avoid duplicate contact CTAs. */}
       </div>
     </div>
   );

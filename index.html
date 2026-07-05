@@ -8,17 +8,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abhinav Gupta | Product Designer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&family=Paytone+One&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap"
-    rel="stylesheet">
   <style>
+    /* --- Self-hosted type: Satoshi (display + body), JetBrains Mono (data + labels) --- */
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('/fonts/JetBrainsMono-Variable.woff2') format('woff2');
+      font-weight: 100 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Satoshi', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Single-accent system driven by CSS vars so the dev accent switcher can
+       swap the whole page at once. --accent-rgb feeds Tailwind's brand-accent.
+       --accent-contrast is the text color that sits on solid accent surfaces
+       (paper on dark accents, ink on light accents like lime/yellow). */
+    :root {
+      --accent-rgb: 214 36 110;
+      --accent: #D6246E;
+      --accent-contrast: #F6F6F4;
+      /* Text-only variant: equals the pure hue for dark accents, but a darkened
+         shade for light accents (lime/yellow) so accent TEXT stays WCAG-legible on
+         paper. Fills, underlines, the dot grid and card tints keep the pure hue. */
+      --accent-text: #D6246E;
+    }
+
+    ::selection {
+      background-color: rgb(var(--accent-rgb));
+      color: var(--accent-contrast);
+    }
+
+    :focus-visible {
+      outline: 2px solid rgb(var(--accent-rgb));
+      outline-offset: 2px;
+    }
+
+    .accent-word {
+      color: var(--accent-text);
+    }
+
+    /* Small accent-colored text (labels, company names): uses the a11y-safe
+       text variant, no ink outline (that treatment is for display sizes only). */
+    .accent-text {
+      color: var(--accent-text);
+    }
+
+    .group:hover .accent-hover-text {
+      color: var(--accent-text);
+    }
+
+    /* Every accent keeps its pure vibrant hue as text, with a hairline ink
+       outline for legibility and a consistent, deliberate look across colors.
+       paint-order keeps the vibrant fill full-size with the stroke sitting
+       just outside the glyph rather than eating into it. */
+    .accent-word {
+      -webkit-text-stroke: 1px #16171A;
+      paint-order: stroke fill;
+    }
+
+    .group:hover .accent-hover-text {
+      -webkit-text-stroke: 0.6px #16171A;
+      paint-order: stroke fill;
+    }
+
+    [class*="hover:bg-brand-accent"]:hover {
+      color: var(--accent-contrast) !important;
     }
 
     /* For initial page load animations */
@@ -64,6 +139,20 @@
       transform: translateY(0);
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-animate {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .animate-fade-in,
+      .animate-fade-in-up {
+        animation: none;
+        opacity: 1;
+      }
+    }
+
     /* --- Custom Project Page Gradient Backgrounds --- */
     /* This is the base style for the gradient effect element. */
     .project-gradient-base {
@@ -72,77 +161,6 @@
       left: 0;
       right: 0;
       height: 1000px;
-    }
-
-    /* --- Aurora Background Animations --- */
-    @keyframes aurora-1 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(100px, -100px) scale(1.1);
-      }
-
-      66% {
-        transform: translate(-50px, 80px) scale(0.9);
-      }
-    }
-
-    @keyframes aurora-2 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(-80px, 120px) scale(1.1);
-      }
-
-      66% {
-        transform: translate(60px, -60px) scale(0.9);
-      }
-    }
-
-    @keyframes aurora-3 {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(120px, 80px) scale(1.1);
-      }
-
-      66% {
-        transform: translate(-80px, -120px) scale(0.9);
-      }
-    }
-
-    .animate-aurora-1 {
-      animation: aurora-1 20s infinite alternate ease-in-out;
-    }
-
-    .animate-aurora-2 {
-      animation: aurora-2 25s infinite alternate ease-in-out;
-    }
-
-    .animate-aurora-3 {
-      animation: aurora-3 18s infinite alternate ease-in-out;
-    }
-
-    @keyframes shimmer {
-      0% {
-        background-position: 200% center;
-      }
-
-      100% {
-        background-position: -200% center;
-      }
     }
 
     @keyframes retro-progress {
@@ -155,51 +173,31 @@
       }
     }
 
-    @keyframes gradient-flow {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .animate-gradient-flow {
-      animation: gradient-flow 6s ease infinite;
-      background-size: 300% 300%;
-    }
-
-
     /* Add new gradient color classes here. The start color should be a light tint.
          For consistency, you can use the same hex codes defined for the 'highlight-*-bg'
          colors in the tailwind.config below. */
     .gradient-purple {
-      background: linear-gradient(180deg, #F3E8FF 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #F3E8FF 0%, #F6F6F4 80%);
     }
 
     .gradient-blue {
-      background: linear-gradient(180deg, #DBEAFE 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #DBEAFE 0%, #F6F6F4 80%);
     }
 
     .gradient-green {
-      background: linear-gradient(180deg, #D1FAE5 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #D1FAE5 0%, #F6F6F4 80%);
     }
 
     .gradient-yellow {
-      background: linear-gradient(180deg, #FEF3C7 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #FEF3C7 0%, #F6F6F4 80%);
     }
 
     .gradient-red {
-      background: linear-gradient(180deg, #FEE2E2 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #FEE2E2 0%, #F6F6F4 80%);
     }
 
     .gradient-gray {
-      background: linear-gradient(180deg, #E5E7EB 0%, #FBFBFB 80%);
+      background: linear-gradient(180deg, #E5E7EB 0%, #F6F6F4 80%);
     }
 
     /* --- Retro Mode Easter Egg --- */
@@ -323,11 +321,12 @@
       theme: {
         extend: {
           colors: {
-            'brand-background': '#FBFBFB',
-            'brand-card': '#F0F0F0',
-            'brand-dark': '#1C1C1C',
-            'brand-accent': '#A15DD9',
-            'brand-highlight': '#F3E8FF',
+            /* "Ink & Signal" system: neutral paper, off-black ink, one signal accent. */
+            'brand-background': '#F6F6F4',
+            'brand-card': '#EDEDEB',
+            'brand-dark': '#16171A',
+            'brand-accent': 'rgb(var(--accent-rgb) / <alpha-value>)',
+            'brand-highlight': '#FFE4D6',
 
             // -- Custom Text Highlight Colors --
             // Add new highlight colors here. For each new color 'NAME',
@@ -348,9 +347,9 @@
             'highlight-purple-text': '#6B21A8',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['IBM Plex Mono', 'monospace'],
-            display: ['"Paytone One"', '"Archivo Black"', 'sans-serif'],
+            sans: ['Satoshi', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['Satoshi', 'sans-serif'],
           },
           fontSize: {
             'project-h1': ['38px', { lineHeight: '1.2' }],

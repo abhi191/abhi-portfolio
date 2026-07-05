@@ -8,6 +8,7 @@ import ProjectPageRedesign from './components/ProjectPageRedesign';
 import ProjectPage from './components/ProjectPage';
 import ResumePage from './components/ResumePage';
 import PasswordPrompt from './components/PasswordPrompt';
+import AccentSwitcher from './components/AccentSwitcher';
 
 // ... (keep existing imports if matching context, but since I am replacing a block inside renderPage, I only need to add the import at the top. Wait, replace_file_content works on a single block. I need multiple edits: one for import, one for logic. Using multi_replace_file_content would be safer/better, but I can use replace_file_content for logic if I added import manually or use multi. Let's use multi_replace for safety.)
 // Actually, I'll use replace_file_content for the import first, then for logic to keep it simple or just make a robust replacement. The previous attempt failed because of chunk mismatch.
@@ -197,6 +198,9 @@ const App: React.FC = () => {
           onClose={handleClosePrompt}
         />
       )}
+
+      {/* Visitor-facing accent switcher */}
+      <AccentSwitcher />
     </div>
   );
 };

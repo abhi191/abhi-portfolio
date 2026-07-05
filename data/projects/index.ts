@@ -10,6 +10,7 @@ import { gcpSaaSRuntimeProject } from './8-gcp-saas-runtime';
 import { saasRuntimeProjectV2 } from './9-saas-runtime';
 import { designwithAI } from './10-design-with-ai';
 import { operaAnalyzerProject } from './11-opera-analyzer';
+//import { rolloutsAssetCentricProject } from './12-rollouts-asset-centric';
 
 import { saasRuntimePlaygroundProject } from './99-playground-saas-runtime';
 

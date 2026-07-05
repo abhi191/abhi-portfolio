@@ -1,98 +1,83 @@
-
 import React from 'react';
-import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo, ChevronDownIcon } from './icons';
+import { motion, useReducedMotion } from 'motion/react';
+import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
 import InteractiveGrid from './InteractiveGrid';
 
+// Two controlled lines so the headline never wraps to 3+ lines at desktop.
+const HEADLINE_LINES: { text: string; italic?: boolean }[][] = [
+  [{ text: 'I' }, { text: 'design' }, { text: 'intelligent', italic: true }, { text: 'products' }],
+  [{ text: 'that' }, { text: 'feel' }, { text: 'effortless.' }],
+];
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 const Hero: React.FC = () => {
+  const reduceMotion = useReducedMotion();
+  let wordIndex = 0;
+
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Aurora Background */}
-      <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
+    <>
+      <section className="relative min-h-[82dvh] w-full flex items-center overflow-hidden">
+        <InteractiveGrid />
 
-        {/* Top-right blob (Blue) */}
-        <div
-          className="absolute -top-[10%] -right-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] rounded-full bg-brand-highlight mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-1"
-        />
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 relative z-10 py-20">
+          <div className="max-w-6xl">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-brand-dark">
+              {HEADLINE_LINES.map((line, lineIdx) => (
+                <span key={lineIdx} className="block pb-1">
+                  {line.map((word) => {
+                    const delay = wordIndex++ * 0.07;
+                    return (
+                      <span key={word.text} className="inline-block overflow-hidden align-bottom pb-3 -mb-3">
+                        <motion.span
+                          className={`inline-block mr-[0.24em] ${word.italic ? 'italic accent-word' : ''}`}
+                          initial={reduceMotion ? false : { y: '110%', opacity: 0 }}
+                          animate={{ y: '0%', opacity: 1 }}
+                          transition={{ duration: 0.8, delay: 0.15 + delay, ease: EASE }}
+                        >
+                          {word.text}
+                        </motion.span>
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
+            </h1>
 
-        {/* Top-left blob (Purple/Accent) */}
-        <div
-          className="absolute top-0 -left-[10%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full bg-brand-accent/40 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-2"
-        />
-
-        {/* Bottom-center blob (Subtle Gray/Warm) */}
-        <div
-          className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full bg-blue-100 mix-blend-multiply filter blur-[80px] opacity-60 animate-aurora-3"
-        />
-
-      </div>
-
-      {/* Interactive Dot Grid */}
-      <InteractiveGrid />
-
-      <div className="max-w-4xl mx-auto text-center relative z-10 container px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
-        <div className="space-y-10">
-          <h1
-            className="text-5xl sm:text-6xl font-display leading-tight tracking-normal text-brand-dark"
-          >
-            Hi, I'm <span
-              className="bg-clip-text text-transparent animate-gradient-flow"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #ef4444, #f97316, #f59e0b, #eab308, #84cc16, #22c55e, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #d946ef, #ec4899, #f43f5e, #ef4444)'
-              }}
-            >Abhinav</span> 👋
-          </h1>
-          <div className="space-y-8">
-            <p
-              className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-loose"
+            <motion.p
+              className="mt-8 text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-[52ch]"
+              initial={reduceMotion ? false : { y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
             >
-              A multi-disciplinary designer with 9+ years of experience in designing and developing for enterprise and consumer grade applications. I focus on creating meaningful, clear, and effective products.
-            </p>
-
-            <div className="flex flex-col items-center gap-6">
-              <span className="text-xl md:text-2xl font-semibold text-brand-dark">
-                Designed experiences for
-              </span>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                <GoogleLogo className="h-8 w-auto text-brand-dark" />
-                <CrestaLogo className="h-6 w-auto text-brand-dark" />
-                <VMWareLogo className="h-4 w-auto text-brand-dark" />
-                <SAPLogo className="h-8 w-auto text-brand-dark" />
-              </div>
-            </div>
-            {/* Scroll Down Indicator */}
-            <div className="flex justify-center mt-16 animate-bounce cursor-pointer" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-              <ChevronDownIcon className="w-8 h-8 text-brand-dark/40" />
-            </div>
+              Product Designer with 9+ years building AI-native products,
+              agentic platforms, and enterprise experiences that simplify
+              complexity and drive business impact.
+            </motion.p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 
-      // Companies I've worked with card
-      <div className="mt-24 max-w-4xl mx-auto">
-        <div className="bg-brand-card rounded-3xl py-10 px-8 md:py-12 md:px-12 text-center">
-          <h2 className="text-sm font-semibold tracking-widest text-brand-dark/60 uppercase">
-            Companies I have previously worked with
-          </h2>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-x-16 text-brand-dark/70">
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="Cresta">
-                <CrestaLogo className="h-7 w-auto" />
-            </a>
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="VMware">
-                <VMWareLogo className="h-5 w-auto" />
-            </a>
-            <a href="#/about" className="transition-colors hover:text-brand-dark" aria-label="SAP">
-                <SAPLogo className="h-9 w-auto" />
-            </a>
+      {/* Logo strip: separate section, directly under the hero */}
+      <motion.section
+        className="border-y border-brand-dark/10 bg-brand-background"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+      >
+        <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24 py-8 md:py-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand-dark/50">
+            Designed for
+          </span>
+          <div className="flex flex-wrap items-center gap-x-10 md:gap-x-14 gap-y-6">
+            <GoogleLogo className="h-7 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
+            <CrestaLogo className="h-5 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
+            <VMWareLogo className="h-4 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
+            <SAPLogo className="h-7 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
           </div>
         </div>
-      </div> 
-      */}
-      {/* Gradient Fade to Background */}
-      <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-gradient-to-t from-brand-background to-transparent pointer-events-none z-20" />
-
-
-    </section>
+      </motion.section>
+    </>
   );
 };
 

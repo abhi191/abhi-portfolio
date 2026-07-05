@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
       <header
         ref={headerRef}
         className={`w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
-          ? 'fixed top-0 bg-brand-background/80 backdrop-blur-lg shadow-sm'
+          ? 'fixed top-0 bg-brand-background/85 backdrop-blur-md border-b border-brand-dark/10'
           : 'absolute top-0 bg-brand-background'
           }`}
       >
@@ -61,19 +61,19 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
             <nav className="hidden md:flex items-center space-x-4">
               <button
                 onClick={() => (window.location.hash = '#/')}
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-2 transition-colors ${currentRoute.page === 'projects' || currentRoute.page === 'projectDetail' ? 'text-brand-dark underline decoration-brand-accent decoration-2 underline-offset-8' : 'text-brand-dark/60 hover:text-brand-dark'}`}
               >
                 Work
               </button>
               <button
                 onClick={() => (window.location.hash = '#/about')}
-                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${currentRoute.page === 'about' ? 'bg-brand-card text-brand-dark' : 'text-brand-dark/80 hover:bg-brand-card hover:text-brand-dark'}`}
+                className={`text-sm font-medium px-3 py-2 transition-colors ${currentRoute.page === 'about' ? 'text-brand-dark underline decoration-brand-accent decoration-2 underline-offset-8' : 'text-brand-dark/60 hover:text-brand-dark'}`}
               >
                 About me
               </button>
               <button
                 onClick={() => (window.location.hash = '#/resume')}
-                className="bg-brand-dark text-white text-sm font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity"
+                className="bg-brand-dark text-white text-sm font-semibold py-2.5 px-5 rounded-lg hover:bg-brand-accent transition-colors active:scale-[0.98]"
               >
                 Resume
               </button>
@@ -119,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({ currentRoute }) => {
           </button>
           <button
             onClick={() => { window.location.hash = '#/resume'; closeMenu(); }}
-            className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:opacity-90 transition-opacity mt-8"
+            className="bg-brand-dark text-white text-lg font-semibold py-4 px-8 rounded-lg hover:bg-brand-accent transition-colors mt-8"
           >
             Resume
           </button>

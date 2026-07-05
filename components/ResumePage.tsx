@@ -35,24 +35,6 @@ const DownloadIcon: React.FC<{ className?: string }> = ({ className }) => (
     </svg>
 );
 
-const BriefcaseSmallIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
-    </svg>
-);
-
-const AcademicCapIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-    </svg>
-);
-
-const SparklesIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-    </svg>
-);
-
 
 // ─── Sub-Components ──────────────────────────────────────────────────────────────
 
@@ -62,7 +44,7 @@ const ContactItem: React.FC<{ icon: React.ReactNode; text: string; href?: string
     href,
 }) => {
     const content = (
-        <span className="flex items-center gap-2.5 text-sm text-brand-dark/70 hover:text-brand-accent transition-colors duration-200">
+        <span className="flex items-center gap-2.5 text-sm text-brand-dark/70 hover:text-brand-dark transition-colors duration-200">
             <span className="flex-shrink-0 w-4 h-4">{icon}</span>
             <span>{text}</span>
         </span>
@@ -78,13 +60,10 @@ const ContactItem: React.FC<{ icon: React.ReactNode; text: string; href?: string
     return <div>{content}</div>;
 };
 
-const SectionTitle: React.FC<{ icon: React.ReactNode; title: string }> = ({ icon, title }) => (
-    <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 rounded-xl bg-brand-accent/10">
-            <span className="w-5 h-5 text-brand-accent block">{icon}</span>
-        </div>
-        <h2 className="text-xl font-bold tracking-tight text-brand-dark">{title}</h2>
-    </div>
+const SectionTitle: React.FC<{ title: string }> = ({ title }) => (
+    <h2 className="text-2xl md:text-3xl font-black tracking-tight text-brand-dark mb-8">
+        {title}
+    </h2>
 );
 
 const ExperienceCard: React.FC<{ experience: ResumeExperience; index: number }> = ({
@@ -92,32 +71,24 @@ const ExperienceCard: React.FC<{ experience: ResumeExperience; index: number }> 
     index,
 }) => (
     <AnimateOnScroll delay={index * 80}>
-        <div className="group relative pl-8">
-            {/* Timeline line */}
-            <div className="absolute left-[7px] top-2 bottom-0 w-px bg-brand-dark/10 group-last:hidden" />
-            {/* Timeline dot */}
-            <div className="absolute left-0 top-[7px] w-[15px] h-[15px] rounded-full border-[3px] border-brand-accent bg-brand-background group-hover:bg-brand-accent transition-colors duration-300" />
-
-            <div className="bg-brand-card/50 rounded-2xl p-6 hover:bg-brand-card transition-colors duration-300">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
-                    <div>
-                        <h3 className="text-lg font-bold text-brand-dark">{experience.title}</h3>
-                        <p className="text-brand-accent font-semibold text-sm">{experience.company}</p>
-                    </div>
-                    <div className="sm:text-right flex-shrink-0">
-                        <p className="text-sm text-brand-dark/60 font-mono">{experience.period}</p>
-                        <p className="text-sm text-brand-dark/50">{experience.location}</p>
-                    </div>
+        <div className="border-t border-brand-dark/10 pt-6">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                <div>
+                    <h3 className="text-lg font-bold text-brand-dark">{experience.title}</h3>
+                    <p className="accent-text font-semibold text-sm mt-0.5">{experience.company}</p>
                 </div>
-                <ul className="space-y-2 mt-4">
-                    {experience.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-brand-dark/75 leading-relaxed">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40 mt-[7px] flex-shrink-0" />
-                            <span>{bullet}</span>
-                        </li>
-                    ))}
-                </ul>
+                <div className="sm:text-right flex-shrink-0">
+                    <p className="text-sm text-brand-dark/60 font-mono">{experience.period}</p>
+                    <p className="text-sm text-brand-dark/50 mt-0.5">{experience.location}</p>
+                </div>
             </div>
+            <ul className="mt-4 space-y-2 list-disc list-outside pl-5 marker:text-brand-dark/40">
+                {experience.bullets.map((bullet, i) => (
+                    <li key={i} className="text-sm text-brand-dark/75 leading-relaxed">
+                        {bullet}
+                    </li>
+                ))}
+            </ul>
         </div>
     </AnimateOnScroll>
 );
@@ -128,14 +99,14 @@ const SkillCategory: React.FC<{ category: ResumeSkillCategory; index: number }> 
 }) => (
     <AnimateOnScroll delay={index * 100}>
         <div className="mb-10 last:mb-0">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-brand-dark/50 mb-3">
+            <h3 className="text-sm font-bold text-brand-dark mb-3">
                 {category.category}
             </h3>
             <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, i) => (
                     <span
                         key={i}
-                        className="inline-block text-sm px-3 py-1.5 rounded-lg bg-brand-card text-brand-dark/80 font-medium hover:bg-brand-accent/10 hover:text-brand-accent transition-all duration-200 cursor-default"
+                        className="inline-block text-sm px-3 py-1.5 rounded-lg bg-brand-card text-brand-dark/80 font-medium hover:bg-brand-accent/10 transition-colors duration-200 cursor-default"
                     >
                         {skill}
                     </span>
@@ -150,7 +121,7 @@ const EducationItem: React.FC<{ education: ResumeEducation; index: number }> = (
     index,
 }) => (
     <AnimateOnScroll delay={index * 100}>
-        <div className="py-4 first:pt-0 last:pb-0">
+        <div className="border-t border-brand-dark/10 pt-4">
             <h3 className="font-bold text-brand-dark">{education.degree}</h3>
             <p className="text-sm text-brand-dark/70 mt-0.5">{education.institution}</p>
             <p className="text-xs text-brand-dark/50 font-mono mt-1">{education.period}</p>
@@ -164,21 +135,21 @@ const ResumePage: React.FC = () => {
     const { name, headline, summary, contact, experience, skills, education } = resumeData;
 
     return (
-        <div className="py-24 md:py-32 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+        <div className="py-20 md:py-28 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
             <div className="max-w-6xl mx-auto">
                 {/* ─── Page Header ───────────────────────────────────────────────────── */}
                 <AnimateOnScroll>
-                    <div className="text-center mb-16 md:mb-20">
-                        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-brand-dark">
+                    <div className="mb-16 md:mb-20 max-w-4xl">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark">
                             {name}
                         </h1>
-                        <p className="mt-3 text-xl text-brand-accent font-semibold">{headline}</p>
-                        <p className="mt-6 text-base md:text-lg text-brand-dark/70 max-w-3xl mx-auto leading-relaxed">
+                        <p className="mt-4 text-xl md:text-2xl font-semibold accent-text">{headline}</p>
+                        <p className="mt-6 text-base md:text-lg text-brand-dark/70 leading-relaxed max-w-[62ch]">
                             {summary}
                         </p>
 
                         {/* Contact row */}
-                        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <ContactItem
                                 icon={<MailIcon className="w-4 h-4" />}
                                 text={contact.email}
@@ -201,7 +172,7 @@ const ResumePage: React.FC = () => {
                                 href="/Abhinav.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark/60 hover:text-brand-accent border border-brand-dark/15 hover:border-brand-accent/30 rounded-lg px-5 py-2.5 transition-all duration-200 hover:bg-brand-accent/5"
+                                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark border border-brand-dark/15 hover:border-brand-dark rounded-lg px-5 py-2.5 transition-colors duration-200 active:scale-[0.98]"
                             >
                                 <DownloadIcon className="w-4 h-4" />
                                 Download PDF
@@ -214,11 +185,8 @@ const ResumePage: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 lg:gap-16">
                     {/* Main Column — Experience */}
                     <div>
-                        <SectionTitle
-                            icon={<BriefcaseSmallIcon className="w-5 h-5" />}
-                            title="Work Experience"
-                        />
-                        <div className="mt-2 space-y-10">
+                        <SectionTitle title="Work experience" />
+                        <div className="space-y-8">
                             {experience.map((exp, index) => (
                                 <ExperienceCard key={index} experience={exp} index={index} />
                             ))}
@@ -226,13 +194,10 @@ const ResumePage: React.FC = () => {
                     </div>
 
                     {/* Sidebar — Skills & Education */}
-                    <aside className="space-y-20">
+                    <aside className="space-y-16 lg:space-y-20">
                         {/* Skills */}
                         <div>
-                            <SectionTitle
-                                icon={<SparklesIcon className="w-5 h-5" />}
-                                title="Skills"
-                            />
+                            <SectionTitle title="Skills" />
                             <div className="space-y-10">
                                 {skills.map((cat, index) => (
                                     <SkillCategory key={index} category={cat} index={index} />
@@ -242,11 +207,8 @@ const ResumePage: React.FC = () => {
 
                         {/* Education */}
                         <div>
-                            <SectionTitle
-                                icon={<AcademicCapIcon className="w-5 h-5" />}
-                                title="Education"
-                            />
-                            <div className="space-y-8">
+                            <SectionTitle title="Education" />
+                            <div className="space-y-6">
                                 {education.map((edu, index) => (
                                     <EducationItem key={index} education={edu} index={index} />
                                 ))}
