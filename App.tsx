@@ -1,0 +1,203 @@
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import FeaturedSection from './components/FeaturedSection';
+import Footer from './components/Footer';
+import AboutPage from './components/AboutPage';
+import ProjectPageRedesign from './components/ProjectPageRedesign';
+import ResumePage from './components/ResumePage';
+import PasswordPrompt from './components/PasswordPrompt';
+import AccentSwitcher from './components/AccentSwitcher';
+
+// ... (keep existing imports if matching context, but since I am replacing a block inside renderPage, I only need to add the import at the top. Wait, replace_file_content works on a single block. I need multiple edits: one for import, one for logic. Using multi_replace_file_content would be safer/better, but I can use replace_file_content for logic if I added import manually or use multi. Let's use multi_replace for safety.)
+// Actually, I'll use replace_file_content for the import first, then for logic to keep it simple or just make a robust replacement. The previous attempt failed because of chunk mismatch.
+// I'll try to add the import with the first tool, and logic with second? No, `replace_file_content` is one contiguous block.
+// I will use multi_replace_file_content.
+import { projects } from './data/projects';
+import type { Project } from './data/types';
+
+export interface Route {
+  page: 'projects' | 'about' | 'projectDetail' | 'resume';
+  slug?: string;
+}
+
+// Simple hash parser to determine the current page from the URL
+const parseRoute = (): Route => {
+  const hash = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
+
+  if (hash[0] === 'about') {
+    return { page: 'about' };
+  }
+
+  if (hash[0] === 'resume') {
+    return { page: 'resume' };
+  }
+
+  if (hash[0] === 'projects' && hash[1]) {
+    return { page: 'projectDetail', slug: hash[1] };
+  }
+
+  return { page: 'projects' };
+};
+
+interface ProjectBackgroundEffectProps {
+  color: string;
+}
+
+const ProjectBackgroundEffect: React.FC<ProjectBackgroundEffectProps> = ({ color }) => {
+  // Map the color name to a CSS class defined in index.html
+  const gradientClass = `gradient-${color}`;
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`project-gradient-base ${gradientClass}`}
+    />
+  );
+};
+
+const App: React.FC = () => {
+  const [route, setRoute] = React.useState(parseRoute());
+  // No longer track a list of unlocked projects.
+  // Instead, track if the *currently viewed* project has been unlocked.
+  const [isCurrentProjectUnlocked, setIsCurrentProjectUnlocked] = React.useState(false);
+  const [projectToUnlock, setProjectToUnlock] = React.useState<Project | null>(null);
+
+  const currentProject = route.page === 'projectDetail'
+    ? projects.find(p => p.slug === route.slug)
+    : undefined;
+
+  // Listen for changes in the URL hash to navigate between pages
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      const newRoute = parseRoute();
+
+      // On every navigation, reset the lock status.
+      // This ensures the password prompt appears every time.
+      setIsCurrentProjectUnlocked(false);
+
+      // If navigating away from a project detail page, ensure the prompt state is cleared.
+      if (newRoute.page !== 'projectDetail') {
+        setProjectToUnlock(null);
+      }
+
+      setRoute(newRoute);
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Effect to manage when to show the password prompt based on the current route.
+  React.useEffect(() => {
+    if (route.page === 'projectDetail') {
+      const project = projects.find(p => p.slug === route.slug);
+
+      // If the project requires a password and hasn't been unlocked yet for this view,
+      // show the password prompt.
+      if (project && project.password && !isCurrentProjectUnlocked) {
+        setProjectToUnlock(project);
+      } else {
+        // Otherwise, ensure the prompt is hidden.
+        setProjectToUnlock(null);
+      }
+    }
+  }, [route, isCurrentProjectUnlocked]);
+
+
+  const handlePasswordSubmit = (password: string): boolean => {
+    if (!projectToUnlock) return false;
+
+    const projectPassword = projectToUnlock.password;
+    if (Array.isArray(projectPassword)) {
+      if (projectPassword.includes(password)) {
+        setIsCurrentProjectUnlocked(true);
+        setProjectToUnlock(null);
+        return true;
+      }
+    } else if (password === projectPassword) {
+      // If correct, mark the current project as unlocked and close the prompt.
+      setIsCurrentProjectUnlocked(true);
+      setProjectToUnlock(null);
+      return true;
+    }
+    return false;
+  };
+
+  // Navigates to the homepage, which will trigger the hash change listener to clean up state.
+  const handleClosePrompt = () => {
+    window.location.hash = '#/';
+  };
+
+  const renderPage = () => {
+    switch (route.page) {
+      case 'about':
+        return <AboutPage />;
+
+      case 'resume':
+        return <ResumePage />;
+
+      case 'projectDetail':
+        const project = projects.find(p => p.slug === route.slug);
+
+        if (!project) {
+          // Fallback to projects list if project slug is invalid
+          return (
+            <>
+              <Hero />
+              <FeaturedSection />
+            </>
+          );
+        }
+
+        // If a project requires a password and is not yet unlocked for this session,
+        // render nothing. The `useEffect` above will handle showing the prompt overlay.
+        if (project.password && !isCurrentProjectUnlocked) {
+          return null;
+        }
+
+        // All projects render the redesigned editorial layout.
+        return <ProjectPageRedesign project={project} />;
+
+      case 'projects':
+      default:
+        return (
+          <>
+            <Hero />
+            <FeaturedSection />
+          </>
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col relative bg-brand-background">
+      {currentProject?.gradientBackgroundColor && <ProjectBackgroundEffect color={currentProject.gradientBackgroundColor} />}
+
+      {/* This wrapper creates a new stacking context to ensure content appears above the background effect */}
+      <div className="relative z-10 flex flex-col flex-grow">
+        <Header currentRoute={route} />
+        <main className="flex-grow">
+          {renderPage()}
+        </main>
+        <Footer />
+      </div>
+
+      {/* Render password prompt when a project needs to be unlocked */}
+      {projectToUnlock && (
+        <PasswordPrompt
+          onSubmit={handlePasswordSubmit}
+          onClose={handleClosePrompt}
+        />
+      )}
+
+      {/* Visitor-facing accent switcher */}
+      <AccentSwitcher />
+    </div>
+  );
+};
+
+export default App;

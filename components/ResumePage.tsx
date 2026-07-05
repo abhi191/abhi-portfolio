@@ -1,0 +1,224 @@
+import React from 'react';
+import AnimateOnScroll from './AnimateOnScroll';
+import { resumeData } from '../data/resume';
+import type { ResumeExperience, ResumeSkillCategory, ResumeEducation } from '../data/resume';
+
+// ─── Inline Icon Components ─────────────────────────────────────────────────────
+
+const MailIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+    </svg>
+);
+
+const PhoneIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+    </svg>
+);
+
+const GlobeIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+    </svg>
+);
+
+const LinkedInSmallIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className={className}>
+        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+    </svg>
+);
+
+const DownloadIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
+);
+
+
+// ─── Sub-Components ──────────────────────────────────────────────────────────────
+
+const ContactItem: React.FC<{ icon: React.ReactNode; text: string; href?: string }> = ({
+    icon,
+    text,
+    href,
+}) => {
+    const content = (
+        <span className="flex items-center gap-2.5 text-sm text-brand-dark/70 hover:text-brand-dark transition-colors duration-200">
+            <span className="flex-shrink-0 w-4 h-4">{icon}</span>
+            <span>{text}</span>
+        </span>
+    );
+
+    if (href) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className="block">
+                {content}
+            </a>
+        );
+    }
+    return <div>{content}</div>;
+};
+
+const SectionTitle: React.FC<{ title: string }> = ({ title }) => (
+    <h2 className="text-2xl md:text-3xl font-black tracking-tight text-brand-dark mb-8">
+        {title}
+    </h2>
+);
+
+const ExperienceCard: React.FC<{ experience: ResumeExperience; index: number }> = ({
+    experience,
+    index,
+}) => (
+    <AnimateOnScroll delay={index * 80}>
+        <div className="border-t border-brand-dark/10 pt-6">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                <div>
+                    <h3 className="text-lg font-bold text-brand-dark">{experience.title}</h3>
+                    <p className="accent-text font-semibold text-sm mt-0.5">{experience.company}</p>
+                </div>
+                <div className="sm:text-right flex-shrink-0">
+                    <p className="text-sm text-brand-dark/60 font-mono">{experience.period}</p>
+                    <p className="text-sm text-brand-dark/50 mt-0.5">{experience.location}</p>
+                </div>
+            </div>
+            <ul className="mt-4 space-y-2 list-disc list-outside pl-5 marker:text-brand-dark/40">
+                {experience.bullets.map((bullet, i) => (
+                    <li key={i} className="text-sm text-brand-dark/75 leading-relaxed">
+                        {bullet}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </AnimateOnScroll>
+);
+
+const SkillCategory: React.FC<{ category: ResumeSkillCategory; index: number }> = ({
+    category,
+    index,
+}) => (
+    <AnimateOnScroll delay={index * 100}>
+        <div className="mb-10 last:mb-0">
+            <h3 className="text-sm font-bold text-brand-dark mb-3">
+                {category.category}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, i) => (
+                    <span
+                        key={i}
+                        className="inline-block text-sm px-3 py-1.5 rounded-lg bg-brand-card text-brand-dark/80 font-medium hover:bg-brand-accent/10 transition-colors duration-200 cursor-default"
+                    >
+                        {skill}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </AnimateOnScroll>
+);
+
+const EducationItem: React.FC<{ education: ResumeEducation; index: number }> = ({
+    education,
+    index,
+}) => (
+    <AnimateOnScroll delay={index * 100}>
+        <div className="border-t border-brand-dark/10 pt-4">
+            <h3 className="font-bold text-brand-dark">{education.degree}</h3>
+            <p className="text-sm text-brand-dark/70 mt-0.5">{education.institution}</p>
+            <p className="text-xs text-brand-dark/50 font-mono mt-1">{education.period}</p>
+        </div>
+    </AnimateOnScroll>
+);
+
+// ─── Main Component ──────────────────────────────────────────────────────────────
+
+const ResumePage: React.FC = () => {
+    const { name, headline, summary, contact, experience, skills, education } = resumeData;
+
+    return (
+        <div className="py-20 md:py-28 container mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+            <div className="max-w-6xl mx-auto">
+                {/* ─── Page Header ───────────────────────────────────────────────────── */}
+                <AnimateOnScroll>
+                    <div className="mb-16 md:mb-20 max-w-4xl">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-brand-dark">
+                            {name}
+                        </h1>
+                        <p className="mt-4 text-xl md:text-2xl font-semibold accent-text">{headline}</p>
+                        <p className="mt-6 text-base md:text-lg text-brand-dark/70 leading-relaxed max-w-[62ch]">
+                            {summary}
+                        </p>
+
+                        {/* Contact row */}
+                        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                            <ContactItem
+                                icon={<MailIcon className="w-4 h-4" />}
+                                text={contact.email}
+                                href={`mailto:${contact.email}`}
+                            />
+                            <ContactItem
+                                icon={<PhoneIcon className="w-4 h-4" />}
+                                text={contact.phone}
+                            />
+                            <ContactItem
+                                icon={<LinkedInSmallIcon className="w-4 h-4" />}
+                                text="LinkedIn"
+                                href={`https://${contact.linkedin}`}
+                            />
+                        </div>
+
+                        {/* Download PDF button */}
+                        <div className="mt-8">
+                            <a
+                                href="/Abhinav.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-dark border border-brand-dark/15 hover:border-brand-dark rounded-lg px-5 py-2.5 transition-colors duration-200 active:scale-[0.98]"
+                            >
+                                <DownloadIcon className="w-4 h-4" />
+                                Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </AnimateOnScroll>
+
+                {/* ─── Two-column Layout ─────────────────────────────────────────────── */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 lg:gap-16">
+                    {/* Main Column — Experience */}
+                    <div>
+                        <SectionTitle title="Work experience" />
+                        <div className="space-y-8">
+                            {experience.map((exp, index) => (
+                                <ExperienceCard key={index} experience={exp} index={index} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Sidebar — Skills & Education */}
+                    <aside className="space-y-16 lg:space-y-20">
+                        {/* Skills */}
+                        <div>
+                            <SectionTitle title="Skills" />
+                            <div className="space-y-10">
+                                {skills.map((cat, index) => (
+                                    <SkillCategory key={index} category={cat} index={index} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Education */}
+                        <div>
+                            <SectionTitle title="Education" />
+                            <div className="space-y-6">
+                                {education.map((edu, index) => (
+                                    <EducationItem key={index} education={edu} index={index} />
+                                ))}
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default ResumePage;

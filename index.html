@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63.91 63.91'><rect width='63.91' height='63.91' fill='black'/><g transform='translate(0 12.7)'><path fill='white' d='M35.9,15.21l-4,6-4-6-1.8-2.8a1.11,1.11,0,0,0-1.6-.3l-.3.3-17,25.5a1.19,1.19,0,0,1-.9.5H1.1A1.11,1.11,0,0,1,0,37.31a1.42,1.42,0,0,1,.2-.6L24.4.51A1.11,1.11,0,0,1,26,.21l.3.3Z'/><path fill='white' d='M63.7,36.61a1.15,1.15,0,0,1-.3,1.6,1.42,1.42,0,0,1-.6.2l-4,.1H14.6a1.11,1.11,0,0,1-1.1-1.1,1.42,1.42,0,0,1,.2-.6L28,15.31l4-6L37.8.61a1.15,1.15,0,0,1,1.6-.3l.3.3,10.2,15.5a1.25,1.25,0,0,1-.3,1.6,1.45,1.45,0,0,1-.7.2H43.8a1.05,1.05,0,0,1-.9-.5l-3.2-5a1.11,1.11,0,0,0-1.6-.3l-.3.3-1.9,2.8-4,6L26,30.11a1.25,1.25,0,0,0,.3,1.6,1.42,1.42,0,0,0,.6.2H50.7a1.2,1.2,0,0,0,1.2-1.1,1.45,1.45,0,0,0-.2-.7l-2.3-3.4a1.15,1.15,0,0,1,.3-1.6,1.42,1.42,0,0,1,.6-.2h5a1.05,1.05,0,0,1,.9.5Z'/></g></svg>" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhinav Gupta | Product Designer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* --- Self-hosted type: Satoshi (display + body), JetBrains Mono (data + labels) --- */
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2');
+      font-weight: 300 900;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('/fonts/JetBrainsMono-Variable.woff2') format('woff2');
+      font-weight: 100 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: 'Satoshi', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Single-accent system driven by CSS vars so the dev accent switcher can
+       swap the whole page at once. --accent-rgb feeds Tailwind's brand-accent.
+       --accent-contrast is the text color that sits on solid accent surfaces
+       (paper on dark accents, ink on light accents like lime/yellow). */
+    :root {
+      --accent-rgb: 214 36 110;
+      --accent: #D6246E;
+      --accent-contrast: #F6F6F4;
+      /* Text-only variant: equals the pure hue for dark accents, but a darkened
+         shade for light accents (lime/yellow) so accent TEXT stays WCAG-legible on
+         paper. Fills, underlines, the dot grid and card tints keep the pure hue. */
+      --accent-text: #D6246E;
+    }
+
+    ::selection {
+      background-color: rgb(var(--accent-rgb));
+      color: var(--accent-contrast);
+    }
+
+    :focus-visible {
+      outline: 2px solid rgb(var(--accent-rgb));
+      outline-offset: 2px;
+    }
+
+    .accent-word {
+      color: var(--accent-text);
+    }
+
+    /* Small accent-colored text (labels, company names): uses the a11y-safe
+       text variant, no ink outline (that treatment is for display sizes only). */
+    .accent-text {
+      color: var(--accent-text);
+    }
+
+    .group:hover .accent-hover-text {
+      color: var(--accent-text);
+    }
+
+    /* Every accent keeps its pure vibrant hue as text, with a hairline ink
+       outline for legibility and a consistent, deliberate look across colors.
+       paint-order keeps the vibrant fill full-size with the stroke sitting
+       just outside the glyph rather than eating into it. */
+    .accent-word {
+      -webkit-text-stroke: 1px #16171A;
+      paint-order: stroke fill;
+    }
+
+    [class*="hover:bg-brand-accent"]:hover {
+      color: var(--accent-contrast) !important;
+    }
+
+    /* For initial page load animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* For scroll-triggered animations */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scroll-animate.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-animate {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .animate-fade-in,
+      .animate-fade-in-up {
+        animation: none;
+        opacity: 1;
+      }
+    }
+
+    /* --- Custom Project Page Gradient Backgrounds --- */
+    /* This is the base style for the gradient effect element. */
+    .project-gradient-base {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1000px;
+    }
+
+    @keyframes retro-progress {
+      from {
+        width: 100%;
+      }
+
+      to {
+        width: 0%;
+      }
+    }
+
+    /* Add new gradient color classes here. The start color should be a light tint.
+         For consistency, you can use the same hex codes defined for the 'highlight-*-bg'
+         colors in the tailwind.config below. */
+    .gradient-purple {
+      background: linear-gradient(180deg, #F3E8FF 0%, #F6F6F4 80%);
+    }
+
+    .gradient-blue {
+      background: linear-gradient(180deg, #DBEAFE 0%, #F6F6F4 80%);
+    }
+
+    .gradient-green {
+      background: linear-gradient(180deg, #D1FAE5 0%, #F6F6F4 80%);
+    }
+
+    .gradient-yellow {
+      background: linear-gradient(180deg, #FEF3C7 0%, #F6F6F4 80%);
+    }
+
+    .gradient-red {
+      background: linear-gradient(180deg, #FEE2E2 0%, #F6F6F4 80%);
+    }
+
+    .gradient-gray {
+      background: linear-gradient(180deg, #E5E7EB 0%, #F6F6F4 80%);
+    }
+
+    /* --- Retro Mode Easter Egg --- */
+    body.retro-mode {
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif !important;
+      background-color: #000080 !important;
+      /* Windows 95 Blue */
+      color: #00FF00 !important;
+      /* Matrix Green / Retro Terminal */
+      cursor: crosshair !important;
+    }
+
+    body.retro-mode * {
+      border-radius: 0 !important;
+      /* No rounded corners in the 90s! */
+      box-shadow: none !important;
+    }
+
+    body.retro-mode h1,
+    body.retro-mode h2,
+    body.retro-mode h3 {
+      font-family: "Courier New", Courier, monospace !important;
+      color: #FFFF00 !important;
+      /* Neon Yellow */
+      text-shadow: 2px 2px #FF0000 !important;
+      /* Red shadow */
+    }
+
+    body.retro-mode .bg-brand-card,
+    body.retro-mode header,
+    body.retro-mode footer {
+      background-color: #C0C0C0 !important;
+      /* Win 95 Gray */
+      border: 4px outset #FFFFFF !important;
+      color: #000000 !important;
+    }
+
+    body.retro-mode button,
+    body.retro-mode a {
+      text-decoration: underline !important;
+      color: #0000FF !important;
+      /* Hyperlink Blue */
+    }
+
+    body.retro-mode img,
+    body.retro-mode svg {
+      filter: contrast(150%) hue-rotate(90deg) !important;
+    }
+
+    /* Wiggle animation for attention */
+    @keyframes wiggle {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      5% {
+        transform: rotate(-15deg);
+      }
+
+      10% {
+        transform: rotate(15deg);
+      }
+
+      15% {
+        transform: rotate(-15deg);
+      }
+
+      20% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    .animate-wiggle {
+      animation: wiggle 2s ease-in-out infinite;
+      display: inline-block;
+      /* Ensure transforms work */
+      position: relative;
+    }
+
+    /* Spark animation */
+    @keyframes spark-fade {
+
+      0%,
+      80% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      85% {
+        opacity: 1;
+        transform: scale(0.5);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+    .spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #FCD34D;
+      /* Amber-300 */
+      box-shadow: 0 0 4px #F59E0B;
+      /* Amber-500 glow */
+      opacity: 0;
+      animation: spark-fade 2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* "Ink & Signal" system: neutral paper, off-black ink, one signal accent. */
+            'brand-background': '#F6F6F4',
+            'brand-card': '#EDEDEB',
+            'brand-dark': '#16171A',
+            'brand-accent': 'rgb(var(--accent-rgb) / <alpha-value>)',
+            'brand-highlight': '#FFE4D6',
+
+            // -- Custom Text Highlight Colors --
+            // Add new highlight colors here. For each new color 'NAME',
+            // add a 'highlight-NAME-bg' and 'highlight-NAME-text'.
+            'highlight-red-bg': '#FEE2E2',    // Corresponds to Tailwind's red-100
+            'highlight-red-text': '#991B1B',  // Corresponds to Tailwind's red-900
+            'highlight-yellow-bg': '#FEF3C7', // Corresponds to Tailwind's yellow-100 (default)
+            'highlight-yellow-text': '#78350F',// Corresponds to Tailwind's yellow-900
+            'highlight-green-bg': '#D1FAE5',  // Corresponds to Tailwind's green-100
+            'highlight-green-text': '#065F46', // Corresponds to Tailwind's green-900
+            'highlight-blue-bg': '#DBEAFE',   // Corresponds to Tailwind's blue-100
+            'highlight-blue-text': '#1E40AF',  // Corresponds to Tailwind's blue-900
+            'highlight-gray-bg': '#E5E7EB',   // Corresponds to Tailwind's gray-200
+            'highlight-gray-text': '#1F2937',  // Corresponds to Tailwind's gray-800
+
+            // Example of a new custom color:
+            'highlight-purple-bg': '#F3E8FF',
+            'highlight-purple-text': '#6B21A8',
+          },
+          fontFamily: {
+            sans: ['Satoshi', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['Satoshi', 'sans-serif'],
+          },
+          fontSize: {
+            'project-h1': ['38px', { lineHeight: '1.2' }],
+            'project-h2': ['36px', { lineHeight: '1.3' }],
+            'project-h3': ['28px', { lineHeight: '1.4' }],
+            'project-h4': ['22px', { lineHeight: '1.5' }],
+          }
+        }
+      }
+    }
+  </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+
+  <!-- Smartlook tracking code -->
+  <!-- Add your Smartlook tracking code snippet here -->
+
+  <!-- Inspectlet tracking code -->
+  <!-- Add your Inspectlet tracking code snippet here -->
+
+  <!-- Google Tag Manager -->
+  <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M67HRDL');
+  </script>
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<body class="text-brand-dark">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

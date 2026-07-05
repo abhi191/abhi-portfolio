@@ -1,0 +1,25 @@
+import type { Project } from '../types';
+import { googleEcommerceProject } from './1-google-ecommerce';
+//import { vmwareDashboardProject } from './2-vmware-dashboard';
+//import { sapHealthcareProject } from './3-oracle-healthcare';
+import { saasRuntimeProject } from './4-saas-runtime';
+import { saasOnboardingProject } from './5-saas-runtime-onboarding';
+import { featureFlagsCelProject } from './6-feature-flags-cel';
+import { crestaCommandCenterProject } from './7-cresta-command-center';
+import { gcpSaaSRuntimeProject } from './8-gcp-saas-runtime';
+import { saasRuntimeProjectV2 } from './9-saas-runtime';
+import { designwithAI } from './10-design-with-ai';
+import { operaAnalyzerProject } from './11-opera-analyzer';
+//import { rolloutsAssetCentricProject } from './12-rollouts-asset-centric';
+
+import { saasRuntimePlaygroundProject } from './99-playground-saas-runtime';
+
+/**
+ * The order of projects on the website is determined by the order in this array.
+ * To add a new project, import it from its file and add it to this array.
+ */
+export const projects: Project[] = [
+  saasRuntimeProjectV2,
+  operaAnalyzerProject,
+  designwithAI
+];
