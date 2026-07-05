@@ -30,7 +30,7 @@ export const saasRuntimePlaygroundProject: Project = {
     /* {
        title: 'My Role',
        blocks: [
-         { type: 'paragraph', content: '**Lead Designer.** 0-1 design, research, and stakeholder alignment for the successful public preview of the product.' },
+         { type: 'paragraph', content: '**Lead Designer** — 0-1 design, research, and stakeholder alignment for the successful public preview of the product.' },
          { type: 'paragraph', content: 'Contributed to integrations with multiple GCP products, leadership buy-in, design process improvements using AI, UI testing, and refinements.' },
          { type: 'paragraph', content: '**Timeline:** October 2024 - April 2025' },
        ],
@@ -162,7 +162,7 @@ export const saasRuntimePlaygroundProject: Project = {
         },
 
         { type: 'heading', level: 4, content: 'Seamless multi-product integrations:' },
-        { type: 'quote', text: 'SaaS Runtime integrated with multiple GCP surfaces, including App Design Center and GCP Marketplace, offering both UI and code-based experiences.', color: 'blue' },
+        { type: 'quote', text: 'SaaS Runtime integrated with multiple GCP surfaces — including App Design Center and GCP Marketplace — offering both UI and code-based experiences.', color: 'blue' },
         {
           type: 'carousel', slides: [
             { src: '/images/projects/saas-runtime/image-12.png', caption: 'Integrating flows with App Design Center' },

@@ -108,7 +108,7 @@ export const operaAnalyzerProject: Project = {
         { type: 'image', src: '/images/projects/opera-analyzer/image 2.png', isExpandable: true },
         { type: 'image', src: '/images/projects/opera-analyzer/image 3.png', isExpandable: true },
         { type: 'heading', level: 3, content: 'Review & Calibration:' },
-        { type: 'paragraph', content: 'Added a "Review" step where rules are tested on a representative batch of conversations. Users calibrate the scoring by answering guided questions, establishing a clear confidence score before making live changes, which eliminates risky, uninformed deployments.' },
+        { type: 'paragraph', content: 'Added a "Review" step where rules are tested on a representative batch of conversations. Users calibrate the scoring by answering guided questions, establishing a clear confidence score before making live changes—eliminating risky, uninformed deployments.' },
         { type: 'image', src: '/images/projects/opera-analyzer/image 4.png', isExpandable: true },
         { type: 'image', src: '/images/projects/opera-analyzer/image 5.png', isExpandable: true },
         { type: 'image', src: '/images/projects/opera-analyzer/image 6.png', isExpandable: true },
@@ -158,7 +158,7 @@ export const operaAnalyzerProject: Project = {
         { type: 'heading', level: 4, content: 'Learnings:' },
         { type: 'paragraph', content: "Better early engineering involvement around filtering complexity would have streamlined the process. There’s growing demand for mobile and tablet support for on-the-go troubleshooting, and users want even smarter, more specific improvement recommendations." },
         { type: 'heading', level: 4, content: 'Principle:' },
-        { type: 'paragraph', content: "To empower enterprise teams, UX must deliver clarity, actionable insights, and measurable confidence, not just data or pretty screens. This project proved that user-aligned workflows and data-driven validation create lasting success." }
+        { type: 'paragraph', content: "To empower enterprise teams, UX must deliver clarity, actionable insights, and measurable confidence—not just data or pretty screens. This project proved that user-aligned workflows and data-driven validation create lasting success." }
       ]
     }
   ]

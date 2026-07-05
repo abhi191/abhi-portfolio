@@ -34,7 +34,7 @@ export const designwithAI: Project = {
     {
       title: 'Context',
       blocks: [
-        { type: 'paragraph', content: "A key part of the SaaS Runtime experience, the CEL Expression Builder for Feature Flags, was missing from our design system. It was a complex component with dynamic logic, nested conditions, and multiple interactive states." },
+        { type: 'paragraph', content: "A key part of the SaaS Runtime experience—the CEL Expression Builder for Feature Flags—was missing from our design system. It was a complex component with dynamic logic, nested conditions, and multiple interactive states." },
         { type: 'image', src: '/images/projects/design-with-ai/image.png', isExpandable: true }
       ]
     },

@@ -106,7 +106,7 @@ export const resumeData: ResumeData = {
             location: 'India',
             period: 'Nov 2019 – April 2022',
             bullets: [
-                'Designed for the flagship product VMware vRealize Automation, a powerful and easy-to-use Infrastructure Automation Platform.',
+                'Designed for the flagship product VMware vRealize Automation — a powerful and easy-to-use Infrastructure Automation Platform.',
                 'Worked as the only designer from India for the team driving forward the initiative for providing a consumer grade experience.',
             ],
         },
