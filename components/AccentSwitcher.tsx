@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 
-// Visitor-facing accent switcher. On first visit a curated accent is picked at
-// random; the choice (random or manual) is persisted so a returning visitor
-// keeps their color instead of it re-rolling on every load.
+// Visitor-facing accent switcher. Defaults to Vermilion (red) for first-time
+// visitors; any manual choice is persisted so a returning visitor keeps their
+// pick instead of it resetting.
 
 const STORAGE_KEY = 'portfolio-accent';
+const DEFAULT_ACCENT_NAME = 'Vermilion';
 
 export interface AccentOption {
   name: string;
@@ -36,12 +37,12 @@ export const applyAccent = (option: AccentOption) => {
 const SPRING = { type: 'spring', stiffness: 500, damping: 32 } as const;
 
 const AccentSwitcher: React.FC = () => {
-  // Returning visitor keeps their saved accent; first visit rolls a random one.
+  // Returning visitor keeps their saved accent; first visit defaults to red.
   const [active, setActive] = useState<AccentOption>(() => {
     let saved: string | null = null;
     try { saved = localStorage.getItem(STORAGE_KEY); } catch { /* storage unavailable */ }
     const match = ACCENT_OPTIONS.find((o) => o.name === saved);
-    return match ?? ACCENT_OPTIONS[Math.floor(Math.random() * ACCENT_OPTIONS.length)];
+    return match ?? ACCENT_OPTIONS.find((o) => o.name === DEFAULT_ACCENT_NAME)!;
   });
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
