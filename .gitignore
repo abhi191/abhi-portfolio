@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dev tool worktrees (nested git repos / scratch checkouts)
+.claude/worktrees/
+.claire/

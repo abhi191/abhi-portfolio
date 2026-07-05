@@ -52,6 +52,17 @@ export const resumeData: ResumeData = {
     },
     experience: [
         {
+            title: 'Senior Product Designer',
+            company: 'Toast',
+            location: 'Toronto, Canada',
+            period: 'March 2026 – Present',
+            bullets: [
+                "Driving Toast's platform AI and agentic strategy and design vision, enhancing workflows for SMB and Enterprise customers.",
+                'Defining new design system components, workflows, and interaction patterns for AI-first experiences and systems.',
+                "Led the design of Toast's fintech platform (orders and payments), focusing on improving user experience in pricing, taxes, and discounts.",
+            ],
+        },
+        {
             title: 'Sr. Interaction Designer',
             company: 'Google Canada',
             location: 'Toronto, Canada',

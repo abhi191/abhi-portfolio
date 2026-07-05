@@ -1,5 +1,5 @@
 import type { AboutPageData } from './types';
-import { GoogleLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons';
+import { GoogleLogo, ToastLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons';
 //import profile-image from './profile-image.jpg';
 
 //export const profile-image
@@ -46,6 +46,14 @@ export const aboutPageContent: AboutPageData = {
   journey: {
     title: 'My journey',
     history: [
+      {
+        company: 'Toast',
+        companyLogo: ToastLogo,
+        position: 'Senior Product Designer',
+        description: 'Leading design vision for Toast\'s platform AI and agentic strategy, shaping workflows for SMB and enterprise customers. Defining new design system components and interaction patterns for AI-first experiences, while leading design for Toast\'s fintech platform to improve pricing, tax, and discount workflows.',
+        location: 'Toronto, Canada',
+        period: 'Mar 2026 – Present'
+      },
       {
         company: 'Google',
         companyLogo: GoogleLogo,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { GoogleLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
+import { GoogleLogo, ToastLogo, CrestaLogo, VMWareLogo, SAPLogo } from './icons';
 import InteractiveGrid from './InteractiveGrid';
 
 // Two controlled lines so the headline never wraps to 3+ lines at desktop.
@@ -71,6 +71,7 @@ const Hero: React.FC = () => {
           </span>
           <div className="flex flex-wrap items-center gap-x-10 md:gap-x-14 gap-y-6">
             <GoogleLogo className="h-7 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
+            <ToastLogo className="h-5 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
             <CrestaLogo className="h-5 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
             <VMWareLogo className="h-4 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
             <SAPLogo className="h-7 w-auto text-brand-dark/70 hover:text-brand-dark transition-colors duration-300" />
