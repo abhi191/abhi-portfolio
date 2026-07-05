@@ -22,8 +22,8 @@ import { GoogleLogo, VMWareLogo, SAPLogo, CrestaLogo } from '../components/icons
  */
 export const aboutPageContent: AboutPageData = {
   profileImageUrl: '/profile-image.jpg',
-  title: 'Hi, I’m Abhinav Gupta.',
-  intro: 'I’m an Interaction Designer at Google, where I focus on creating meaningful, clear, and effective products. With over 9 years of experience, I\'ve had the privilege of designing and developing for both enterprise and consumer-grade applications. I thrive on solving complex problems and crafting experiences that are not only functional but also delightful to use.',
+  title: 'Hi, I\'m Abhinav Gupta.',
+  intro: 'I design AI-native products that transform complex workflows into intuitive experiences. With 9+ years of experience across enterprise and consumer products, I lead product direction from ambiguous problems to shipped solutions, aligning design, product, and engineering to deliver lasting user and business impact.',
 
   designPhilosophy: {
     title: 'My design philosophy',

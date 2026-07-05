@@ -3,6 +3,19 @@ import AnimateOnScroll from './AnimateOnScroll';
 import { aboutPageContent } from '../data/about';
 import { ChevronDownIcon } from './icons';
 
+// Splits `text` on each exact phrase in `phrases`, wrapping matches in the
+// accent color. Phrases must be substrings of `text` in first-match order.
+const renderWithHighlights = (text: string, phrases: string[]): React.ReactNode => {
+  const pattern = new RegExp(`(${phrases.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+  return text.split(pattern).map((part, i) =>
+    phrases.includes(part) ? (
+      <span key={i} className="accent-text italic font-black">{part}</span>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+};
+
 const AboutPage: React.FC = () => {
   const {
     profileImageUrl,
@@ -30,7 +43,7 @@ const AboutPage: React.FC = () => {
                 {title}
               </h1>
               <p className="mt-8 text-lg md:text-xl text-brand-dark/70 leading-relaxed max-w-[58ch]">
-                {intro}
+                {renderWithHighlights(intro, ['AI-native products', 'lasting user and business impact'])}
               </p>
             </div>
             <div className="md:col-span-5 order-1 md:order-2">
